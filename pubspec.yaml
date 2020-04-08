@@ -1,8 +1,8 @@
-name: matter
-description: Draw objects on your canvas and add full interactive capability to each of those objects.
+name: touchable
+description: Draw objects on your canvas and add full interactive capability and gesture callbacks to each object.
 version: 0.0.1
 author: nateshmbhat
-homepage:
+homepage: https://github.com/nateshmbhat/flutter_touchable
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
