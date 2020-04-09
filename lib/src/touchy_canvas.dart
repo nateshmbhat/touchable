@@ -22,11 +22,12 @@ class TouchyCanvas {
     if(!controller.hasListener){
       controller.stream.listen((event) {
         print("inside touch listener") ;
-        var touchPoint = TouchCanvasUtil.getPointFromGestureEvent(event.gestureDetail) ;
+        var touchPoint = TouchCanvasUtil.getPointFromGestureDetail(event.gestureDetail) ;
 
         for(int i =_shapeStack.length-1 ; i>=0 ; i--){
           if(_shapeStack[i].isInside(touchPoint)){
-            _shapeStack[i].onTapDown(event.gestureDetail) ;
+            var callback = TouchCanvasUtil.getCallbackFromGesture(_shapeStack[i], event);
+            callback() ;
             return ;
           }
         }

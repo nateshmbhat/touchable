@@ -3,6 +3,8 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/types/types.dart';
 
 class ShapeUtil {
   static double distance(Offset p1, Offset p2) {
@@ -10,31 +12,66 @@ class ShapeUtil {
   }
 }
 
+typedef gestureCallback =  void Function() ; 
 class TouchCanvasUtil {
-  static Offset getPointFromGestureEvent(dynamic event) {
-    switch (event.runtimeType) {
+  
+  ///This method returns a function whose body contains the function call to the proper callback depending on the [GestureType] and passes the [event.gestureDetail] object accordingly.
+  ///This returned function contains the closure to call with the corresponding [gesture.detail] object automatically. 
+  ///The caller of this would just call the returned function without any parameters.
+  static gestureCallback getCallbackFromGesture(Shape shape , Gesture gesture ){
+    var detail = gesture.gestureDetail;
+    switch(gesture.gestureType){
+      case GestureType.onTapDown: return ()=>shape.onTapDown(detail) ;
+      case GestureType.onTapUp: return ()=>shape.onTapUp(detail) ;
+      case GestureType.onHorizontalDragDown: return ()=>shape.onHorizontalDragDown(detail) ;
+      case GestureType.onHorizontalDragStart: return ()=>shape.onHorizontalDragStart(detail) ;
+      case GestureType.onHorizontalDragUpdate: return ()=>shape.onHorizontalDragUpdate(detail) ;
+      case GestureType.onVerticalDragDown: return ()=>shape.onVerticalDragDown(detail) ;
+      case GestureType.onVerticalDragStart: return ()=>shape.onVerticalDragStart(detail) ;
+      case GestureType.onVerticalDragUpdate: return ()=>shape.onVerticalDragUpdate(detail) ;
+      case GestureType.onLongPressStart: return ()=>shape.onLongPressStart(detail) ;
+      case GestureType.onLongPressEnd: return ()=>shape.onLongPressEnd(detail) ;
+      case GestureType.onLongPressMoveUpdate: return ()=>shape.onLongPressMoveUpdate(detail) ;
+      case GestureType.onScaleStart: return ()=>shape.onScaleStart(detail) ;
+      case GestureType.onScaleUpdate: return ()=>shape.onScaleUpdate(detail) ;
+      case GestureType.onForcePressStart: return ()=>shape.onForcePressStart(detail) ;
+      case GestureType.onForcePressEnd: return ()=>shape.onForcePressEnd(detail) ;
+      case GestureType.onForcePressPeak: return ()=>shape.onForcePressPeak(detail) ;
+      case GestureType.onForcePressUpdate: return ()=>shape.onForcePressUpdate(detail) ;
+      case GestureType.onPanStart: return ()=>shape.onPanStart(detail) ;
+      case GestureType.onPanUpdate: return ()=>shape.onPanUpdate(detail) ;
+      case GestureType.onPanDown: return ()=>shape.onPanDown(detail) ;
+      case GestureType.onSecondaryTapDown: return ()=>shape.onSecondaryTapDown(detail) ;
+      case GestureType.onSecondaryTapUp: return ()=>shape.onSecondaryTapUp(detail) ;
+      default:
+        return ()=>{} ;
+    }
+  }
+  
+  static Offset getPointFromGestureDetail(dynamic gestureDetail) {
+    switch (gestureDetail.runtimeType) {
       case TapDownDetails:
-        return (event as TapDownDetails).localPosition;
+        return (gestureDetail as TapDownDetails).localPosition;
       case TapUpDetails:
-        return (event as TapUpDetails).localPosition;
+        return (gestureDetail as TapUpDetails).localPosition;
       case DragDownDetails:
-        return (event as DragDownDetails).localPosition;
+        return (gestureDetail as DragDownDetails).localPosition;
       case DragStartDetails:
-        return (event as DragStartDetails).localPosition;
+        return (gestureDetail as DragStartDetails).localPosition;
       case LongPressStartDetails:
-        return (event as LongPressStartDetails).localPosition;
+        return (gestureDetail as LongPressStartDetails).localPosition;
       case LongPressEndDetails:
-        return (event as LongPressEndDetails).localPosition;
+        return (gestureDetail as LongPressEndDetails).localPosition;
       case LongPressMoveUpdateDetails:
-        return (event as LongPressMoveUpdateDetails).localPosition;
+        return (gestureDetail as LongPressMoveUpdateDetails).localPosition;
 
       case ScaleStartDetails:
-        return (event as ScaleStartDetails).localFocalPoint;
+        return (gestureDetail as ScaleStartDetails).localFocalPoint;
       case ScaleUpdateDetails:
-        return (event as ScaleUpdateDetails).localFocalPoint;
+        return (gestureDetail as ScaleUpdateDetails).localFocalPoint;
 
       case ForcePressDetails:
-        return (event as ForcePressDetails).localPosition;
+        return (gestureDetail as ForcePressDetails).localPosition;
 
       default:
         throw Exception("event.runTimeType is not recognized ! ");
