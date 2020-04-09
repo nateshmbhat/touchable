@@ -5,12 +5,12 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart' as material;
-import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
+import 'package:touchable/src/types/types.dart';
 
 
 class TouchyCanvas {
@@ -23,6 +23,7 @@ class TouchyCanvas {
       controller.stream.listen((event) {
         print("inside touch listener") ;
         var touchPoint = TouchCanvasUtil.getPointFromGestureEvent(event.gestureDetail) ;
+
         for(int i =_shapeStack.length-1 ; i>=0 ; i--){
           if(_shapeStack[i].isInside(touchPoint)){
             _shapeStack[i].onTapDown(event.gestureDetail) ;

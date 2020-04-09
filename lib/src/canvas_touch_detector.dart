@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:touchable/src/types/types.dart';
 
 /// Created by nateshmbhat on 04,April,2020
-
-typedef CustomTouchPaintBuilder = CustomPaint Function(
-    BuildContext context, StreamController<Gesture> touchController);
 
 class CanvasTouchDetector extends StatefulWidget {
   final CustomTouchPaintBuilder builder;
@@ -15,14 +13,6 @@ class CanvasTouchDetector extends StatefulWidget {
   _CanvasTouchDetectorState createState() => _CanvasTouchDetectorState();
 }
 
-class Gesture {
-  final dynamic gestureDetail;
-
-  final Type gestureCallback;
-
-  Gesture(this.gestureCallback, this.gestureDetail);
-}
-
 class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
   final StreamController<Gesture> touchController = StreamController();
 
@@ -30,78 +20,78 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTapDown: (tapDetail) {
-          touchController.add(Gesture(GestureTapDownCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onTapDown, tapDetail));
         },
         onTapUp: (tapDetail) {
-          touchController.add(Gesture(GestureTapUpCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onTapUp, tapDetail));
         },
         onHorizontalDragDown: (tapDetail) {
-          touchController.add(Gesture(GestureDragDownCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onHorizontalDragDown, tapDetail));
         },
         onHorizontalDragStart: (tapDetail) {
-          touchController.add(Gesture(GestureDragStartCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onHorizontalDragStart, tapDetail));
         },
         onHorizontalDragUpdate: (tapDetail) {
-          touchController.add(Gesture(GestureDragUpdateCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onHorizontalDragUpdate, tapDetail));
         },
         onVerticalDragDown: (tapDetail) {
-          touchController.add(Gesture(GestureDragDownCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onVerticalDragDown, tapDetail));
         },
         onVerticalDragStart: (tapDetail) {
-          touchController.add(Gesture(GestureDragStartCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onVerticalDragStart, tapDetail));
         },
         onVerticalDragUpdate: (tapDetail) {
-          touchController.add(Gesture(GestureDragUpdateCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onVerticalDragUpdate, tapDetail));
         },
         onLongPressStart: (tapDetail) {
           touchController
-              .add(Gesture(GestureLongPressStartCallback, tapDetail));
+              .add(Gesture( GestureType.onLongPressStart, tapDetail));
         },
         onLongPressEnd: (tapDetail) {
-          touchController.add(Gesture(GestureLongPressEndCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onLongPressEnd, tapDetail));
         },
         onLongPressMoveUpdate: (tapDetail) {
           touchController
-              .add(Gesture(GestureLongPressMoveUpdateCallback, tapDetail));
+              .add(Gesture( GestureType.onLongPressMoveUpdate, tapDetail));
         },
         onScaleStart: (tapDetail) {
-          touchController.add(Gesture(GestureScaleStartCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onScaleStart, tapDetail));
         },
         onScaleUpdate: (tapDetail) {
-          touchController.add(Gesture(GestureScaleUpdateCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onScaleUpdate, tapDetail));
         },
         onForcePressStart: (tapDetail) {
           touchController
-              .add(Gesture(GestureForcePressStartCallback, tapDetail));
+              .add(Gesture( GestureType.onForcePressStart, tapDetail));
         },
         onForcePressEnd: (tapDetail) {
-          touchController.add(Gesture(GestureForcePressEndCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onForcePressEnd, tapDetail));
         },
         onForcePressPeak: (tapDetail) {
           touchController
-              .add(Gesture(GestureForcePressPeakCallback, tapDetail));
+              .add(Gesture( GestureType.onForcePressPeak, tapDetail));
         },
         onForcePressUpdate: (tapDetail) {
           touchController
-              .add(Gesture(GestureForcePressUpdateCallback, tapDetail));
+              .add(Gesture( GestureType.onForcePressUpdate, tapDetail));
         },
         onPanStart: (tapDetail) {
-          touchController.add(Gesture(GestureDragStartCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onPanStart, tapDetail));
         },
         onPanEnd: (tapDetail) {
-          touchController.add(Gesture(GestureDragEndCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onPanEnd, tapDetail));
         },
         onPanUpdate: (tapDetail) {
-          touchController.add(Gesture(GestureDragUpdateCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onPanUpdate, tapDetail));
         },
         onPanDown: (tapDetail) {
-          touchController.add(Gesture(GestureDragDownCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onPanDown, tapDetail));
         },
         onSecondaryTapDown: (tapDetail) {
-          touchController.add(Gesture(GestureTapDownCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onSecondaryTapDown, tapDetail));
         },
         onSecondaryTapUp: (tapDetail) {
-          touchController.add(Gesture(GestureTapUpCallback, tapDetail));
+          touchController.add(Gesture( GestureType.onSecondaryTapUp, tapDetail));
         },
         child: widget.builder(context, touchController));
   }
