@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:matter/src/shapes/constant.dart';
-import 'package:matter/src/shapes/shape.dart';
-import 'package:matter/src/shapes/util.dart';
+import 'package:touchable/src/shapes/constant.dart';
+import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/shapes/util.dart';
 import 'package:meta/meta.dart';
 
 /// Created by nateshmbhat on 04,April,2020

@@ -5,12 +5,12 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart' as material;
-import 'package:matter/src/canvas_touch_detector.dart';
-import 'package:matter/src/shapes/circle.dart';
-import 'package:matter/src/shapes/line.dart';
-import 'package:matter/src/shapes/rectangle.dart';
-import 'package:matter/src/shapes/shape.dart';
-import 'package:matter/src/shapes/util.dart';
+import 'package:touchable/src/canvas_touch_detector.dart';
+import 'package:touchable/src/shapes/circle.dart';
+import 'package:touchable/src/shapes/line.dart';
+import 'package:touchable/src/shapes/rectangle.dart';
+import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/shapes/util.dart';
 
 
 class TouchyCanvas {

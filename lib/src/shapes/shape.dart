@@ -3,65 +3,74 @@
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:matter/src/shapes/constant.dart';
+import 'package:touchable/src/shapes/constant.dart';
 
 abstract class Shape {
   Paint paint;
 
   final GestureTapDownCallback onTapDown;
+  final GestureTapDownCallback onSecondaryTapDown;
 
   final GestureTapUpCallback onTapUp;
+  final GestureTapDownCallback onSecondaryTapUp;
 
-  final GestureDragDownCallback dragDownCallback;
+  final GestureDragDownCallback onHorizontalDragDown;
+  final GestureDragDownCallback onVerticalDragDown;
+  final GestureDragDownCallback onPanDown;
 
 //  final GestureDragEndCallback dragEndCallback ; // HAS NO LOCAL POSITION
-  final GestureDragStartCallback dragStartCallback;
+  final GestureDragStartCallback onHorizontalDragStart;
+  final GestureDragStartCallback onVerticalDragStart;
+  final GestureDragStartCallback onPanStart;
 
-  final GestureDragUpdateCallback dragUpdateCallback;
+  final GestureDragUpdateCallback onHorizontalDragUpdate;
+  final GestureDragUpdateCallback onVerticalDragUpdate;
+  final GestureDragUpdateCallback onPanUpdate;
 
-  final GestureLongPressStartCallback longPressStartCallback;
+  final GestureLongPressStartCallback onLongPressStart;
 
-  final GestureLongPressEndCallback longPressEndCallback;
+  final GestureLongPressEndCallback onLongPressEnd;
 
-  final GestureLongPressMoveUpdateCallback longPressMoveUpdateCallback;
+  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
 
-  final GestureScaleStartCallback scaleStartCallback;
+  final GestureScaleStartCallback onScaleStart;
 
 //  final GestureScaleEndCallback scaleEndCallback; Has no localPosition
-  final GestureScaleUpdateCallback scaleUpdateCallback;
+  final GestureScaleUpdateCallback onScaleUpdate;
 
-  final GestureForcePressStartCallback forcePressStartCallback;
+  final GestureForcePressStartCallback onForcePressStart;
 
-  final GestureForcePressEndCallback forcePressEndCallback;
+  final GestureForcePressEndCallback onForcePressEnd;
 
-  final GestureForcePressUpdateCallback forcePressUpdateCallback;
+  final GestureForcePressUpdateCallback onForcePressUpdate;
 
-  final GestureForcePressPeakCallback forcePressPeakCallback;
+  final GestureForcePressPeakCallback onForcePressPeak;
 
-  final GestureMultiTapDownCallback multiTapDownCallback;
-
-  final GestureMultiTapUpCallback multiTapUpCallback;
-
-  Shape(
-      {this.paint,
-      this.onTapUp,
-      this.dragDownCallback,
-//      this.dragEndCallback,
-      this.dragStartCallback,
-      this.dragUpdateCallback,
-      this.longPressStartCallback,
-      this.longPressEndCallback,
-      this.longPressMoveUpdateCallback,
-      this.scaleStartCallback,
-//      this.scaleEndCallback,
-      this.scaleUpdateCallback,
-      this.forcePressStartCallback,
-      this.forcePressEndCallback,
-      this.forcePressUpdateCallback,
-      this.forcePressPeakCallback,
-      this.multiTapDownCallback,
-      this.multiTapUpCallback,
-      this.onTapDown}) {
+  Shape({
+    this.paint,
+    this.onTapDown,
+    this.onSecondaryTapDown,
+    this.onSecondaryTapUp,
+    this.onHorizontalDragDown,
+    this.onVerticalDragDown,
+    this.onPanDown,
+    this.onHorizontalDragStart,
+    this.onVerticalDragStart,
+    this.onPanStart,
+    this.onHorizontalDragUpdate,
+    this.onVerticalDragUpdate,
+    this.onPanUpdate,
+    this.onLongPressStart,
+    this.onLongPressEnd,
+    this.onLongPressMoveUpdate,
+    this.onScaleStart,
+    this.onScaleUpdate,
+    this.onForcePressStart,
+    this.onForcePressEnd,
+    this.onForcePressUpdate,
+    this.onForcePressPeak,
+    this.onTapUp,
+  }) {
     paint ??= Paint()
       ..strokeWidth = ShapeConstant.floatPrecision
       ..style = PaintingStyle.fill;

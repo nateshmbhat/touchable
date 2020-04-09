@@ -3,7 +3,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:matter/src/shapes/shape.dart';
+import 'package:touchable/src/shapes/shape.dart';
 
 class Rectangle extends Shape{
 
