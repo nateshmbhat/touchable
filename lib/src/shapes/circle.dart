@@ -25,11 +25,11 @@ class Circle extends Shape {
     else{
       double extraWidth= paint.strokeWidth/2 ;
       bool insideOuterCircle = _isInsideRadius(p, radius+extraWidth);
-      bool outsideInnerCircle = _isOutsideRadius(p, radius-extraWidth);
       if(paint.style==PaintingStyle.fill){
         return insideOuterCircle ;
       }
       else{
+        bool outsideInnerCircle = _isOutsideRadius(p, radius-extraWidth);
         return insideOuterCircle && outsideInnerCircle ;
       }
     }
