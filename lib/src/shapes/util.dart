@@ -21,28 +21,28 @@ class TouchCanvasUtil {
   static gestureCallback getCallbackFromGesture(Shape shape , Gesture gesture ){
     var detail = gesture.gestureDetail;
     switch(gesture.gestureType){
-      case GestureType.onTapDown: return ()=>shape.onTapDown(detail) ;
-      case GestureType.onTapUp: return ()=>shape.onTapUp(detail) ;
-      case GestureType.onHorizontalDragDown: return ()=>shape.onHorizontalDragDown(detail) ;
-      case GestureType.onHorizontalDragStart: return ()=>shape.onHorizontalDragStart(detail) ;
-      case GestureType.onHorizontalDragUpdate: return ()=>shape.onHorizontalDragUpdate(detail) ;
-      case GestureType.onVerticalDragDown: return ()=>shape.onVerticalDragDown(detail) ;
-      case GestureType.onVerticalDragStart: return ()=>shape.onVerticalDragStart(detail) ;
-      case GestureType.onVerticalDragUpdate: return ()=>shape.onVerticalDragUpdate(detail) ;
-      case GestureType.onLongPressStart: return ()=>shape.onLongPressStart(detail) ;
-      case GestureType.onLongPressEnd: return ()=>shape.onLongPressEnd(detail) ;
-      case GestureType.onLongPressMoveUpdate: return ()=>shape.onLongPressMoveUpdate(detail) ;
-      case GestureType.onScaleStart: return ()=>shape.onScaleStart(detail) ;
-      case GestureType.onScaleUpdate: return ()=>shape.onScaleUpdate(detail) ;
-      case GestureType.onForcePressStart: return ()=>shape.onForcePressStart(detail) ;
-      case GestureType.onForcePressEnd: return ()=>shape.onForcePressEnd(detail) ;
-      case GestureType.onForcePressPeak: return ()=>shape.onForcePressPeak(detail) ;
-      case GestureType.onForcePressUpdate: return ()=>shape.onForcePressUpdate(detail) ;
-      case GestureType.onPanStart: return ()=>shape.onPanStart(detail) ;
-      case GestureType.onPanUpdate: return ()=>shape.onPanUpdate(detail) ;
-      case GestureType.onPanDown: return ()=>shape.onPanDown(detail) ;
-      case GestureType.onSecondaryTapDown: return ()=>shape.onSecondaryTapDown(detail) ;
-      case GestureType.onSecondaryTapUp: return ()=>shape.onSecondaryTapUp(detail) ;
+      case GestureType.onTapDown: return ()=>shape.onTapDown?.call(detail) ;
+      case GestureType.onTapUp: return ()=>shape.onTapUp?.call(detail) ;
+      case GestureType.onHorizontalDragDown: return ()=>shape.onHorizontalDragDown?.call(detail) ;
+      case GestureType.onHorizontalDragStart: return ()=>shape.onHorizontalDragStart?.call(detail) ;
+      case GestureType.onHorizontalDragUpdate: return ()=>shape.onHorizontalDragUpdate?.call(detail) ;
+      case GestureType.onVerticalDragDown: return ()=>shape.onVerticalDragDown?.call(detail) ;
+      case GestureType.onVerticalDragStart: return ()=>shape.onVerticalDragStart?.call(detail) ;
+      case GestureType.onVerticalDragUpdate: return ()=>shape.onVerticalDragUpdate?.call(detail) ;
+      case GestureType.onLongPressStart: return ()=>shape.onLongPressStart?.call(detail) ;
+      case GestureType.onLongPressEnd: return ()=>shape.onLongPressEnd?.call(detail) ;
+      case GestureType.onLongPressMoveUpdate: return ()=>shape.onLongPressMoveUpdate?.call(detail) ;
+      case GestureType.onScaleStart: return ()=>shape.onScaleStart?.call(detail) ;
+      case GestureType.onScaleUpdate: return ()=>shape.onScaleUpdate?.call(detail) ;
+      case GestureType.onForcePressStart: return ()=>shape.onForcePressStart?.call(detail) ;
+      case GestureType.onForcePressEnd: return ()=>shape.onForcePressEnd?.call(detail) ;
+      case GestureType.onForcePressPeak: return ()=>shape.onForcePressPeak?.call(detail) ;
+      case GestureType.onForcePressUpdate: return ()=>shape.onForcePressUpdate?.call(detail) ;
+      case GestureType.onPanStart: return ()=>shape.onPanStart?.call(detail) ;
+      case GestureType.onPanUpdate: return ()=>shape.onPanUpdate?.call(detail) ;
+      case GestureType.onPanDown: return ()=>shape.onPanDown?.call(detail) ;
+      case GestureType.onSecondaryTapDown: return ()=>shape.onSecondaryTapDown?.call(detail) ;
+      case GestureType.onSecondaryTapUp: return ()=>shape.onSecondaryTapUp?.call(detail) ;
       default:
         return ()=>{} ;
     }
@@ -64,12 +64,10 @@ class TouchCanvasUtil {
         return (gestureDetail as LongPressEndDetails).localPosition;
       case LongPressMoveUpdateDetails:
         return (gestureDetail as LongPressMoveUpdateDetails).localPosition;
-
       case ScaleStartDetails:
         return (gestureDetail as ScaleStartDetails).localFocalPoint;
       case ScaleUpdateDetails:
         return (gestureDetail as ScaleUpdateDetails).localFocalPoint;
-
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
 

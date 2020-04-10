@@ -3,6 +3,7 @@
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:touchable/matter.dart';
 import 'package:touchable/src/shapes/constant.dart';
 
 abstract class Shape {
@@ -77,4 +78,31 @@ abstract class Shape {
   }
 
   bool isInside(Offset p);
+  bool isRegistered(GestureType gestureType){
+    switch(gestureType){
+      case GestureType.onTapDown: return onTapDown!=null ;
+      case GestureType.onTapUp: return onTapUp!=null ;
+      case GestureType.onHorizontalDragDown: return onHorizontalDragDown!=null ;
+      case GestureType.onHorizontalDragStart: return onHorizontalDragStart!=null ;
+      case GestureType.onHorizontalDragUpdate: return onHorizontalDragUpdate!=null ;
+      case GestureType.onVerticalDragDown: return onVerticalDragDown!=null ;
+      case GestureType.onVerticalDragStart: return onVerticalDragStart!=null ;
+      case GestureType.onVerticalDragUpdate: return onVerticalDragUpdate!=null ;
+      case GestureType.onLongPressStart: return onLongPressStart!=null ;
+      case GestureType.onLongPressEnd: return onLongPressEnd!=null ;
+      case GestureType.onLongPressMoveUpdate: return onLongPressMoveUpdate!=null ;
+      case GestureType.onScaleStart: return onScaleStart!=null ;
+      case GestureType.onScaleUpdate: return onScaleUpdate!=null ;
+      case GestureType.onForcePressStart: return onForcePressStart!=null ;
+      case GestureType.onForcePressEnd: return onForcePressEnd!=null ;
+      case GestureType.onForcePressPeak: return onForcePressPeak!=null ;
+      case GestureType.onForcePressUpdate: return onForcePressUpdate!=null ;
+      case GestureType.onPanStart: return onPanStart!=null ;
+      case GestureType.onPanUpdate: return onPanUpdate!=null ;
+      case GestureType.onPanDown: return onPanDown!=null ;
+      case GestureType.onSecondaryTapDown: return onSecondaryTapDown!=null ;
+      case GestureType.onSecondaryTapUp: return onSecondaryTapUp!=null ;
+      default : return false;
+    }
+  }
 }

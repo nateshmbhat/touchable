@@ -6,7 +6,6 @@ import 'package:touchable/src/types/types.dart';
 
 class CanvasTouchDetector extends StatefulWidget {
   final CustomTouchPaintBuilder builder;
-
   const CanvasTouchDetector({Key key, this.builder}) : super(key: key);
 
   @override
@@ -25,24 +24,24 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
         onTapUp: (tapDetail) {
           touchController.add(Gesture( GestureType.onTapUp, tapDetail));
         },
-        onHorizontalDragDown: (tapDetail) {
-          touchController.add(Gesture( GestureType.onHorizontalDragDown, tapDetail));
-        },
-        onHorizontalDragStart: (tapDetail) {
-          touchController.add(Gesture( GestureType.onHorizontalDragStart, tapDetail));
-        },
-        onHorizontalDragUpdate: (tapDetail) {
-          touchController.add(Gesture( GestureType.onHorizontalDragUpdate, tapDetail));
-        },
-        onVerticalDragDown: (tapDetail) {
-          touchController.add(Gesture( GestureType.onVerticalDragDown, tapDetail));
-        },
-        onVerticalDragStart: (tapDetail) {
-          touchController.add(Gesture( GestureType.onVerticalDragStart, tapDetail));
-        },
-        onVerticalDragUpdate: (tapDetail) {
-          touchController.add(Gesture( GestureType.onVerticalDragUpdate, tapDetail));
-        },
+//        onHorizontalDragDown: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onHorizontalDragDown, tapDetail));
+//        },
+//        onHorizontalDragStart: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onHorizontalDragStart, tapDetail));
+//        },
+//        onHorizontalDragUpdate: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onHorizontalDragUpdate, tapDetail));
+//        },
+//        onVerticalDragDown: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onVerticalDragDown, tapDetail));
+//        },
+//        onVerticalDragStart: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onVerticalDragStart, tapDetail));
+//        },
+//        onVerticalDragUpdate: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onVerticalDragUpdate, tapDetail));
+//        },
         onLongPressStart: (tapDetail) {
           touchController
               .add(Gesture( GestureType.onLongPressStart, tapDetail));
@@ -54,12 +53,12 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
           touchController
               .add(Gesture( GestureType.onLongPressMoveUpdate, tapDetail));
         },
-        onScaleStart: (tapDetail) {
-          touchController.add(Gesture( GestureType.onScaleStart, tapDetail));
-        },
-        onScaleUpdate: (tapDetail) {
-          touchController.add(Gesture( GestureType.onScaleUpdate, tapDetail));
-        },
+//        onScaleStart: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onScaleStart, tapDetail));
+//        },
+//        onScaleUpdate: (tapDetail) {
+//          touchController.add(Gesture( GestureType.onScaleUpdate, tapDetail));
+//        },
         onForcePressStart: (tapDetail) {
           touchController
               .add(Gesture( GestureType.onForcePressStart, tapDetail));
