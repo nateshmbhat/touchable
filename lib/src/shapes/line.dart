@@ -14,6 +14,6 @@ class Line extends Shape {
 //  y - mx - c
   bool isInside(Offset p) {
     var dist = ShapeUtil.distance(p1,p) + ShapeUtil.distance(p, p2 )  - ShapeUtil.distance(p1, p2);
-    return  -paint.strokeWidth < dist && dist < paint.strokeWidth;
+    return  -paint.strokeWidth/2 < dist && dist < paint.strokeWidth/2;
   }
 }

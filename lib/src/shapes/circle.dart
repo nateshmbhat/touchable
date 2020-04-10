@@ -29,7 +29,7 @@ class Circle extends Shape {
         return insideOuterCircle ;
       }
       else{
-        bool outsideInnerCircle = _isOutsideRadius(p, radius-extraWidth);
+        bool outsideInnerCircle = !_isInsideRadius(p, radius-extraWidth);
         return insideOuterCircle && outsideInnerCircle ;
       }
     }
@@ -37,9 +37,6 @@ class Circle extends Shape {
 
   bool _isInsideRadius( Offset p, double radius){
     return pow(p.dx - center.dx, 2) + pow(p.dy - center.dy, 2) - pow(radius, 2) <= ShapeConstant.floatPrecision ;
-  }
-  bool _isOutsideRadius(Offset p, double radius){
-    return pow(p.dx - center.dx, 2) + pow(p.dy - center.dy, 2) - pow(radius, 2) >= ShapeConstant.floatPrecision ;
   }
 
   myPrinter(String val,Paint paint){
