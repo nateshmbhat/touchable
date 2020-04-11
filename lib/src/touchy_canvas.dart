@@ -22,8 +22,6 @@ class TouchyCanvas {
     if(!controller.hasListener){
       controller.stream.listen((event) {
         var touchPoint = TouchCanvasUtil.getPointFromGestureDetail(event.gestureDetail) ;
-//        print("inside touch listener : $touchPoint") ;
-
         for(int i =_shapeStack.length-1 ; i>=0 ; i--){
           if(!_shapeStack[i].isRegistered(event.gestureType))continue ;
           if(_shapeStack[i].isInside(touchPoint)){

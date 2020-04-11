@@ -7,7 +7,7 @@ import 'package:touchable/src/shapes/shape.dart';
 
 class Rectangle extends Shape{
   final Rect rect ;
-  Rectangle(this.rect , {GestureTapDownCallback onTapDown , Paint paint  }):super(onTapDown:onTapDown ,paint:paint);
+  Rectangle(this.rect , {GestureTapDownCallback onTapDown , Paint paint}):super(onTapDown:onTapDown ,paint:paint);
 
   @override
   bool isInside(Offset p) {
