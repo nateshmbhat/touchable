@@ -26,10 +26,9 @@ class Line extends Shape {
 //  ax + by = c
   bool isInside(Offset p) {
     var value = a * p.dx + b * p.dy - c;
-    return value <= paint.strokeWidth / 2 &&
-        max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=
-            ShapeUtil.distance(p1, p2) + paint.strokeWidth / 2 &&
-        _findPerpendicularDist(p, value) <= paint.strokeWidth / 2;
+    return _findPerpendicularDist(p, value) <= paint.strokeWidth / 2 &&
+    max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=
+            ShapeUtil.distance(p1, p2) + paint.strokeWidth / 2 ;
   }
 
   double _findPerpendicularDist(Offset p, double value) {
