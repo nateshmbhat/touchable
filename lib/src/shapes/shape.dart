@@ -46,6 +46,10 @@ abstract class Shape {
   final GestureForcePressUpdateCallback onForcePressUpdate;
 
   final GestureForcePressPeakCallback onForcePressPeak;
+  
+  Set<GestureType> _registeredGestures = Set() ;
+
+  Set<GestureType> get registeredGestures => _registeredGestures;
 
   Shape({
     this.paint,
@@ -75,10 +79,14 @@ abstract class Shape {
     paint ??= Paint()
       ..strokeWidth = ShapeConstant.floatPrecision
       ..style = PaintingStyle.fill;
+    
+    for(var type in GestureType.values){
+      if(_isRegistered(type)) _registeredGestures.add(type) ;
+    }
   }
 
   bool isInside(Offset p);
-  bool isRegistered(GestureType gestureType){
+  bool _isRegistered(GestureType gestureType){
     switch(gestureType){
       case GestureType.onTapDown: return onTapDown!=null ;
       case GestureType.onTapUp: return onTapUp!=null ;

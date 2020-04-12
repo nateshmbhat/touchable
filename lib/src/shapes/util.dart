@@ -58,6 +58,8 @@ class TouchCanvasUtil {
         return (gestureDetail as DragDownDetails).localPosition;
       case DragStartDetails:
         return (gestureDetail as DragStartDetails).localPosition;
+      case DragUpdateDetails:
+        return (gestureDetail as DragUpdateDetails).localPosition;
       case LongPressStartDetails:
         return (gestureDetail as LongPressStartDetails).localPosition;
       case LongPressEndDetails:
@@ -70,9 +72,8 @@ class TouchCanvasUtil {
         return (gestureDetail as ScaleUpdateDetails).localFocalPoint;
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
-
       default:
-        throw Exception("event.runTimeType is not recognized ! ");
+        throw Exception("gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
     }
   }
 }

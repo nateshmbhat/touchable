@@ -5,9 +5,11 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart' as material;
+import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
+import 'package:touchable/src/shapes/path.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
@@ -17,21 +19,12 @@ import 'package:touchable/src/types/types.dart';
 class TouchyCanvas {
   final Canvas _canvas ;
   final StreamController<Gesture> controller;
-  final List<Shape>  _shapeStack = [] ;
+  final ShapeHandler _shapeHandler = ShapeHandler() ;
 
   TouchyCanvas(this._canvas , this.controller){
     if(!controller.hasListener){
       controller.stream.listen((event) {
-        var touchPoint = TouchCanvasUtil.getPointFromGestureDetail(event.gestureDetail) ;
-
-        for(int i =_shapeStack.length-1 ; i>=0 ; i--){
-         if(_shapeStack[i].isInside(touchPoint)){
-            if(!_shapeStack[i].isRegistered(event.gestureType)) return ;
-            var callback = TouchCanvasUtil.getCallbackFromGesture(_shapeStack[i], event);
-            callback() ;
-            return ;
-          }
-        }
+        _shapeHandler.handleGestureEvent(event) ;
       });
     }
   }
@@ -62,39 +55,36 @@ class TouchyCanvas {
   @override
   void drawCircle(Offset c, double radius, Paint paint , {material.GestureTapDownCallback onTapDown}) {
     _canvas.drawCircle(c, radius, paint);
-    _shapeStack.add(Circle(center: c , radius: radius , onTapDown: onTapDown,paint: paint));
+    _shapeHandler.addShape(Circle(center: c , radius: radius , onTapDown: onTapDown,paint: paint));
   }
 
   @override
   void drawDRRect(RRect outer, RRect inner, Paint paint) {
+    _canvas.drawDRRect(outer, inner, paint);
     // TODO: implement drawDRRect
   }
 
   @override
   void drawLine(Offset p1, Offset p2, Paint paint, {material.GestureTapDownCallback onTapDown}) {
     _canvas.drawLine(p1, p2, paint);
-    _shapeStack.add(Line(p1 , p2 , onTapDown: onTapDown, paint: paint ));
+    _shapeHandler.addShape(Line(p1 , p2 , onTapDown: onTapDown, paint: paint ));
   }
 
   @override
   void drawOval(Rect rect, Paint paint,{material.GestureTapDownCallback onTapDown}) {
     _canvas.drawOval(rect, paint);
-    _shapeStack.add(Oval(rect,paint:paint,onTapDown:onTapDown));
+    _shapeHandler.addShape(Oval(rect,paint:paint,onTapDown:onTapDown));
   }
 
   @override
-  void drawParagraph(Paragraph paragraph, Offset offset) {
-    // TODO: implement drawParagraph
+  void drawParagraph(Paragraph paragraph, Offset offset,{material.GestureTapDownCallback onTapDown}) {
+    throw UnimplementedError("draw Paragraph not implemented yet");
   }
 
   @override
-  void drawPath(Path path, Paint paint) {
-    // TODO: implement drawPath
-  }
-
-  @override
-  void drawPicture(Picture picture) {
-    // TODO: implement drawPicture
+  void drawPath(Path path, Paint paint,{material.GestureTapDownCallback onTapDown}) {
+    _canvas.drawPath(path, paint);
+    _shapeHandler.addShape(PathShape(path,paint: paint,onTapDown: onTapDown));
   }
 
   @override
@@ -116,7 +106,7 @@ class TouchyCanvas {
   @override
   void drawRect(Rect rect, Paint paint , {material.GestureTapDownCallback onTapDown}) {
     _canvas.drawRect(rect, paint);
-    _shapeStack.add(Rectangle(rect,onTapDown: onTapDown,paint: paint));
+    _shapeHandler.addShape(Rectangle(rect,onTapDown: onTapDown,paint: paint));
   }
 
   @override
