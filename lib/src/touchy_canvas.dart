@@ -6,13 +6,13 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart' as material;
 import 'package:touchable/src/shape_handler.dart';
+import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/path.dart';
+import 'package:touchable/src/shapes/point.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
-import 'package:touchable/src/shapes/shape.dart';
-import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
 
 
@@ -28,8 +28,6 @@ class TouchyCanvas {
       });
     }
   }
-
-
 
 
   @override
@@ -49,7 +47,8 @@ class TouchyCanvas {
 
   @override
   void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint) {
-    // TODO: implement drawArc
+    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
+    _shapeHandler.addShape(Arc(rect,startAngle,sweepAngle,useCenter,paint: paint));
   }
 
   @override
@@ -76,10 +75,10 @@ class TouchyCanvas {
     _shapeHandler.addShape(Oval(rect,paint:paint,onTapDown:onTapDown));
   }
 
-  @override
-  void drawParagraph(Paragraph paragraph, Offset offset,{material.GestureTapDownCallback onTapDown}) {
-    throw UnimplementedError("draw Paragraph not implemented yet");
-  }
+//  @override
+//  void drawParagraph(Paragraph paragraph, Offset offset,{material.GestureTapDownCallback onTapDown}) {
+//    throw UnimplementedError("draw Paragraph not implemented yet");
+//  }
 
   @override
   void drawPath(Path path, Paint paint,{material.GestureTapDownCallback onTapDown}) {
@@ -88,8 +87,9 @@ class TouchyCanvas {
   }
 
   @override
-  void drawPoints(PointMode pointMode, List<Offset> points, Paint paint) {
-    // TODO: implement drawPoints
+  void drawPoints(PointMode pointMode, List<Offset> points, Paint paint,{material.GestureTapDownCallback onTapDown}) {
+    _canvas.drawPoints(pointMode, points, paint);
+    _shapeHandler.addShape(Point(pointMode,points,paint: paint,onTapDown: onTapDown));
   }
 
   @override
