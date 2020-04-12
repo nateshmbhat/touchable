@@ -7,6 +7,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart' as material;
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/line.dart';
+import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
@@ -76,8 +77,9 @@ class TouchyCanvas {
   }
 
   @override
-  void drawOval(Rect rect, Paint paint) {
-    // TODO: implement drawOval
+  void drawOval(Rect rect, Paint paint,{material.GestureTapDownCallback onTapDown}) {
+    _canvas.drawOval(rect, paint);
+    _shapeStack.add(Oval(rect,paint:paint,onTapDown:onTapDown));
   }
 
   @override
