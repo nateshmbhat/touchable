@@ -13,6 +13,7 @@ import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/path.dart';
 import 'package:touchable/src/shapes/point.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
+import 'package:touchable/src/shapes/rounded_rectangle.dart';
 import 'package:touchable/src/types/types.dart';
 
 
@@ -42,14 +43,15 @@ class TouchyCanvas {
 
   @override
   void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
+    _canvas.clipRect(rect,clipOp: clipOp,doAntiAlias: doAntiAlias);
     // TODO: implement clipRect
   }
 
-  @override
-  void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint) {
-    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
-    _shapeHandler.addShape(Arc(rect,startAngle,sweepAngle,useCenter,paint: paint));
-  }
+//  @override
+//  void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint) {
+//    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
+//    _shapeHandler.addShape(Arc(rect,startAngle,sweepAngle,useCenter,paint: paint));
+//  }
 
   @override
   void drawCircle(Offset c, double radius, Paint paint , {material.GestureTapDownCallback onTapDown}) {
@@ -94,13 +96,19 @@ class TouchyCanvas {
 
   @override
   void drawRRect(RRect rrect, Paint paint) {
-    // TODO: implement drawRRect
+    _canvas.drawRRect(rrect, paint);
+    _shapeHandler.addShape(RoundedRectangle(rrect,paint: paint));
   }
 
 
   @override
   void drawRawPoints(PointMode pointMode, Float32List points, Paint paint) {
-    // TODO: implement drawRawPoints
+    _canvas.drawRawPoints(pointMode,points, paint);
+    List<Offset> offsetPoints = [] ;
+    for(int i =0 ;i < points.length ; i+=2){
+      offsetPoints.add(Offset(points[i],points[i+1]));
+    }
+    _shapeHandler.addShape(Point(pointMode, offsetPoints ,paint: paint));
   }
 
   @override
@@ -136,6 +144,7 @@ class TouchyCanvas {
 
   @override
   void transform(Float64List matrix4) {
+//    _canvas.transform
     // TODO: implement transform
   }
 
@@ -146,22 +155,13 @@ class TouchyCanvas {
 
   @override
   void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects, List<Color> colors, BlendMode blendMode, Rect cullRect, Paint paint) {
-    // TODO: implement drawAtlas
+    _canvas.drawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
   }
 
   @override
   void drawImage(Image image, Offset p, Paint paint) {
-    // TODO: implement drawImage
-  }
-
-  @override
-  void drawImageNine(Image image, Rect center, Rect dst, Paint paint) {
-    // TODO: implement drawImageNine
-  }
-
-  @override
-  void drawImageRect(Image image, Rect src, Rect dst, Paint paint) {
-    // TODO: implement drawImageRect
+    _canvas.drawImage(image, p, paint);
+    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),paint: paint));
   }
 
   @override

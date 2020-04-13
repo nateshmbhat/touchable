@@ -18,6 +18,10 @@ class ShapeHandler{
    _registeredGestures.addAll(shape.registeredGestures) ;
   }
 
+  void _addClip(){
+
+  }
+
   Shape _getTopShapeBelowTouchPoint(Offset point){
     for(int i = _shapeStack.length-1 ; i>=0 ; i--){
       if(_shapeStack[i].isInside(point)){

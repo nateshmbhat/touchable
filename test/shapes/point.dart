@@ -28,10 +28,11 @@ testPoint(){
     expect(p.isInside(Offset(10,10)),true) ;
     expect(p.isInside(Offset(101,10)),false) ;
     expect(p.isInside(Offset(200,10)),false) ;
-    expect(p.isInside(Offset(200,250)),true) ;
+    expect(p.isInside(Offset(200,250)),false) ;
 
     expect(p.isInside(Offset(10,20)),true) ;
-    expect(p.isInside(Offset(100,300)),true) ;
+    expect(p.isInside(Offset(100,300)),false) ;
+    expect(p.isInside(Offset(150,275)),true) ;
     expect(p.isInside(Offset(300,300)),false) ;
     expect(p.isInside(Offset(150,250)),true) ;
   });

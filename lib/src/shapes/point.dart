@@ -21,6 +21,7 @@ class Point extends Shape {
         return (points.contains(p));
       case PointMode.lines:
         for (int i = 0; i < points.length; i += 2) {
+          if(i+1>=points.length) return false;
           if (Line(points[i], points[i + 1]).isInside(p)) return true;
         }
         return false;

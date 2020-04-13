@@ -3,6 +3,7 @@
 import 'circle.dart';
 import 'line.dart';
 import 'oval.dart';
+import 'point.dart';
 import 'rectangle.dart';
 
 void testShapes(){
@@ -10,6 +11,7 @@ void testShapes(){
   testLine() ;
   testRectangle();
   testOval();
+  testPoint();
 }
 
  
