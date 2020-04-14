@@ -79,7 +79,8 @@ abstract class Shape {
     paint ??= Paint()
       ..strokeWidth = ShapeConstant.floatPrecision
       ..style = PaintingStyle.fill;
-    
+
+/// TODO : Optimize the below logic
     for(var type in GestureType.values){
       if(_isRegistered(type)) _registeredGestures.add(type) ;
     }

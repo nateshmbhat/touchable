@@ -8,6 +8,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
+import 'package:touchable/src/shapes/clip.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/path.dart';
@@ -33,18 +34,20 @@ class TouchyCanvas {
 
   @override
   void clipPath(Path path, {bool doAntiAlias = true ,  onTap }) {
-    // TODO: implement clipPath
+    _canvas.clipPath(path,doAntiAlias: doAntiAlias);
+    _shapeHandler.addShape(ClipPathShape(path));
   }
 
   @override
   void clipRRect(RRect rrect, {bool doAntiAlias = true}) {
-    // TODO: implement clipRRect
+    _canvas.clipRRect(rrect,doAntiAlias: doAntiAlias);
+    _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
   @override
   void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect,clipOp: clipOp,doAntiAlias: doAntiAlias);
-    // TODO: implement clipRect
+    _shapeHandler.addShape(ClipRectShape(rect,clipOp: clipOp));
   }
 
 //  @override

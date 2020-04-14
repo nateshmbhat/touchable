@@ -9,6 +9,7 @@ class RoundedRectangle extends Shape {
 
   RoundedRectangle(this.rRect, {Paint paint}) : super(paint: paint);
 
+  ///TODO : handle strokewidth and stroke style cases
   @override
   bool isInside(Offset p) {
     return rRect.contains(p);

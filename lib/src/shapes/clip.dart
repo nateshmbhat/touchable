@@ -6,14 +6,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/shape.dart';
 
 abstract class ClipShape extends Shape {
-  final bool doAntiAlias;
-  ClipShape({this.doAntiAlias = true});
 }
 
-class ClipRect extends ClipShape {
+class ClipRectShape extends ClipShape {
   final Rect rect ;
   final ClipOp clipOp ;
-  ClipRect(this.rect, { this.clipOp = ClipOp.intersect, bool doAntiAlias}) : super(doAntiAlias: doAntiAlias);
+  ClipRectShape(this.rect, { this.clipOp = ClipOp.intersect, bool doAntiAlias});
 
   @override
   bool isInside(Offset p) {
@@ -27,18 +25,18 @@ class ClipRect extends ClipShape {
   }
 }
 
-class ClipRRect extends ClipShape{
+class ClipRRectShape extends ClipShape{
   final RRect rrect ;
-  ClipRRect(this.rrect, {bool doAntiAlias}):super(doAntiAlias:doAntiAlias);
+  ClipRRectShape(this.rrect, {bool doAntiAlias});
   @override
   bool isInside(Offset p) {
     return rrect.contains(p);
   }
 }
 
-class ClipPath extends ClipShape{
+class ClipPathShape extends ClipShape{
   final Path path ;
-  ClipPath(this.path, {bool doAntiAlias}):super(doAntiAlias:doAntiAlias);
+  ClipPathShape(this.path, {bool doAntiAlias});
 
   @override
   bool isInside(Offset p) {
