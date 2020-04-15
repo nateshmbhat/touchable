@@ -32,26 +32,24 @@ class TouchyCanvas {
     }
   }
 
-  @override
   void clipPath(Path path, {bool doAntiAlias = true}) {
     _canvas.clipPath(path, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipPathShape(path));
   }
 
-  @override
   void clipRRect(RRect rrect, {bool doAntiAlias = true}) {
     _canvas.clipRRect(rrect, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
-  @override
+  
   void clipRect(Rect rect,
       {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRectShape(rect, clipOp: clipOp));
   }
 
-  @override
+  
   void drawCircle(
     Offset c,
     double radius,
@@ -94,7 +92,7 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawLine(
     Offset p1,
     Offset p2,
@@ -135,7 +133,7 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawOval(
     Rect rect,
     Paint paint, {
@@ -175,13 +173,13 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawParagraph(Paragraph paragraph, Offset offset) {
     _canvas.drawParagraph(paragraph, offset);
     _shapeHandler.addShape(Rectangle(Rect.fromLTWH(offset.dx, offset.dy, paragraph.width, paragraph.height)));
   }
 
-  @override
+  
   void drawPath(
     Path path,
     Paint paint, {
@@ -221,7 +219,7 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawPoints(
     PointMode pointMode,
     List<Offset> points,
@@ -262,7 +260,7 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawRRect(
     RRect rrect,
     Paint paint, {
@@ -302,7 +300,7 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawRawPoints(
     PointMode pointMode,
     Float32List points,
@@ -348,7 +346,7 @@ class TouchyCanvas {
   }
 
 
-  @override
+  
   void drawRect(
     Rect rect,
     Paint paint, {
@@ -388,51 +386,51 @@ class TouchyCanvas {
         )));
   }
 
-  @override
+  
   void drawShadow(
       Path path, Color color, double elevation, bool transparentOccluder) {
     _canvas.drawShadow(path, color, elevation, transparentOccluder);
     _shapeHandler.addShape(PathShape(path));
   }
 
-//  @override
+//  
 //  void drawVertices(Vertices vertices, BlendMode blendMode, Paint paint) {
 //    _canvas.drawVertices(vertices, blendMode, paint);
     // TODO: implement drawVertices
 //  }
 
-//  @override
+//  
 //  void rotate(double radians) {
 //    // TODO: implement rotate
 //  }
 
-//  @override
+//  
 //  void scale(double sx, [double sy]) {
 //    // TODO: implement scale
 //  }
 
-//  @override
+//  
 //  void skew(double sx, double sy) {
 //    // TODO: implement skew
 //  }
 
-//  @override
+//  
 //  void transform(Float64List matrix4) {
 //    // TODO: implement transform
 //  }
 
-//  @override
+//  
 //  void translate(double dx, double dy) {
 //    // TODO: implement translate
 //  }
 
-//  @override
+//  
 //  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,
 //      List<Color> colors, BlendMode blendMode, Rect cullRect, Paint paint) {
 //    _canvas.drawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
 //  }
 
-  @override
+  
   void drawImage(
     Image image,
     Offset p,
@@ -477,21 +475,21 @@ class TouchyCanvas {
 
 
 
-//  @override
+//  
 //  void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint) {
 //    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
 //    //TODO : implement shape handler for drawArc
 ////    _shapeHandler.addShape(Arc(rect,startAngle,sweepAngle,useCenter,paint: paint));
 //  }
 
-//  @override
+//  
 //  void drawDRRect(RRect outer, RRect inner, Paint paint) {
 //    _canvas.drawDRRect(outer, inner, paint);
 //    // TODO: implement drawDRRect in SHapeHandler
 //  }
 
 //
-//  @override
+//  
 //  void drawRawAtlas(Image atlas, Float32List rstTransforms, Float32List rects,
 //      Int32List colors, BlendMode blendMode, Rect cullRect, Paint paint) {
 //    _canvas.drawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
