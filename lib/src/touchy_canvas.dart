@@ -5,7 +5,10 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
+
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart' hide Image;
+import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/clip.dart';
@@ -21,10 +24,13 @@ import 'package:touchable/src/types/types.dart';
 class TouchyCanvas {
   final Canvas _canvas;
 
-  final StreamController<Gesture> controller;
+  StreamController<Gesture> controller;
   final ShapeHandler _shapeHandler = ShapeHandler();
 
-  TouchyCanvas(this._canvas, this.controller) {
+  TouchyCanvas(BuildContext context, this._canvas) {
+    controller = TouchDetectionController
+        .of(context)
+        .controller;
     if (!controller.hasListener) {
       controller.stream.listen((event) {
         _shapeHandler.handleGestureEvent(event);
