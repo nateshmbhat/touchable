@@ -4,9 +4,9 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:touchable/src/shape_handler.dart';
-import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/clip.dart';
 import 'package:touchable/src/shapes/line.dart';
@@ -122,11 +122,13 @@ class TouchyCanvas {
 
   @override
   void drawShadow(Path path, Color color, double elevation, bool transparentOccluder) {
-    // TODO: implement drawShadow
+    _canvas.drawShadow(path, color, elevation, transparentOccluder);
+    _shapeHandler.addShape(PathShape(path));
   }
 
   @override
   void drawVertices(Vertices vertices, BlendMode blendMode, Paint paint) {
+//    _canvas.drawVertices(vertices, blendMode, paint);
     // TODO: implement drawVertices
   }
 

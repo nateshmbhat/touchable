@@ -1,6 +1,6 @@
-# matter
+# touchable 👆🏻
 
-Draw objects on your canvas and add full interactive capability to each of those objects.
+**Draw objects on your canvas and add full interactive capability to each of those objects.**
 
 ## Getting Started
 

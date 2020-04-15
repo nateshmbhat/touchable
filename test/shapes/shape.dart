@@ -11,7 +11,7 @@ void testShapes(){
   testLine() ;
   testRectangle();
   testOval();
-  testPoint();
+ testPoint();
 }
 
  
