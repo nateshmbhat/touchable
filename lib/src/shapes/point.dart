@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/types/types.dart';
 
 class Point extends Shape {
   final PointMode pointMode;
@@ -11,8 +12,8 @@ class Point extends Shape {
   final List<Offset> points;
 
   Point(this.pointMode, this.points,
-      {Paint paint, GestureTapDownCallback onTapDown})
-      : super(paint: paint, onTapDown: onTapDown);
+      {Map<GestureType, Function(dynamic)> gestureMap, Paint paint})
+      : super(paint: paint, gestureCallbackMap: gestureMap);
 
   @override
   bool isInside(Offset p) {
@@ -21,7 +22,7 @@ class Point extends Shape {
         return (points.contains(p));
       case PointMode.lines:
         for (int i = 0; i < points.length; i += 2) {
-          if(i+1>=points.length) return false;
+          if (i + 1 >= points.length) return false;
           if (Line(points[i], points[i + 1]).isInside(p)) return true;
         }
         return false;

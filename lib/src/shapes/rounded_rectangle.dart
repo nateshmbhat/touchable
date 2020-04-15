@@ -3,11 +3,12 @@
 import 'dart:ui';
 
 import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/types/types.dart';
 
 class RoundedRectangle extends Shape {
   final RRect rRect;
 
-  RoundedRectangle(this.rRect, {Paint paint}) : super(paint: paint);
+  RoundedRectangle(this.rRect, {Paint paint , Map<GestureType,Function> gestureMap }) : super(paint: paint,gestureCallbackMap:gestureMap);
 
   ///TODO : handle strokewidth and stroke style cases
   @override

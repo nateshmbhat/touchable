@@ -4,10 +4,13 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/types/types.dart';
 
 class Rectangle extends Shape{
   final Rect rect ;
-  Rectangle(this.rect , {GestureTapDownCallback onTapDown , Paint paint}):super(onTapDown:onTapDown ,paint:paint);
+  Rectangle(this.rect , {
+    Map<GestureType,Function> gestureMap , Paint paint})
+      :super(paint : paint,gestureCallbackMap:gestureMap);
 
   @override
   bool isInside(Offset p) {
@@ -29,4 +32,3 @@ class Rectangle extends Shape{
   }
 }
 
- 

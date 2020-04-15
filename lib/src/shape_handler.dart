@@ -64,7 +64,7 @@ class ShapeHandler{
     var touchedShape = _getTopShapeBelowTouchPoint(touchPoint);
     if(touchedShape==null) return ;
     if(touchedShape.registeredGestures.contains(gesture.gestureType)){
-      var callback = TouchCanvasUtil.getCallbackFromGesture(touchedShape, gesture);
+      var callback = touchedShape.getCallbackFromGesture(gesture);
       callback() ;
     }
   }

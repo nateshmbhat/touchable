@@ -7,6 +7,8 @@ import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'dart:math';
 
+import 'package:touchable/src/types/types.dart';
+
 ///See https://math.stackexchange.com/questions/3622277/how-to-test-if-a-point-lies-inside-a-segment-of-an-arc-that-is-formed-by-a-recta?noredirect=1#comment7446310_3622277
 ///for more info on point detection
 class Arc extends Shape {
@@ -22,8 +24,8 @@ class Arc extends Shape {
   Offset _arcEndPoint;
 
   Arc(this.rect, this.startAngle, this.sweepAngle, this.useCenter,
-      {Paint paint})
-      : super(paint: paint) {
+      {Paint paint , Map<GestureType,Function> gestureMap })
+      : super(paint: paint , gestureCallbackMap : gestureMap) {
     _oval = Oval(rect, paint: paint);
 
     var cosStartAngle = cos(startAngle);
@@ -52,6 +54,9 @@ class Arc extends Shape {
     _chordLine = Line(_arcStartPoint,_arcEndPoint);
   }
 
+// TODO : implement below method
   @override
-  bool isInside(Offset p) {}
+  bool isInside(Offset p) {
+    return false;
+  }
 }
