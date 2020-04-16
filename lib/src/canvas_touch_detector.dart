@@ -23,7 +23,7 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
         child: GestureDetector(
           child: Builder(
             builder: (context) {
-              return widget.builder(context, touchController);
+              return widget.builder(context);
             },
           ),
           onTapDown: (tapDetail) {

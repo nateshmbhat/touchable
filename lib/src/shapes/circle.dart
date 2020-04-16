@@ -1,10 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/shape.dart';
-import 'package:touchable/src/shapes/util.dart';
-import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
 
 /// Created by nateshmbhat on 04,April,2020
@@ -43,11 +42,5 @@ class Circle extends Shape {
             pow(p.dy - center.dy, 2) -
             pow(radius, 2) <=
         ShapeConstant.floatPrecision;
-  }
-
-  myPrinter(String val, Paint paint) {
-    if (paint.strokeWidth >= 5) {
-      print(val);
-    }
   }
 }

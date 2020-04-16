@@ -1,12 +1,9 @@
 // Created by nateshmbhat on 09,April,2020
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:touchable/src/shapes/clip.dart';
 
-typedef CustomTouchPaintBuilder = CustomPaint Function(
-    BuildContext context, StreamController<Gesture> touchController);
+typedef CustomTouchPaintBuilder = CustomPaint Function(BuildContext context);
 
 class Gesture {
   final dynamic gestureDetail;
