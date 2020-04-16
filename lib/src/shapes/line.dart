@@ -1,12 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:touchable/src/shapes/constant.dart';
-import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/shape.dart';
-import 'package:touchable/src/shapes/util.dart';
-import 'package:meta/meta.dart';
-import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
 
@@ -35,5 +30,15 @@ class Line extends Shape {
 
   double _findPerpendicularDist(Offset p, double value) {
     return value.abs() / sqrt(a * a + b * b);
+  }
+
+  bool isPointOnPositiveSide(Offset p) {
+    return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
+        (p2.dy - p1.dy) * (p.dx - p1.dx)) >= -paint.strokeWidth / 2;
+  }
+
+  @override
+  String toString() {
+    return '$p1 - $p2';
   }
 }

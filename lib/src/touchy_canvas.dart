@@ -10,6 +10,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
+import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/clip.dart';
 import 'package:touchable/src/shapes/line.dart';
@@ -33,6 +34,7 @@ class TouchyCanvas {
         .controller;
     if (!controller.hasListener) {
       controller.stream.listen((event) {
+        print(event.gestureDetail.localPosition);
         _shapeHandler.handleGestureEvent(event);
       });
     }
@@ -480,13 +482,26 @@ class TouchyCanvas {
   }
 
 
-
-//  
-//  void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter, Paint paint) {
-//    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
-//    //TODO : implement shape handler for drawArc
-////    _shapeHandler.addShape(Arc(rect,startAngle,sweepAngle,useCenter,paint: paint));
-//  }
+  void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter,
+      Paint paint, {GestureTapDownCallback onTapDown}) {
+    _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
+    _shapeHandler.addShape(Arc(
+        rect, startAngle, sweepAngle, useCenter, paint: paint,
+        gestureMap: TouchCanvasUtil.getGestureCallbackMap(onTapDown: onTapDown,
+            onTapUp: null,
+            onLongPressStart: null,
+            onLongPressEnd: null,
+            onLongPressMoveUpdate: null,
+            onForcePressStart: null,
+            onForcePressEnd: null,
+            onForcePressPeak: null,
+            onForcePressUpdate: null,
+            onPanStart: null,
+            onPanUpdate: null,
+            onPanDown: null,
+            onSecondaryTapDown: null,
+            onSecondaryTapUp: null)));
+  }
 
 //  
 //  void drawDRRect(RRect outer, RRect inner, Paint paint) {
