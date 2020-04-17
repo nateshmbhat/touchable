@@ -70,7 +70,14 @@ class Arc extends Shape {
           _oval.isInside(p);
     }
     else {
-      return _chordLine.isPointOnPositiveSide(p) == false && _oval.isInside(p);
+      if (paint.style == PaintingStyle.stroke) {
+        return _chordLine.isPointOnPositiveSide(p) == false &&
+            _oval.isInside(p);
+      }
+      else {
+        return _chordLine.isPointOnPositiveSide(p) == false &&
+            _oval.isInside(p);
+      }
     }
   }
 }

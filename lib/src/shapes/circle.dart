@@ -23,17 +23,13 @@ class Circle extends Shape {
 
   @override
   bool isInside(Offset p) {
-    if (paint.strokeWidth == ShapeConstant.floatPrecision) {
+    if (paint.style == PaintingStyle.fill) {
       return _isInsideRadius(p, radius);
     } else {
       double extraWidth = paint.strokeWidth / 2;
       bool insideOuterCircle = _isInsideRadius(p, radius + extraWidth);
-      if (paint.style == PaintingStyle.fill) {
-        return insideOuterCircle;
-      } else {
-        bool outsideInnerCircle = !_isInsideRadius(p, radius - extraWidth);
-        return insideOuterCircle && outsideInnerCircle;
-      }
+      bool outsideInnerCircle = !_isInsideRadius(p, radius - extraWidth);
+      return insideOuterCircle && outsideInnerCircle;
     }
   }
 

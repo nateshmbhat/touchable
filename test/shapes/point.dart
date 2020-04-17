@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:touchable/src/shapes/point.dart';
 
-testPoint(){
+void testPoint() {
   test('PointMode.points : Point lie on or off the points test',(){
     var p = Point(PointMode.points,[Offset(0,0),Offset(100,100),Offset(210,234)])  ;
     expect(p.isInside(Offset(0,0)),true) ;

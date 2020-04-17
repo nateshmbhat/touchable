@@ -32,6 +32,19 @@ void testArc() {
     expect(arc1.isInside(Offset(80.8, 140.6)), false);
     expect(arc1.isInside(Offset(329.1, 201.9)), false);
     expect(arc1.isInside(Offset(118.9, 291.8)), false);
+
+    var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, pi / 3, false,
+        paint: Paint()
+          ..color = Colors.pink);
+
+    expect(arc2.isInside(Offset(163.4, 153.1)), false);
+    expect(arc1.isInside(Offset(229.3, 214.5)), false);
+    expect(arc2.isInside(Offset(272.4, 185.1)), false);
+    expect(arc2.isInside(Offset(307.0, 115.4)), false);
+    expect(arc2.isInside(Offset(237.0, 67.8)), false);
+
+    expect(arc2.isInside(Offset(247.6, 122.3)), true);
+    expect(arc2.isInside(Offset(227.0, 113.1)), true);
   });
 
   test('Arc test : check point lies inside filled sector', () {
@@ -91,6 +104,22 @@ void testArc() {
     expect(arc.isInside(Offset(309.3, 200.4)), true);
     expect(arc.isInside(Offset(241.9, 292.2)), true);
     expect(arc.isInside(Offset(125.3, 181.0)), true);
+
+    var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, pi / 5, false,
+        paint: Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 50
+          ..color = Colors.pink);
+
+    expect(arc2.isInside(Offset(229.7, 173.3)), false);
+    expect(arc2.isInside(Offset(303.6, 158.9)), false);
+    expect(arc2.isInside(Offset(299.4, 66.30)), false);
+    expect(arc2.isInside(Offset(220.2, 34.3)), false);
+    expect(arc2.isInside(Offset(178.7, 97.5)), false);
+
+    expect(arc2.isInside(Offset(269.0, 102.9)), true);
+    expect(arc2.isInside(Offset(222.1, 83.4)), true);
+    expect(arc2.isInside(Offset(230.9, 115.0)), true);
   });
 
   test('Arc test : check point lies in stroked sector', () {

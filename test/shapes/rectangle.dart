@@ -3,10 +3,9 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 
-testRectangle(){
+void testRectangle() {
   test('Test points lie on and off the rectangle' , (){
     expect(Rectangle(Rect.fromLTWH(0, 0, 100, 200)).isInside(Offset(80,205)) , false) ;
     expect(Rectangle(Rect.fromLTWH(0, 0, 100, 200)).isInside(Offset(99,199)) , true) ;

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
@@ -12,8 +13,7 @@ class Line extends Shape {
   final Offset p2;
   double a, b, c; // Equation ax+by = c
 
-  Line(this.p1, this.p2,
-      {Map<GestureType, Function> gestureMap, Paint paint})
+  Line(this.p1, this.p2, {Map<GestureType, Function> gestureMap, Paint paint})
       : super(paint: paint, gestureCallbackMap: gestureMap) {
     a = p2.dy - p1.dy;
     b = p1.dx - p2.dx;
@@ -23,9 +23,14 @@ class Line extends Shape {
 //  ax + by = c
   bool isInside(Offset p) {
     var value = a * p.dx + b * p.dy - c;
-    return _findPerpendicularDist(p, value) <= paint.strokeWidth / 2 &&
+
+    var threshold = paint.style == PaintingStyle.stroke
+        ? paint.strokeWidth / 2
+        : ShapeConstant.floatPrecision;
+
+    return _findPerpendicularDist(p, value) <= threshold &&
         max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=
-            ShapeUtil.distance(p1, p2) + paint.strokeWidth / 2;
+            ShapeUtil.distance(p1, p2) + threshold;
   }
 
   double _findPerpendicularDist(Offset p, double value) {
@@ -33,8 +38,10 @@ class Line extends Shape {
   }
 
   bool isPointOnPositiveSide(Offset p) {
+    var threshold = paint.style == PaintingStyle.stroke ? (-paint.strokeWidth /
+        2) : ShapeConstant.floatPrecision;
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
-        (p2.dy - p1.dy) * (p.dx - p1.dx)) >= -paint.strokeWidth / 2;
+        (p2.dy - p1.dy) * (p.dx - p1.dx)) >= threshold;
   }
 
   @override

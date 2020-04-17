@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:touchable/src/shapes/line.dart';
 
-testLine(){
+void testLine() {
   test('Test points lie on and off the line' , (){
     expect(Line(Offset(0,0) , Offset(10,0)).isInside(Offset(5,0)) , true) ;
     expect(Line(Offset(0,0) , Offset(10,0)).isInside(Offset(10.1,0.1)) , false) ;
@@ -18,7 +18,10 @@ testLine(){
   });
 
   test('Point lies on Thick line' , (){
-    var paint = Paint()..color=Colors.black..strokeWidth=6 ; 
+    var paint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6;
     expect(Line(Offset(0,0) , Offset(200,0) , paint:paint).isInside(Offset(5,0)) , true) ;
     expect(Line(Offset(0,0) , Offset(200,0) , paint:paint).isInside(Offset(201,0)) , true) ;
     expect(Line(Offset(0,0) , Offset(200,0) , paint:paint).isInside(Offset(203,0)) , true) ;
