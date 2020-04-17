@@ -37,12 +37,15 @@ class Line extends Shape {
   }
 
   bool isPointOnPositiveSide(Offset p) {
-    var threshold = paint.style == PaintingStyle.stroke ? (-paint.strokeWidth /
-        2) : ShapeConstant.floatPrecision;
     print("Line side : ${((p2.dx - p1.dx) * (p.dy - p1.dy) -
         (p2.dy - p1.dy) * (p.dx - p1.dx))}");
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
-        (p2.dy - p1.dy) * (p.dx - p1.dx)) >= threshold;
+        (p2.dy - p1.dy) * (p.dx - p1.dx)) < ShapeConstant.floatPrecision;
+  }
+
+  double getPointLyingOnSideTestValue(Offset p) {
+    return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
+        (p2.dy - p1.dy) * (p.dx - p1.dx));
   }
 
   @override

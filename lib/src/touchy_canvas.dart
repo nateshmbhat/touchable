@@ -485,22 +485,28 @@ class TouchyCanvas {
   void drawArc(Rect rect, double startAngle, double sweepAngle, bool useCenter,
       Paint paint, {GestureTapDownCallback onTapDown}) {
     _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
-    _shapeHandler.addShape(Arc(
-        rect, startAngle, sweepAngle, useCenter, paint: paint,
-        gestureMap: TouchCanvasUtil.getGestureCallbackMap(onTapDown: onTapDown,
-            onTapUp: null,
-            onLongPressStart: null,
-            onLongPressEnd: null,
-            onLongPressMoveUpdate: null,
-            onForcePressStart: null,
-            onForcePressEnd: null,
-            onForcePressPeak: null,
-            onForcePressUpdate: null,
-            onPanStart: null,
-            onPanUpdate: null,
-            onPanDown: null,
-            onSecondaryTapDown: null,
-            onSecondaryTapUp: null)));
+    var gestureMap = TouchCanvasUtil.getGestureCallbackMap(onTapDown: onTapDown,
+        onTapUp: null,
+        onLongPressStart: null,
+        onLongPressEnd: null,
+        onLongPressMoveUpdate: null,
+        onForcePressStart: null,
+        onForcePressEnd: null,
+        onForcePressPeak: null,
+        onForcePressUpdate: null,
+        onPanStart: null,
+        onPanUpdate: null,
+        onPanDown: null,
+        onSecondaryTapDown: null,
+        onSecondaryTapUp: null);
+    if (sweepAngle.abs() >= 2 * pi) {
+      _shapeHandler.addShape(Oval(rect, gestureMap: gestureMap, paint: paint));
+    }
+    else {
+      _shapeHandler.addShape(
+          Arc(rect, startAngle, sweepAngle, useCenter, paint: paint,
+              gestureMap: gestureMap));
+    }
   }
 
 //  

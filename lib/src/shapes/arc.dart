@@ -32,8 +32,8 @@ class Arc extends Shape {
     _oval = Oval(rect, paint: paint);
 
     var cosStartAngle = cos(startAngle);
-    var startPointPhi = atan2(
-        _oval.a * sin(startAngle), _oval.b * cosStartAngle);
+    var startPointPhi =
+    atan2(_oval.a * sin(startAngle), _oval.b * cosStartAngle);
 
     var endAngle = startAngle + sweepAngle;
     var cosEndAngle = cos(endAngle);
@@ -44,7 +44,7 @@ class Arc extends Shape {
     _arcEndPoint = Offset(rect.center.dx + _oval.a * cos(endPointPhi),
         rect.center.dy + _oval.b * sin(endPointPhi));
 
-    _chordLine = Line(_arcStartPoint, _arcEndPoint);
+    _chordLine = Line(_arcStartPoint, _arcEndPoint, paint: paint);
     _originToArcStartLine = Line(rect.center, _arcStartPoint, paint: paint);
     _originToArcEndLine = Line(rect.center, _arcEndPoint, paint: paint);
   }
@@ -53,21 +53,37 @@ class Arc extends Shape {
   @override
   bool isInside(Offset p) {
     if (useCenter) {
-      return _originToArcStartLine.isPointOnPositiveSide(p) &&
-          _originToArcEndLine.isPointOnPositiveSide(p) == false &&
-          _oval.isInside(p);
-    }
-    else {
-      if (paint.style == PaintingStyle.stroke) {
-        return _chordLine.isPointOnPositiveSide(p) == false &&
-            _oval.isInside(p);
+//      Handle sector
+      //TODO : test this condition
+
+      var startLineSideValue = _originToArcStartLine
+          .getPointLyingOnSideTestValue(p);
+      var endLineSideValue = _originToArcEndLine.getPointLyingOnSideTestValue(
+          p);
+      print(
+          'origint to startline side value :  startLineSide ${startLineSideValue} , endLineSide ${endLineSideValue} ');
+
+      if (sweepAngle <= pi) {
+        return _oval.isInside(p) && startLineSideValue > 0 &&
+            endLineSideValue < 0;
+      } else {
+        return _oval.isInside(p) &&
+            ((startLineSideValue > 0) || (endLineSideValue < 0));
       }
-      else {
-        return _chordLine.isPointOnPositiveSide(p) == false &&
-            _oval.isInside(p);
-      }
+    } else {
+      return _handleCircleSegmentCheck(p);
     }
   }
 
-
+  bool _handleCircleSegmentCheck(Offset p) {
+    if (paint.style == PaintingStyle.stroke) {
+      //TODO : test this condition
+      return _chordLine.isPointOnPositiveSide(p) &&
+          _oval.isInside(p);
+    } else {
+      // TODO : DONE
+      return _chordLine.isPointOnPositiveSide(p) &&
+          _oval.isInside(p);
+    }
+  }
 }

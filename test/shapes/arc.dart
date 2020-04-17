@@ -45,6 +45,8 @@ void testArc() {
 
     expect(arc2.isInside(Offset(247.6, 122.3)), true);
     expect(arc2.isInside(Offset(227.0, 113.1)), true);
+
+    //WARNING : TODO : Handle negative values for start angle and sweep angle
   });
 
   test('Arc test : check point lies inside filled sector', () {
