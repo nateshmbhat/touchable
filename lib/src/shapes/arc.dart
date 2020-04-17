@@ -32,31 +32,19 @@ class Arc extends Shape {
     _oval = Oval(rect, paint: paint);
 
     var cosStartAngle = cos(startAngle);
-    var startPointPhi =
-    atan2(_oval.a * sin(startAngle), _oval.b * cosStartAngle);
-//    give same sign to angle phi as cos(theta)
-    if (cosStartAngle > 0) {
-      startPointPhi = startPointPhi > 0 ? startPointPhi : -startPointPhi;
-    } else {
-      startPointPhi = startPointPhi < 0 ? startPointPhi : -startPointPhi;
-    }
+    var startPointPhi = atan2(
+        _oval.a * sin(startAngle), _oval.b * cosStartAngle);
 
     var endAngle = startAngle + sweepAngle;
     var cosEndAngle = cos(endAngle);
     var endPointPhi = atan2(_oval.a * sin(endAngle), _oval.b * cosEndAngle);
-//    give same sign to angle phi as cos(theta)
-    if (cosEndAngle > 0) {
-      endPointPhi = endPointPhi > 0 ? endPointPhi : -endPointPhi;
-    } else {
-      endPointPhi = endPointPhi < 0 ? endPointPhi : -endPointPhi;
-    }
 
     _arcStartPoint = Offset(rect.center.dx + _oval.a * cos(startPointPhi),
         rect.center.dy + _oval.b * sin(startPointPhi));
     _arcEndPoint = Offset(rect.center.dx + _oval.a * cos(endPointPhi),
         rect.center.dy + _oval.b * sin(endPointPhi));
 
-    _chordLine = Line(_arcStartPoint, _arcEndPoint, paint: paint);
+    _chordLine = Line(_arcStartPoint, _arcEndPoint);
     _originToArcStartLine = Line(rect.center, _arcStartPoint, paint: paint);
     _originToArcEndLine = Line(rect.center, _arcEndPoint, paint: paint);
   }
@@ -71,13 +59,15 @@ class Arc extends Shape {
     }
     else {
       if (paint.style == PaintingStyle.stroke) {
-        return _chordLine.isPointOnPositiveSide(p) == false &&
+        return _chordLine.isPointOnPositiveSide(p) &&
             _oval.isInside(p);
       }
       else {
-        return _chordLine.isPointOnPositiveSide(p) == false &&
+        return _chordLine.isPointOnPositiveSide(p) &&
             _oval.isInside(p);
       }
     }
   }
+
+
 }

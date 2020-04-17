@@ -38,7 +38,7 @@ void testArc() {
           ..color = Colors.pink);
 
     expect(arc2.isInside(Offset(163.4, 153.1)), false);
-    expect(arc1.isInside(Offset(229.3, 214.5)), false);
+    expect(arc2.isInside(Offset(229.3, 214.5)), false);
     expect(arc2.isInside(Offset(272.4, 185.1)), false);
     expect(arc2.isInside(Offset(307.0, 115.4)), false);
     expect(arc2.isInside(Offset(237.0, 67.8)), false);
