@@ -1,6 +1,7 @@
 // Created by nateshmbhat on 12,April,2020
 
 import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/shape.dart';
@@ -23,11 +24,12 @@ class Point extends Shape {
       case PointMode.lines:
         for (int i = 0; i < points.length; i += 2) {
           if (i + 1 >= points.length) return false;
-          if (Line(points[i], points[i + 1]).isInside(p)) return true;
+          if (Line(points[i], points[i + 1], paint: paint).isInside(p))
+            return true;
         }
         return false;
       case PointMode.polygon:
-        return PolygonUtil.checkInside(points, p);
+        return PolygonUtil.checkInside(points, p, paint);
       default:
         return false;
     }
@@ -62,7 +64,7 @@ class PolygonUtil {
     return false;
   }
 
-  static bool checkInside(List<Offset> poly, Offset p) {
+  static bool checkInside(List<Offset> poly, Offset p, Paint paint) {
     int n = poly.length;
     if (n < 3)
       return false; //when polygon has less than 3 edge, it is not polygon
@@ -72,7 +74,7 @@ class PolygonUtil {
     int i = 0;
     do {
       //forming a line from two consecutive points of poly
-      Line side = Line(poly[i], poly[(i + 1) % n]);
+      Line side = Line(poly[i], poly[(i + 1) % n], paint: paint);
       if (_isIntersect(side, exline)) {
         //if side is intersects exline
         if (_direction(side.p1, p, side.p2) == 0) return side.isInside(p);

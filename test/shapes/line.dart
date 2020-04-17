@@ -20,7 +20,6 @@ void testLine() {
   test('Point lies on Thick line' , (){
     var paint = Paint()
       ..color = Colors.black
-      ..style = PaintingStyle.stroke
       ..strokeWidth = 6;
     expect(Line(Offset(0,0) , Offset(200,0) , paint:paint).isInside(Offset(5,0)) , true) ;
     expect(Line(Offset(0,0) , Offset(200,0) , paint:paint).isInside(Offset(201,0)) , true) ;

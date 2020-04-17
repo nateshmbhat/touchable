@@ -20,6 +20,9 @@ abstract class Shape {
     paint ??= Paint()
       ..strokeWidth = ShapeConstant.floatPrecision
       ..style = PaintingStyle.fill;
+    if (paint.strokeWidth == 0) {
+      paint.strokeWidth = ShapeConstant.floatPrecision;
+    }
     gestureCallbackMap ??= Map();
   }
 

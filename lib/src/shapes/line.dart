@@ -21,12 +21,11 @@ class Line extends Shape {
   }
 
 //  ax + by = c
+  @override
   bool isInside(Offset p) {
     var value = a * p.dx + b * p.dy - c;
 
-    var threshold = paint.style == PaintingStyle.stroke
-        ? paint.strokeWidth / 2
-        : ShapeConstant.floatPrecision;
+    var threshold = paint.strokeWidth / 2;
 
     return _findPerpendicularDist(p, value) <= threshold &&
         max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=

@@ -14,15 +14,15 @@ class Rectangle extends Shape{
 
   @override
   bool isInside(Offset p) {
-    var left = rect.left , right = rect.right , top = rect.top , bottom = rect.bottom ;
-    double extraWidth = paint.strokeWidth/2 ;
-    bool insideOuterRect = _isInsideRect( p , Rect.fromLTRB(left - extraWidth, top-extraWidth, right + extraWidth, bottom+extraWidth));
     if(paint.style==PaintingStyle.fill){
-      return insideOuterRect ;
+      return rect.contains(p);
     }
     else{
-      bool outsideInnerRect = !_isInsideRect( p , Rect.fromLTRB(left + extraWidth, top+extraWidth, right - extraWidth, bottom-extraWidth));
-      return insideOuterRect && outsideInnerRect ;
+      double extraWidth = paint.strokeWidth / 2;
+      bool outsideInnerRect = !_isInsideRect(p, Rect.fromLTRB(
+          rect.left + extraWidth, rect.top + extraWidth,
+          rect.right - extraWidth, rect.bottom - extraWidth));
+      return rect.contains(p) && outsideInnerRect;
     }
   }
 

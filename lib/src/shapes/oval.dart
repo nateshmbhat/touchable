@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
 
@@ -23,7 +24,9 @@ class Oval extends Shape {
   bool isInside(Offset p) {
     if (a == 0 || b == 0) return false;
 
-    var extraWidth = paint.strokeWidth / 2;
+    var extraWidth = paint.style == PaintingStyle.stroke
+        ? paint.strokeWidth / 2
+        : ShapeConstant.floatPrecision;
 
     bool insideOuterOval = _isInsideOval(p, extraWidth);
     if (paint.style == PaintingStyle.stroke) {
@@ -34,7 +37,7 @@ class Oval extends Shape {
     }
   }
 
-  _isInsideOval(Offset p, double extraWidth) {
+  bool _isInsideOval(Offset p, double extraWidth) {
     return pow(p.dx - rect.center.dx, 2) / pow(a + extraWidth, 2) +
             pow(p.dy - rect.center.dy, 2) / pow(b + extraWidth, 2) <=
         1;
