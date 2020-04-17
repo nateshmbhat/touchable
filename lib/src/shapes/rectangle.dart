@@ -19,16 +19,16 @@ class Rectangle extends Shape{
     }
     else{
       double extraWidth = paint.strokeWidth / 2;
-      bool outsideInnerRect = !_isInsideRect(p, Rect.fromLTRB(
-          rect.left + extraWidth, rect.top + extraWidth,
-          rect.right - extraWidth, rect.bottom - extraWidth));
-      return rect.contains(p) && outsideInnerRect;
-    }
-  }
 
-  bool _isInsideRect(Offset p , Rect rect){
-    var x = p.dx , y = p.dy  ;
-    return (x >= rect.bottomLeft.dx && x <= rect.topRight.dx && y >= rect.topLeft.dy  && y <= rect.bottomLeft.dy) ;
+      bool insideOuterRect = Rect.fromLTRB(
+          rect.left - extraWidth, rect.top - extraWidth,
+          rect.right + extraWidth, rect.bottom + extraWidth).contains(p);
+
+      bool outsideInnerRect = !Rect.fromLTRB(
+          rect.left + extraWidth, rect.top + extraWidth,
+          rect.right - extraWidth, rect.bottom - extraWidth).contains(p);
+      return insideOuterRect && outsideInnerRect;
+    }
   }
 }
 

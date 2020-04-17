@@ -13,7 +13,7 @@ class Point extends Shape {
   final List<Offset> points;
 
   Point(this.pointMode, this.points,
-      {Map<GestureType, Function(dynamic)> gestureMap, Paint paint})
+      {Map<GestureType, Function> gestureMap, Paint paint})
       : super(paint: paint, gestureCallbackMap: gestureMap);
 
   @override
