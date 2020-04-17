@@ -59,11 +59,11 @@ class Arc extends Shape {
     }
     else {
       if (paint.style == PaintingStyle.stroke) {
-        return _chordLine.isPointOnPositiveSide(p) &&
+        return _chordLine.isPointOnPositiveSide(p) == false &&
             _oval.isInside(p);
       }
       else {
-        return _chordLine.isPointOnPositiveSide(p) &&
+        return _chordLine.isPointOnPositiveSide(p) == false &&
             _oval.isInside(p);
       }
     }
