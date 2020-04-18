@@ -6,6 +6,7 @@ import 'line.dart';
 import 'oval.dart';
 import 'point.dart';
 import 'rectangle.dart';
+import 'rounded_rectangle.dart';
 
 void testShapes(){
   testCircle();
@@ -14,6 +15,7 @@ void testShapes(){
   testOval();
   testPoint();
   testArc();
+  testRoundedRectangle();
 }
 
  

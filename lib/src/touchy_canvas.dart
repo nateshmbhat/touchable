@@ -491,6 +491,8 @@ class TouchyCanvas {
             onPanDown: null,
             onSecondaryTapDown: null,
             onSecondaryTapUp: null));
+    _canvas.drawLine(arc.chordLine.p1, arc.chordLine.p2, Paint()
+      ..strokeWidth = 10);
     _shapeHandler.addShape(arc);
   }
 
