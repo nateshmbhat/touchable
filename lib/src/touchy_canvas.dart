@@ -503,9 +503,12 @@ class TouchyCanvas {
       _shapeHandler.addShape(Oval(rect, gestureMap: gestureMap, paint: paint));
     }
     else {
-      _shapeHandler.addShape(
-          Arc(rect, startAngle, sweepAngle, useCenter, paint: paint,
-              gestureMap: gestureMap));
+      var arc = Arc(rect, startAngle, sweepAngle, useCenter, paint: paint,
+          gestureMap: gestureMap);
+      _shapeHandler.addShape(arc);
+      //FIXME : TODO : REMOVE THIS LINE
+      _canvas.drawLine(arc.chordLine.p1, arc.chordLine.p2, Paint()
+        ..color = Colors.black);
     }
   }
 

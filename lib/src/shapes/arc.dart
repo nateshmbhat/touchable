@@ -3,6 +3,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
 import 'package:touchable/src/shapes/shape.dart';
@@ -21,6 +22,7 @@ class Arc extends Shape {
   Offset _arcStartPoint;
   Line _chordLine;
 
+  Line get chordLine => _chordLine;
   Line _originToArcStartLine;
 
   Line _originToArcEndLine;
@@ -53,22 +55,12 @@ class Arc extends Shape {
   @override
   bool isInside(Offset p) {
     if (useCenter) {
-//      Handle sector
-      //TODO : test this condition
-
-      var startLineSideValue = _originToArcStartLine
-          .getPointLyingOnSideTestValue(p);
-      var endLineSideValue = _originToArcEndLine.getPointLyingOnSideTestValue(
-          p);
-      print(
-          'origint to startline side value :  startLineSide ${startLineSideValue} , endLineSide ${endLineSideValue} ');
-
-      if (sweepAngle <= pi) {
-        return _oval.isInside(p) && startLineSideValue > 0 &&
-            endLineSideValue < 0;
+      if (paint.style == PaintingStyle.stroke) {
+        return (_oval.isOnTheOval(p) && _isBetweenArcStartAndEndLines(p)) ||
+            (_originToArcStartLine.isInside(p)) ||
+            (_originToArcEndLine.isInside(p));
       } else {
-        return _oval.isInside(p) &&
-            ((startLineSideValue > 0) || (endLineSideValue < 0));
+        return _oval.isInside(p) && _isBetweenArcStartAndEndLines(p);
       }
     } else {
       return _handleCircleSegmentCheck(p);
@@ -77,13 +69,24 @@ class Arc extends Shape {
 
   bool _handleCircleSegmentCheck(Offset p) {
     if (paint.style == PaintingStyle.stroke) {
-      //TODO : test this condition
-      return _chordLine.isPointOnPositiveSide(p) &&
-          _oval.isInside(p);
+      return _oval.isOnTheOval(p) && _isBetweenArcStartAndEndLines(p);
     } else {
-      // TODO : DONE
-      return _chordLine.isPointOnPositiveSide(p) &&
-          _oval.isInside(p);
+      return _chordLine.isPointOnPositiveSide(p) && _oval.isInside(p);
+    }
+  }
+
+  /// Does [not] consider the [paint.strokeWidth] of the lines.
+  bool _isBetweenArcStartAndEndLines(Offset p) {
+    var startLineSideValue =
+    _originToArcStartLine.getPointLyingOnSideTestValue(p);
+    var endLineSideValue = _originToArcEndLine.getPointLyingOnSideTestValue(p);
+    var threshold = ShapeConstant.floatPrecision;
+    print(
+        'origint to startline side value :  startLineSide ${startLineSideValue} , endLineSide ${endLineSideValue} ');
+    if (sweepAngle <= pi) {
+      return startLineSideValue > threshold && endLineSideValue < threshold;
+    } else {
+      return (startLineSideValue > threshold) || (endLineSideValue < threshold);
     }
   }
 }

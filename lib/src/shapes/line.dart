@@ -36,13 +36,19 @@ class Line extends Shape {
     return value.abs() / sqrt(a * a + b * b);
   }
 
+  ///    if the line is a chord of an oval or circle , then this method returns true if a point lies on that side of the line
+  ///    which is away from the center or the oval , i.e value of [expression] is [negative]
   bool isPointOnPositiveSide(Offset p) {
-    print("Line side : ${((p2.dx - p1.dx) * (p.dy - p1.dy) -
-        (p2.dy - p1.dy) * (p.dx - p1.dx))}");
+    var extraWidth = paint.style == PaintingStyle.stroke
+        ? paint.strokeWidth / 2
+        : ShapeConstant.floatPrecision;
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
         (p2.dy - p1.dy) * (p.dx - p1.dx)) < ShapeConstant.floatPrecision;
   }
 
+  ///    if a point lies on that side of the line which is away from the center or the oval ,
+  ///    then value of [expression] is [negative].
+  ///    return value is [position] if the point lies to the right of the line or [negative] otherwise
   double getPointLyingOnSideTestValue(Offset p) {
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
         (p2.dy - p1.dy) * (p.dx - p1.dx));
