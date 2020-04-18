@@ -39,8 +39,7 @@ class Oval extends Shape {
 
   bool _isInsideOval(Offset p, double extraWidth) {
     return pow(p.dx - rect.center.dx, 2) / pow(a + extraWidth, 2) +
-        pow(p.dy - rect.center.dy, 2) / pow(b + extraWidth, 2) <=
-        1;
+        pow(p.dy - rect.center.dy, 2) / pow(b + extraWidth, 2) <= 1;
   }
 
   bool isOnTheOval(Offset p) {

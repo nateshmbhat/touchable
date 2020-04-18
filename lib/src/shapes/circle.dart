@@ -20,7 +20,6 @@ class Circle extends Shape {
       : super(paint: paint, gestureCallbackMap: gestureMap);
 
 //   (x-a)^2 + (y-b)^2 = r^2
-
   @override
   bool isInside(Offset p) {
     if (paint.style == PaintingStyle.fill) {

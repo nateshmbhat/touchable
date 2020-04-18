@@ -46,7 +46,6 @@ void testArc() {
     expect(arc2.isInside(Offset(247.6, 122.3)), true);
     expect(arc2.isInside(Offset(227.0, 113.1)), true);
 
-    //WARNING : TODO : Handle negative values for start angle and sweep angle
   });
 
   test("Arc with sweep greather than 360 degree test", () {
@@ -124,6 +123,43 @@ void testArc() {
     expect(arc1.isInside(Offset(191.6, 86.9)), false);
     expect(arc1.isInside(Offset(338.7, 205.0)), false);
     expect(arc1.isInside(Offset(153.5, 324.6)), false);
+  });
+
+  test('Negative angle test for ARC: ', () {
+    var arc = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, pi / 2, true,
+        paint: Paint()
+          ..strokeWidth = 1
+          ..style = PaintingStyle.fill
+          ..color = Colors.pink);
+    expect(arc.isInside(Offset(129.1, 241.9)), false);
+    expect(arc.isInside(Offset(203.8, 244.6)), false);
+    expect(arc.isInside(Offset(239.2, 206.9)), false);
+    expect(arc.isInside(Offset(226.3, 126.1)), false);
+    expect(arc.isInside(Offset(169.1, 73.9)), false);
+    expect(arc.isInside(Offset(105.9, 119.6)), false);
+    expect(arc.isInside(Offset(86.5, 188.2)), false);
+
+    expect(arc.isInside(Offset(131.8, 183.2)), true);
+    expect(arc.isInside(Offset(169.5, 176.8)), true);
+    expect(arc.isInside(Offset(179.0, 133.3)), true);
+
+
+    var arc1 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, true,
+        paint: Paint()
+          ..strokeWidth = 1
+          ..style = PaintingStyle.fill
+          ..color = Colors.pink);
+    expect(arc1.isInside(Offset(129.1, 241.9)), false);
+    expect(arc1.isInside(Offset(203.8, 244.6)), false);
+    expect(arc1.isInside(Offset(239.2, 206.9)), false);
+    expect(arc1.isInside(Offset(226.3, 126.1)), false);
+    expect(arc1.isInside(Offset(169.1, 73.9)), false);
+    expect(arc1.isInside(Offset(105.9, 119.6)), false);
+    expect(arc1.isInside(Offset(86.5, 188.2)), false);
+
+    expect(arc1.isInside(Offset(131.8, 183.2)), true);
+    expect(arc1.isInside(Offset(169.5, 176.8)), true);
+    expect(arc1.isInside(Offset(179.0, 133.3)), true);
   });
 
   test('Arc test : check point lies in stroked arc', () {
