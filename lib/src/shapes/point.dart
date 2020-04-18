@@ -3,6 +3,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:touchable/src/shapes/circle.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
@@ -20,18 +21,35 @@ class Point extends Shape {
   bool isInside(Offset p) {
     switch (pointMode) {
       case PointMode.points:
-        return (points.contains(p));
+        for (Offset point in points) {
+          if (_checkPointLiesInsideAnotherPoint(point, p)) return true;
+        }
+        return false;
       case PointMode.lines:
         for (int i = 0; i < points.length; i += 2) {
           if (i + 1 >= points.length) return false;
-          if (Line(points[i], points[i + 1], paint: paint).isInside(p))
+          if (Line(points[i], points[i + 1], paint: paint).isInside(p)) {
             return true;
+          }
         }
         return false;
       case PointMode.polygon:
         return PolygonUtil.checkInside(points, p, paint);
       default:
         return false;
+    }
+  }
+
+  bool _checkPointLiesInsideAnotherPoint(Offset point, Offset queryPoint) {
+    if (point == queryPoint) return true;
+    var extraWidth = paint.strokeWidth;
+    if (paint.strokeCap == StrokeCap.round) {
+      return Circle(center: point, radius: extraWidth).isInside(queryPoint);
+    }
+    else {
+      return Rect.fromCenter(
+          center: point, width: extraWidth, height: extraWidth).contains(
+          queryPoint);
     }
   }
 }

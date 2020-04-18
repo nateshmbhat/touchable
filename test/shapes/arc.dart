@@ -160,6 +160,13 @@ void testArc() {
     expect(arc1.isInside(Offset(131.8, 183.2)), true);
     expect(arc1.isInside(Offset(169.5, 176.8)), true);
     expect(arc1.isInside(Offset(179.0, 133.3)), true);
+
+
+    var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, true,
+        paint: Paint()
+          ..strokeWidth = 40
+          ..style = PaintingStyle.stroke
+          ..color = Colors.pink);
   });
 
   test('Arc test : check point lies in stroked arc', () {

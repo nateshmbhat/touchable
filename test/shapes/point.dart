@@ -13,6 +13,26 @@ void testPoint() {
     expect(p.isInside(Offset(210,234)),true) ;
     expect(p.isInside(Offset(100,100)),true) ;
     expect(p.isInside(Offset(100,101)),false) ;
+
+    var p1 = Point(PointMode.points, [Offset(131.0, 419.00)], paint: Paint()
+      ..strokeWidth = 100);
+    expect(p1.isInside(Offset(109.3, 341.3)), false);
+    expect(p1.isInside(Offset(171.8, 347.4)), false);
+    expect(p1.isInside(Offset(196.2, 417.5)), false);
+    expect(p1.isInside(Offset(160.0, 513.5)), false);
+    expect(p1.isInside(Offset(107.0, 512.8)), false);
+    expect(p1.isInside(Offset(59.0, 434.7)), false);
+    expect(p1.isInside(Offset(60.6, 401.5)), false);
+
+    expect(p1.isInside(Offset(165.0, 399.2)), true);
+    expect(p1.isInside(Offset(135.6, 381.3)), true);
+    expect(p1.isInside(Offset(115.8, 389.3)), true);
+    expect(p1.isInside(Offset(115.0, 424.8)), true);
+    expect(p1.isInside(Offset(147.8, 436.6)), true);
+    expect(p1.isInside(Offset(165.0, 430.9)), true);
+     
+
+
   });
 
   test('PointMode.lines : Point lie on or off the lines test',(){
