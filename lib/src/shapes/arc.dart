@@ -51,18 +51,19 @@ class Arc extends Shape {
     _originToArcEndLine = Line(rect.center, _arcEndPoint, paint: paint);
   }
 
-// TODO : implement below method
   @override
   bool isInside(Offset p) {
     if (useCenter) {
       if (paint.style == PaintingStyle.stroke) {
-        return (_oval.isOnTheOval(p) && _isBetweenArcStartAndEndLines(p)) ||
+        return (_oval.isOnTheOval(p) &&
+            (_isBetweenArcStartAndEndLines(p) || sweepAngle.abs() >= 2 * pi)) ||
             (_originToArcStartLine.isInside(p)) ||
             (_originToArcEndLine.isInside(p));
       } else {
         return _oval.isInside(p) && _isBetweenArcStartAndEndLines(p);
       }
     } else {
+      if (sweepAngle.abs() >= 2 * pi) return _oval.isInside(p);
       return _handleCircleSegmentCheck(p);
     }
   }

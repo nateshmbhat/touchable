@@ -49,6 +49,44 @@ void testArc() {
     //WARNING : TODO : Handle negative values for start angle and sweep angle
   });
 
+  test("Arc with sweep greather than 360 degree test", () {
+    var arc3 = Arc(
+        Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, false,
+        paint: Paint()
+          ..strokeWidth = 50
+          ..style = PaintingStyle.stroke
+          ..color = Colors.pink);
+    expect(arc3.isInside(Offset(176.0, 246.5)), false);
+    expect(arc3.isInside(Offset(176.0, 246.5)), false);
+    expect(arc3.isInside(Offset(233.5, 177.0)), false);
+    expect(arc3.isInside(Offset(67.8, 100.2)), false);
+    expect(arc3.isInside(Offset(95.2, 307.0)), false);
+    expect(arc3.isInside(Offset(190.9, 160.4)), false);
+
+    expect(arc3.isInside(Offset(101.7, 243.8)), true);
+    expect(arc3.isInside(Offset(113.5, 136.0)), true);
+    expect(arc3.isInside(Offset(268.2, 149.7)), true);
+    expect(arc3.isInside(Offset(229.0, 294.1)), true);
+
+    var arc4 = Arc(
+        Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, true,
+        paint: Paint()
+          ..strokeWidth = 50
+          ..style = PaintingStyle.stroke
+          ..color = Colors.pink);
+    expect(arc4.isInside(Offset(77.7, 106.3)), false);
+    expect(arc4.isInside(Offset(308.6, 307.0)), false);
+    expect(arc4.isInside(Offset(162.7, 185.1)), false);
+    expect(arc4.isInside(Offset(200.4, 251.8)), false);
+    expect(arc4.isInside(Offset(255.2, 167.6)), false);
+
+    expect(arc4.isInside(Offset(210.7, 105.5)), true);
+    expect(arc4.isInside(Offset(120.4, 222.1)), true);
+    expect(arc4.isInside(Offset(293.3, 247.2)), true);
+    expect(arc4.isInside(Offset(245.3, 220.6)), true);
+    expect(arc4.isInside(Offset(215.2, 165.0)), true);
+  });
+
   test('Arc test : check point lies inside filled sector', () {
     var arc = Arc(Rect.fromLTWH(100, 100, 200, 200), pi, pi / 2, true,
         paint: Paint()

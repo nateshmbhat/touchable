@@ -499,17 +499,15 @@ class TouchyCanvas {
         onPanDown: null,
         onSecondaryTapDown: null,
         onSecondaryTapUp: null);
-    if (sweepAngle.abs() >= 2 * pi) {
-      _shapeHandler.addShape(Oval(rect, gestureMap: gestureMap, paint: paint));
-    }
-    else {
+
       var arc = Arc(rect, startAngle, sweepAngle, useCenter, paint: paint,
           gestureMap: gestureMap);
       _shapeHandler.addShape(arc);
       //FIXME : TODO : REMOVE THIS LINE
-      _canvas.drawLine(arc.chordLine.p1, arc.chordLine.p2, Paint()
+    _canvas.drawLine(arc.chordLine.p1, arc.chordLine.p2, Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 5
         ..color = Colors.black);
-    }
   }
 
 //  
