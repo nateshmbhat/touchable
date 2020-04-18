@@ -13,9 +13,9 @@ class Gesture {
   Gesture(this.gestureType, this.gestureDetail);
 }
 
-class ClipShapeItem{
-  final ClipShape clipShape ;
-  final int position ;
+class ClipShapeItem {
+  final ClipShape clipShape;
+  final int position;
 
   ClipShapeItem(this.clipShape, this.position);
 }

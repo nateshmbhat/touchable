@@ -8,13 +8,14 @@
 
 **Draw objects on your custom painter canvas and add full interactive capability to each object.**
 
-## Demo :
-
+<br/>
 <center>
 
 [![](./example/assets/demo.gif)](#)
+[![](./example/assets/demo.gif)](#)
 
 </center>
+
 
 
 ## Why Use **Touchable** ? 

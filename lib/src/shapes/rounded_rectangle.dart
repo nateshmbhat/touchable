@@ -19,8 +19,10 @@ class RoundedRectangle extends Shape {
     } else {
       var extraWidth = paint.strokeWidth / 2;
       bool insideOuterRect = RRect.fromLTRBAndCorners(
-        rRect.left - extraWidth, rRect.top - extraWidth,
-        rRect.right + extraWidth, rRect.bottom + extraWidth,
+        rRect.left - extraWidth,
+        rRect.top - extraWidth,
+        rRect.right + extraWidth,
+        rRect.bottom + extraWidth,
         topLeft: Radius.elliptical(
             rRect.tlRadiusX + extraWidth, rRect.tlRadiusY + extraWidth),
         topRight: Radius.elliptical(
@@ -31,8 +33,10 @@ class RoundedRectangle extends Shape {
             rRect.brRadiusX + extraWidth, rRect.brRadiusY + extraWidth),
       ).contains(p);
       bool outsideInnerRect = !RRect.fromLTRBAndCorners(
-        rRect.left + extraWidth, rRect.top + extraWidth,
-        rRect.right - extraWidth, rRect.bottom - extraWidth,
+        rRect.left + extraWidth,
+        rRect.top + extraWidth,
+        rRect.right - extraWidth,
+        rRect.bottom - extraWidth,
         topLeft: Radius.elliptical(
             rRect.tlRadiusX - extraWidth, rRect.tlRadiusY - extraWidth),
         topRight: Radius.elliptical(

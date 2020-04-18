@@ -34,8 +34,7 @@ void testArc() {
     expect(arc1.isInside(Offset(118.9, 291.8)), false);
 
     var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, pi / 3, false,
-        paint: Paint()
-          ..color = Colors.pink);
+        paint: Paint()..color = Colors.pink);
 
     expect(arc2.isInside(Offset(163.4, 153.1)), false);
     expect(arc2.isInside(Offset(229.3, 214.5)), false);
@@ -45,16 +44,15 @@ void testArc() {
 
     expect(arc2.isInside(Offset(247.6, 122.3)), true);
     expect(arc2.isInside(Offset(227.0, 113.1)), true);
-
   });
 
   test("Arc with sweep greather than 360 degree test", () {
-    var arc3 = Arc(
-        Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, false,
-        paint: Paint()
-          ..strokeWidth = 50
-          ..style = PaintingStyle.stroke
-          ..color = Colors.pink);
+    var arc3 =
+        Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, false,
+            paint: Paint()
+              ..strokeWidth = 50
+              ..style = PaintingStyle.stroke
+              ..color = Colors.pink);
     expect(arc3.isInside(Offset(176.0, 246.5)), false);
     expect(arc3.isInside(Offset(176.0, 246.5)), false);
     expect(arc3.isInside(Offset(233.5, 177.0)), false);
@@ -67,12 +65,12 @@ void testArc() {
     expect(arc3.isInside(Offset(268.2, 149.7)), true);
     expect(arc3.isInside(Offset(229.0, 294.1)), true);
 
-    var arc4 = Arc(
-        Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, true,
-        paint: Paint()
-          ..strokeWidth = 50
-          ..style = PaintingStyle.stroke
-          ..color = Colors.pink);
+    var arc4 =
+        Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, true,
+            paint: Paint()
+              ..strokeWidth = 50
+              ..style = PaintingStyle.stroke
+              ..color = Colors.pink);
     expect(arc4.isInside(Offset(77.7, 106.3)), false);
     expect(arc4.isInside(Offset(308.6, 307.0)), false);
     expect(arc4.isInside(Offset(162.7, 185.1)), false);
@@ -142,7 +140,6 @@ void testArc() {
     expect(arc.isInside(Offset(131.8, 183.2)), true);
     expect(arc.isInside(Offset(169.5, 176.8)), true);
     expect(arc.isInside(Offset(179.0, 133.3)), true);
-
 
     var arc1 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, false,
         paint: Paint()

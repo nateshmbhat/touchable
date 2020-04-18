@@ -41,7 +41,7 @@ class Arc extends Shape {
 
     var cosStartAngle = cos(startAngle);
     var startPointPhi =
-    atan2(_oval.a * sin(startAngle), _oval.b * cosStartAngle);
+        atan2(_oval.a * sin(startAngle), _oval.b * cosStartAngle);
 
     var endAngle = startAngle + sweepAngle;
     var cosEndAngle = cos(endAngle);
@@ -62,7 +62,8 @@ class Arc extends Shape {
     if (useCenter) {
       if (paint.style == PaintingStyle.stroke) {
         return (_oval.isOnTheOval(p) &&
-            (_isBetweenArcStartAndEndLines(p) || sweepAngle.abs() >= 2 * pi)) ||
+                (_isBetweenArcStartAndEndLines(p) ||
+                    sweepAngle.abs() >= 2 * pi)) ||
             (_originToArcStartLine.isInside(p)) ||
             (_originToArcEndLine.isInside(p));
       } else {
@@ -85,11 +86,9 @@ class Arc extends Shape {
   /// Does [not] consider the [paint.strokeWidth] of the lines.
   bool _isBetweenArcStartAndEndLines(Offset p) {
     var startLineSideValue =
-    _originToArcStartLine.getPointLyingOnSideTestValue(p);
+        _originToArcStartLine.getPointLyingOnSideTestValue(p);
     var endLineSideValue = _originToArcEndLine.getPointLyingOnSideTestValue(p);
     var threshold = ShapeConstant.floatPrecision;
-    print(
-        'origint to startline side value :  startLineSide ${startLineSideValue} , endLineSide ${endLineSideValue} ');
     if (sweepAngle <= pi) {
       return startLineSideValue > threshold && endLineSideValue < threshold;
     } else {

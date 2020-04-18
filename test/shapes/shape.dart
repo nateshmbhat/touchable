@@ -8,14 +8,12 @@ import 'point.dart';
 import 'rectangle.dart';
 import 'rounded_rectangle.dart';
 
-void testShapes(){
+void testShapes() {
   testCircle();
-  testLine() ;
+  testLine();
   testRectangle();
   testOval();
   testPoint();
   testArc();
   testRoundedRectangle();
 }
-
- 

@@ -39,11 +39,9 @@ class Line extends Shape {
   ///    if the line is a chord of an oval or circle , then this method returns true if a point lies on that side of the line
   ///    which is away from the center or the oval , i.e value of [expression] is [negative]
   bool isPointOnPositiveSide(Offset p) {
-    var extraWidth = paint.style == PaintingStyle.stroke
-        ? paint.strokeWidth / 2
-        : ShapeConstant.floatPrecision;
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
-        (p2.dy - p1.dy) * (p.dx - p1.dx)) < ShapeConstant.floatPrecision;
+            (p2.dy - p1.dy) * (p.dx - p1.dx)) <
+        ShapeConstant.floatPrecision;
   }
 
   ///    if a point lies on that side of the line which is away from the center or the oval ,

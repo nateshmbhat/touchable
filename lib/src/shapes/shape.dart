@@ -11,7 +11,8 @@ abstract class Shape {
   Paint paint;
   Map<GestureType, Function> gestureCallbackMap;
 
-  Set<GestureType> get registeredGestures => gestureCallbackMap?.keys?.toSet() ?? Set();
+  Set<GestureType> get registeredGestures =>
+      gestureCallbackMap?.keys?.toSet() ?? Set();
 
   Shape({
     @required this.paint,
@@ -28,12 +29,12 @@ abstract class Shape {
 
   bool isInside(Offset p);
 
-  Function getCallbackFromGesture(Gesture gesture){
-    if(gestureCallbackMap.containsKey(gesture.gestureType)){
-      return ()=> gestureCallbackMap[gesture.gestureType](gesture.gestureDetail) ;
-    }
-    else{
-      return (){};
+  Function getCallbackFromGesture(Gesture gesture) {
+    if (gestureCallbackMap.containsKey(gesture.gestureType)) {
+      return () =>
+          gestureCallbackMap[gesture.gestureType](gesture.gestureDetail);
+    } else {
+      return () {};
     }
   }
 }

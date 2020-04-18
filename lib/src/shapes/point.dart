@@ -50,12 +50,10 @@ class Point extends Shape {
     var extraWidth = paint.strokeWidth / 2;
     if (paint.strokeCap == StrokeCap.round) {
       return Circle(center: point, radius: extraWidth).isInside(queryPoint);
-    }
-    else {
+    } else {
       return Rect.fromCenter(
-          center: point, width: extraWidth * 2, height: extraWidth * 2)
-          .contains(
-          queryPoint);
+              center: point, width: extraWidth * 2, height: extraWidth * 2)
+          .contains(queryPoint);
     }
   }
 }
