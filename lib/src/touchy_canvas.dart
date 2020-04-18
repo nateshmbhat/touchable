@@ -492,6 +492,10 @@ class TouchyCanvas {
             onSecondaryTapDown: null,
             onSecondaryTapUp: null)
     );
+    //TODO : FIXME : REMOVE BELOW LINE
+    _canvas.drawLine(arc.chordLine.p1, arc.chordLine.p2, Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 10);
     _shapeHandler.addShape(arc);
   }
 

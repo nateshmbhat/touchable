@@ -144,29 +144,42 @@ void testArc() {
     expect(arc.isInside(Offset(179.0, 133.3)), true);
 
 
-    var arc1 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, true,
+    var arc1 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, false,
         paint: Paint()
           ..strokeWidth = 1
           ..style = PaintingStyle.fill
           ..color = Colors.pink);
-    expect(arc1.isInside(Offset(129.1, 241.9)), false);
-    expect(arc1.isInside(Offset(203.8, 244.6)), false);
-    expect(arc1.isInside(Offset(239.2, 206.9)), false);
-    expect(arc1.isInside(Offset(226.3, 126.1)), false);
-    expect(arc1.isInside(Offset(169.1, 73.9)), false);
-    expect(arc1.isInside(Offset(105.9, 119.6)), false);
-    expect(arc1.isInside(Offset(86.5, 188.2)), false);
 
-    expect(arc1.isInside(Offset(131.8, 183.2)), true);
-    expect(arc1.isInside(Offset(169.5, 176.8)), true);
-    expect(arc1.isInside(Offset(179.0, 133.3)), true);
+    expect(arc1.isInside(Offset(74.7, 270.5)), false);
+    expect(arc1.isInside(Offset(282.3, 293.0)), false);
+    expect(arc1.isInside(Offset(277.3, 70.9)), false);
+    expect(arc1.isInside(Offset(275.4, 81.9)), false);
+    expect(arc1.isInside(Offset(133.3, 139.8)), false);
+    expect(arc1.isInside(Offset(132.2, 137.9)), false);
+    expect(arc1.isInside(Offset(97.9, 176.4)), false);
 
+    expect(arc1.isInside(Offset(134.1, 210.3)), true);
+    expect(arc1.isInside(Offset(202.3, 261.7)), true);
+    expect(arc1.isInside(Offset(264.0, 206.5)), true);
+    expect(arc1.isInside(Offset(228.6, 133.3)), true);
 
-    var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, true,
+    var arc2 = Arc(Rect.fromLTWH(100, 100, 200, 200), -pi, -3 * pi / 2, false,
         paint: Paint()
           ..strokeWidth = 40
-          ..style = PaintingStyle.stroke
+          ..style = PaintingStyle.fill
           ..color = Colors.pink);
+
+    expect(arc2.isInside(Offset(111.2, 297.13)), false);
+    expect(arc2.isInside(Offset(111.2, 297.1)), false);
+    expect(arc2.isInside(Offset(222.5, 343.2)), false);
+    expect(arc2.isInside(Offset(280.4, 116.2)), false);
+    expect(arc2.isInside(Offset(292.2, 299.8)), false);
+    expect(arc2.isInside(Offset(124.6, 141.0)), false);
+
+    expect(arc2.isInside(Offset(123.8, 240.8)), true);
+    expect(arc2.isInside(Offset(190.9, 273.5)), true);
+    expect(arc2.isInside(Offset(261.3, 192.8)), true);
+    expect(arc2.isInside(Offset(199.6, 151.6)), true);
   });
 
   test('Arc test : check point lies in stroked arc', () {

@@ -13,8 +13,8 @@ import 'package:touchable/src/types/types.dart';
 ///for more info on point detection
 class Arc extends Shape {
   final Rect rect;
-  final double startAngle;
-  final double sweepAngle;
+  double startAngle;
+  double sweepAngle;
   final bool useCenter;
 
   Oval _oval;
@@ -32,6 +32,12 @@ class Arc extends Shape {
       {Paint paint, Map<GestureType, Function> gestureMap})
       : super(paint: paint, gestureCallbackMap: gestureMap) {
     _oval = Oval(rect, paint: paint);
+
+    if (sweepAngle < 0) {
+//      if sweep angle is negative , make the endangle as the start angle and make sweep angle positive
+      startAngle = startAngle + sweepAngle;
+      sweepAngle = sweepAngle.abs();
+    }
 
     var cosStartAngle = cos(startAngle);
     var startPointPhi =

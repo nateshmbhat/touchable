@@ -35,15 +35,15 @@ void testPoint() {
     var p2 = Point(PointMode.points, [Offset(131.0, 419.00)], paint: Paint()
       ..strokeWidth = 100
       ..strokeCap = StrokeCap.round);
-    expect(p1.isInside(Offset(131.4, 503.2)), false);
-    expect(p1.isInside(Offset(216.8, 456.8)), false);
-    expect(p1.isInside(Offset(188.2, 358.5)), false);
-    expect(p1.isInside(Offset(92.6, 360.4)), false);
+    expect(p2.isInside(Offset(131.4, 503.2)), false);
+    expect(p2.isInside(Offset(216.8, 456.8)), false);
+    expect(p2.isInside(Offset(188.2, 358.5)), false);
+    expect(p2.isInside(Offset(92.6, 360.4)), false);
 
-    expect(p1.isInside(Offset(169.9, 434.3)), true);
-    expect(p1.isInside(Offset(151.6, 400.0)), true);
-    expect(p1.isInside(Offset(121.1, 418.7)), true);
-    expect(p1.isInside(Offset(141.0, 445.7)), true);
+    expect(p2.isInside(Offset(169.9, 434.3)), true);
+    expect(p2.isInside(Offset(151.6, 400.0)), true);
+    expect(p2.isInside(Offset(121.1, 418.7)), true);
+    expect(p2.isInside(Offset(141.0, 445.7)), true);
   });
 
   test('PointMode.lines : Point lie on or off the lines test',(){
