@@ -42,13 +42,14 @@ class Point extends Shape {
 
   bool _checkPointLiesInsideAnotherPoint(Offset point, Offset queryPoint) {
     if (point == queryPoint) return true;
-    var extraWidth = paint.strokeWidth;
+    var extraWidth = paint.strokeWidth / 2;
     if (paint.strokeCap == StrokeCap.round) {
       return Circle(center: point, radius: extraWidth).isInside(queryPoint);
     }
     else {
       return Rect.fromCenter(
-          center: point, width: extraWidth, height: extraWidth).contains(
+          center: point, width: extraWidth * 2, height: extraWidth * 2)
+          .contains(
           queryPoint);
     }
   }
