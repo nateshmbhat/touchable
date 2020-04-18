@@ -414,9 +414,9 @@ class TouchyCanvas {
 //  }
 
 //
-//  void translate(double dx, double dy) {
-//    // TODO: implement translate
-//  }
+  void translate(double dx, double dy) {
+    _canvas.translate(dx, dy);
+  }
 
 //
 //  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,

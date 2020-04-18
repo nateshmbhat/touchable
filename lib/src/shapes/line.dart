@@ -29,7 +29,7 @@ class Line extends Shape {
 
     return _findPerpendicularDist(p, value) <= threshold &&
         max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=
-            ShapeUtil.distance(p1, p2) + threshold;
+            ShapeUtil.distance(p1, p2);
   }
 
   double _findPerpendicularDist(Offset p, double value) {
