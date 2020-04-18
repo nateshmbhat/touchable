@@ -34,7 +34,11 @@ class Point extends Shape {
         }
         return false;
       case PointMode.polygon:
-        return PolygonUtil.checkInside(points, p, paint);
+        for (int i = 1; i < points.length; i += 1) {
+          if (Line(points[i - 1], points[i], paint: paint).isInside(p))
+            return true;
+        }
+        return false;
       default:
         return false;
     }

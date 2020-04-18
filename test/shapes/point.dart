@@ -82,16 +82,31 @@ void testPoint() {
   });
 
   test('PointMode.polygon : Point lie on or off the lines test',(){
-    var p = Point(PointMode.polygon , [Offset(0,0),Offset(100,100),Offset(200,200),Offset(150,300),Offset(10,35)])  ;
-    expect(p.isInside(Offset(10,10)),true) ;
-    expect(p.isInside(Offset(101,10)),false) ;
-    expect(p.isInside(Offset(200,10)),false) ;
-    expect(p.isInside(Offset(200,250)),false) ;
+    var p = Point(PointMode.polygon, [
+      Offset(131.0, 419.00),
+      Offset(161.0, 519.00),
+      Offset(281.0, 419.00),
+      Offset(161.0, 119.00)
+    ], paint: Paint()
+      ..strokeWidth = 30
+      ..strokeCap = StrokeCap.round);
 
-    expect(p.isInside(Offset(10,20)),true) ;
-    expect(p.isInside(Offset(100,300)),false) ;
-    expect(p.isInside(Offset(150,275)),true) ;
-    expect(p.isInside(Offset(300,300)),false) ;
-    expect(p.isInside(Offset(150,250)),true) ;
+    expect(p.isInside(Offset(247.6, 212.2)), false);
+    expect(p.isInside(Offset(205.0, 108.2)), false);
+    expect(p.isInside(Offset(139.4, 166.1)), false);
+    expect(p.isInside(Offset(156.6, 264.0)), false);
+    expect(p.isInside(Offset(225.1, 397.3)), false);
+    expect(p.isInside(Offset(185.5, 438.1)), false);
+    expect(p.isInside(Offset(98.7, 461.7)), false);
+    expect(p.isInside(Offset(189.3, 565.0)), false);
+    expect(p.isInside(Offset(331.0, 430.1)), false);
+    expect(p.isInside(Offset(301.0, 325.0)), false);
+
+    expect(p.isInside(Offset(264.0, 338.7)), true);
+    expect(p.isInside(Offset(288.4, 415.6)), true);
+    expect(p.isInside(Offset(240.4, 467.8)), true);
+    expect(p.isInside(Offset(176.8, 509.0)), true);
+    expect(p.isInside(Offset(144.8, 441.9)), true);
+    expect(p.isInside(Offset(185.9, 149.7)), true);
   });
 }
