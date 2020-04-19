@@ -414,9 +414,9 @@ class TouchyCanvas {
 //  }
 
 //
-  void translate(double dx, double dy) {
-    _canvas.translate(dx, dy);
-  }
+//  void translate(double dx, double dy) {
+//   _canvas.translate(dx, dy);
+//  }
 
 //
 //  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,
@@ -487,13 +487,6 @@ class TouchyCanvas {
             onPanDown: null,
             onSecondaryTapDown: null,
             onSecondaryTapUp: null));
-    //TODO : FIXME : REMOVE BELOW LINE
-    _canvas.drawLine(
-        arc.chordLine.p1,
-        arc.chordLine.p2,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 10);
     _shapeHandler.addShape(arc);
   }
 

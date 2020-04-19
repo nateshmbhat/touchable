@@ -1,20 +1,17 @@
-# touchable 👆🏻
+# touchable 👆🏻 
+<p align="center">
+<img width="200" src="https://svgshare.com/i/KCn.svg"/>
+</p>
 
-<center>
 
-[![](./example/assets/logo/logo-14.svg)](#)
-
-</center>
-
-**Draw objects on your custom painter canvas and add full interactive capability to each object.**
+### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
 
 <br/>
-<center>
 
-[![](./example/assets/demo.gif)](#)
-[![](./example/assets/demo.gif)](#)
 
-</center>
+<p align="center">
+<img src="https://i.imgur.com/Un41cTo.gif"/>
+</p>
 
 
 
@@ -22,7 +19,7 @@
 - The CustomPainter lets you **only draw** shapes on the canvas. But most would want to let user interact with the drawings.
 
 - With touchable , you get what the normal canvas always missed : **touchability** 😉
-- With this , its possible to add all kinds of **gesture callbacks to each drawing** and thus interaction capability to each drawing you draw on the canvas.
+- With this , its possible to add all kinds of **gesture callbacks to each drawing** and thus interaction capability to each Shape you draw on the canvas.
 - Animating individual shapes becomes so much easier  than ever before.
 - Automatically handles the painting style of your drawing. So , when your paint is `filled ▮` it registers touch on the entire shape else when its `stroke ▯` , it looks for gesture only on the borders.
 - Takes the painting **stroke width** also into account. So if your shapes are painted thick , we still got it covered ✓

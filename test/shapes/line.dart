@@ -29,11 +29,11 @@ void testLine() {
     expect(
         Line(Offset(0, 0), Offset(200, 0), paint: paint)
             .isInside(Offset(201, 0)),
-        true);
+        false);
     expect(
         Line(Offset(0, 0), Offset(200, 0), paint: paint)
             .isInside(Offset(203, 0)),
-        true);
+        false);
     expect(
         Line(Offset(0, 0), Offset(200, 0), paint: paint)
             .isInside(Offset(204, 0)),
