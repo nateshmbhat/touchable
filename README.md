@@ -4,7 +4,7 @@
 </p>
 
 
-### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
+#### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
 
 <br/>
 

@@ -27,9 +27,25 @@ class Line extends Shape {
 
     var threshold = paint.strokeWidth / 2;
 
+    ///when cap is not round , then paint is not put beyond the end points
+    if (paint.strokeCap == StrokeCap.round) {
+      //TODO : Handle this case seperately
+    }
     return _findPerpendicularDist(p, value) <= threshold &&
-        max(ShapeUtil.distance(p1, p), ShapeUtil.distance(p2, p)) <=
-            ShapeUtil.distance(p1, p2);
+        _checkIfPointIsBetweenLineSegment(_findNearestPointOnTheLine(p));
+  }
+
+  ///Doesn't consider line thickness
+  bool _checkIfPointIsBetweenLineSegment(Offset p) {
+    return ShapeUtil.distance(p1, p) + ShapeUtil.distance(p2, p) -
+        ShapeUtil.distance(p1, p2) <= ShapeConstant.floatPrecision;
+  }
+
+  Offset _findNearestPointOnTheLine(Offset p) {
+    var ab = Offset(p2.dx - p1.dx, p2.dy - p1.dy);
+    var k = ((p.dx - p1.dx) * ab.dx + (p.dy - p1.dy) * ab.dy) /
+        (ab.dx * ab.dx + ab.dy * ab.dy);
+    return Offset(p1.dx + k * ab.dx, p1.dy + k * ab.dy);
   }
 
   double _findPerpendicularDist(Offset p, double value) {
@@ -40,7 +56,7 @@ class Line extends Shape {
   ///    which is away from the center or the oval , i.e value of [expression] is [negative]
   bool isPointOnPositiveSide(Offset p) {
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
-            (p2.dy - p1.dy) * (p.dx - p1.dx)) <
+        (p2.dy - p1.dy) * (p.dx - p1.dx)) <
         ShapeConstant.floatPrecision;
   }
 
