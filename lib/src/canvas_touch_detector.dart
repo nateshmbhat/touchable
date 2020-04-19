@@ -15,11 +15,19 @@ class CanvasTouchDetector extends StatefulWidget {
 }
 
 class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
-  final StreamController<Gesture> touchController = StreamController();
+  final StreamController<Gesture> touchController = StreamController
+      .broadcast();
+  StreamSubscription streamSubscription;
+
+  Future<void> addStreamListener(Function(Gesture) callBack) async {
+    await streamSubscription?.cancel();
+    streamSubscription = touchController.stream.listen(callBack);
+  }
 
   @override
   Widget build(BuildContext context) {
     return TouchDetectionController(touchController,
+        addStreamListener,
         child: GestureDetector(
           child: Builder(
             builder: (context) {
@@ -111,9 +119,15 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
 }
 
 class TouchDetectionController extends InheritedWidget {
-  final StreamController<Gesture> controller;
+  final StreamController<Gesture> _controller;
+  final Function addListener;
 
-  TouchDetectionController(this.controller, {@required Widget child})
+  bool get hasListener => _controller.hasListener;
+
+  StreamController<Gesture> get controller => _controller;
+
+  const TouchDetectionController(this._controller, this.addListener,
+      {@required Widget child})
       : super(child: child);
 
   static TouchDetectionController of(BuildContext context) =>

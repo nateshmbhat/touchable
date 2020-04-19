@@ -29,12 +29,13 @@ class TouchyCanvas {
   final ShapeHandler _shapeHandler = ShapeHandler();
 
   TouchyCanvas(BuildContext context, this._canvas) {
-    controller = TouchDetectionController.of(context).controller;
-    if (!controller.hasListener) {
-      controller.stream.listen((event) {
-        _shapeHandler.handleGestureEvent(event);
-      });
-    }
+    var touchController = TouchDetectionController.of(context);
+    print("TouchyCanvas object id = ${this.hashCode}");
+    touchController.addListener((event) {
+      print("TouchyCanvas object id = ${this.hashCode}");
+      print("ShapeHandler object id = ${_shapeHandler.hashCode}");
+      _shapeHandler.handleGestureEvent(event);
+    });
   }
 
   void clipPath(Path path, {bool doAntiAlias = true}) {
