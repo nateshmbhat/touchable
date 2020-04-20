@@ -37,8 +37,10 @@ class Line extends Shape {
 
   ///Doesn't consider line thickness
   bool _checkIfPointIsBetweenLineSegment(Offset p) {
-    return ShapeUtil.distance(p1, p) + ShapeUtil.distance(p2, p) -
-        ShapeUtil.distance(p1, p2) <= ShapeConstant.floatPrecision;
+    return ShapeUtil.distance(p1, p) +
+            ShapeUtil.distance(p2, p) -
+            ShapeUtil.distance(p1, p2) <=
+        ShapeConstant.floatPrecision;
   }
 
   Offset _findNearestPointOnTheLine(Offset p) {
@@ -56,7 +58,7 @@ class Line extends Shape {
   ///    which is away from the center or the oval , i.e value of [expression] is [negative]
   bool isPointOnPositiveSide(Offset p) {
     return ((p2.dx - p1.dx) * (p.dy - p1.dy) -
-        (p2.dy - p1.dy) * (p.dx - p1.dx)) <
+            (p2.dy - p1.dy) * (p.dx - p1.dx)) <
         ShapeConstant.floatPrecision;
   }
 

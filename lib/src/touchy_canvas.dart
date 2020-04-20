@@ -385,7 +385,6 @@ class TouchyCanvas {
     _shapeHandler.addShape(PathShape(path));
   }
 
-
   void drawImage(
     Image image,
     Offset p,
