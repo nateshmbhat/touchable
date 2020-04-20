@@ -59,8 +59,8 @@ class ShapeHandler {
   }
 
   Future<void> handleGestureEvent(Gesture gesture) async {
-    var touchPoint =
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail);
+    var touchPoint = TouchCanvasUtil.getPointFromGestureDetail(
+        gesture.gestureDetail);
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
     var touchedShape = _getTopShapeBelowTouchPoint(touchPoint);

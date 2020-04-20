@@ -30,10 +30,7 @@ class TouchyCanvas {
 
   TouchyCanvas(BuildContext context, this._canvas) {
     var touchController = TouchDetectionController.of(context);
-    print("TouchyCanvas object id = ${this.hashCode}");
     touchController.addListener((event) {
-      print("TouchyCanvas object id = ${this.hashCode}");
-      print("ShapeHandler object id = ${_shapeHandler.hashCode}");
       _shapeHandler.handleGestureEvent(event);
     });
   }
@@ -388,42 +385,6 @@ class TouchyCanvas {
     _shapeHandler.addShape(PathShape(path));
   }
 
-//
-//  void drawVertices(Vertices vertices, BlendMode blendMode, Paint paint) {
-//    _canvas.drawVertices(vertices, blendMode, paint);
-  // TODO: implement drawVertices
-//  }
-
-//
-//  void rotate(double radians) {
-//    // TODO: implement rotate
-//  }
-
-//
-//  void scale(double sx, [double sy]) {
-//    // TODO: implement scale
-//  }
-
-//
-//  void skew(double sx, double sy) {
-//    // TODO: implement skew
-//  }
-
-//
-//  void transform(Float64List matrix4) {
-//    // TODO: implement transform
-//  }
-
-//
-//  void translate(double dx, double dy) {
-//   _canvas.translate(dx, dy);
-//  }
-
-//
-//  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,
-//      List<Color> colors, BlendMode blendMode, Rect cullRect, Paint paint) {
-//    _canvas.drawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
-//  }
 
   void drawImage(
     Image image,
@@ -501,14 +462,57 @@ class TouchyCanvas {
 //
 //  void drawRawAtlas(Image atlas, Float32List rstTransforms, Float32List rects,
 //      Int32List colors, BlendMode blendMode, Rect cullRect, Paint paint) {
+//    // TODO: implement drawRatAtlas
 //    _canvas.drawRawAtlas(atlas, rstTransforms, rects, colors, blendMode, cullRect, paint);
 //  }
 //
 //  void drawImageNine(Image image, Rect center, Rect dst, Paint paint){
+//    // TODO: implement drawImageNine
 //    _canvas.drawImageNine(image, center, dst, paint);
 //  }
 //
 //  void drawImageRect(Image image, Rect src, Rect dst, Paint paint){
+//    // TODO: implement drawImageRect
 //    _canvas.drawImageRect(image, src, dst, paint);
+//  }
+
+//
+//  void drawVertices(Vertices vertices, BlendMode blendMode, Paint paint) {
+//    _canvas.drawVertices(vertices, blendMode, paint);
+// TODO: implement drawVertices
+//  }
+
+//
+//  void rotate(double radians) {
+//    // TODO: implement rotate
+//  }
+
+//
+//  void scale(double sx, [double sy]) {
+//    // TODO: implement scale
+//  }
+
+//
+//  void skew(double sx, double sy) {
+//    // TODO: implement skew
+//  }
+
+//
+//  void transform(Float64List matrix4) {
+//    // TODO: implement transform
+//  }
+
+//
+//  void translate(double dx, double dy) {
+//   _canvas.translate(dx, dy);
+//    // TODO: implement translate
+//  }
+
+//
+//  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,
+//      List<Color> colors, BlendMode blendMode, Rect cullRect, Paint paint) {
+//    // TODO: implement drawAtlas
+//  }
+//    _canvas.drawAtlas(atlas, transforms, rects, colors, blendMode, cullRect, paint);
 //  }
 }
