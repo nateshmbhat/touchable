@@ -9,8 +9,7 @@ import 'package:touchable/src/types/types.dart';
 class PathShape extends Shape {
   final Path path;
 
-  PathShape(this.path,
-      {Map<GestureType, Function(dynamic)> gestureMap, Paint paint})
+  PathShape(this.path, {Map<GestureType, Function> gestureMap, Paint paint})
       : super(paint: paint, gestureCallbackMap: gestureMap);
 
   @override

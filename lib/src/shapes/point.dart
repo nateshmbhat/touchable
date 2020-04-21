@@ -88,8 +88,9 @@ class PolygonUtil {
 
   static bool checkInside(List<Offset> poly, Offset p, Paint paint) {
     int n = poly.length;
-    if (n < 3)
-      return false; //when polygon has less than 3 edge, it is not polygon
+    if (n < 3) {
+      return false;
+    } //when polygon has less than 3 edge, it is not polygon
     Line exline = Line(p,
         Offset(9999, p.dy)); //create a point at infinity, y is same as point p
     int count = 0;
