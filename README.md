@@ -13,7 +13,7 @@
 ![](https://img.shields.io/github/stars/nateshmbhat/touchable)
 ![](https://img.shields.io/github/forks/nateshmbhat/touchable)
 [![](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fnateshmbhat%2Ftouchable)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fnateshmbhat%2Ftouchable)
-[![](https://img.shields.io/github/languages/code-size/nateshmbhat/touchable)](#)
+![](https://img.shields.io/github/languages/code-size/nateshmbhat/touchable)
 [![](https://img.shields.io/badge/author-nateshmbhat-green.svg)](https://github.com/nateshmbhat)
 
 
