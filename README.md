@@ -47,7 +47,7 @@
 Add the following package in your `pubspec.yaml`
 ```dart
 dependencies:
-  touchable: ^0.1.1
+  touchable:
 ```
 
 

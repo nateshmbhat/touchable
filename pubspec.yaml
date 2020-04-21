@@ -1,6 +1,6 @@
 name: touchable
 description: Draw Shapes on your canvas and add full interactive capability and gesture callbacks to each object.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/nateshmbhat/touchable
 homepage: https://github.com/nateshmbhat/touchable
 
