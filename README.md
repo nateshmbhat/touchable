@@ -142,12 +142,12 @@ When user performs any gesture on the screen , based on the location of the gest
   - [x] Stroke Width
   - [] Stroke Cap
     - [x] StrokeCap to draw Points
-    - [] StrokeCap for lines with large width
+    - [ ] StrokeCap for lines with large width
 - [x] Support Clipping and clipping modes
   - [x] ClipRect
     - [x] intersect mode [Touch detection enabled only inside the clipped region]
     - [x] difference mode [Touch detection enabled only outside the clipped region]
   - [x] ClipRRect
   - [x] ClipPath
-- [] Allow customizing touch detection behaviour regardless of the Paint applied (give a HitTestBehavior functionality)
-- [] Support for translation , rotation , scaling and skewing transformations that needs some work  vector math
+- [ ] Allow customizing touch detection behaviour regardless of the Paint applied (give a HitTestBehavior functionality)
+- [ ] Support for translation , rotation , scaling and skewing transformations that needs some work  vector math
