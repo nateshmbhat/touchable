@@ -4,22 +4,21 @@
 
 # touchable 👆🏻 
 
-#### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
-
 
 [![](https://img.shields.io/pub/v/touchable)](https://pub.dev/packages/touchable)
-![](https://img.shields.io/badge/package-flutter-blue)
-![](https://img.shields.io/github/license/nateshmbhat/touchable)
-![](https://img.shields.io/github/stars/nateshmbhat/touchable)
-![](https://img.shields.io/github/forks/nateshmbhat/touchable)
+[![](https://img.shields.io/badge/package-flutter-blue)](https://github.com/nateshmbhat/touchable)
+[![](https://img.shields.io/github/license/nateshmbhat/touchable)](https://github.com/nateshmbhat/touchable)
+[![](https://img.shields.io/github/stars/nateshmbhat/touchable)](https://github.com/nateshmbhat/touchable)
+[![](https://img.shields.io/github/forks/nateshmbhat/touchable)](https://github.com/nateshmbhat/touchable)
 [![](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fnateshmbhat%2Ftouchable)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fnateshmbhat%2Ftouchable)
-![](https://img.shields.io/github/languages/code-size/nateshmbhat/touchable)
+[![](https://img.shields.io/github/languages/code-size/nateshmbhat/touchable)](https://github.com/nateshmbhat/touchable)
 [![](https://img.shields.io/badge/author-nateshmbhat-green.svg)](https://github.com/nateshmbhat)
 
 
 
 
 
+#### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
 <br />
 
 <p align="center">
@@ -153,3 +152,8 @@ When user performs any gesture on the screen , based on the location of the gest
   - [x] ClipPath
 - [ ] Allow customizing touch detection behaviour regardless of the Paint applied (give a HitTestBehavior functionality)
 - [ ] Support for translation , rotation , scaling and skewing transformations that needs some work  vector math
+
+
+## Links : 
++ Pub Dev : https://pub.dev/packages/touchable
++ HomePage : https://github.com/nateshmbhat/touchable
