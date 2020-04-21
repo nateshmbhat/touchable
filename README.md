@@ -43,6 +43,15 @@
 - Simple and Easy API. Just wrap your `CustomPaint` with `CanvasTouchDetector` and use the `TouchCanvas` in your painter.
 
 
+## Installation
+Add the following package in your `pubspec.yaml`
+```dart
+dependencies:
+  touchable: ^0.1.1
+```
+
+
+
 ---
 
 ## Usage :
