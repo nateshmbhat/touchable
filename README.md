@@ -44,7 +44,7 @@
 
 
 ## Installation
-Add the following package in your `pubspec.yaml`
+Add the `touchable` package as dependency in your `pubspec.yaml`
 ```dart
 dependencies:
   touchable:
