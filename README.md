@@ -40,7 +40,7 @@
 - Takes the painting **stroke width** also into account. So if your shapes are painted thick , we still got it covered ✓
 
 - Handles **clipping** and different **clipping modes**. So, You can have any kind of complex clipping and drawing combinations while getting full interactive capability.
-- Simple and Easy API. Just wrap your `CustomPaint` with `CanvasTouchDetector` and use the `TouchCanvas` in your painter.
+- Simple and Easy API. Just wrap your `CustomPaint` with `CanvasTouchDetector` and use the `TouchyCanvas` in your painter.
 
 
 ## Installation
