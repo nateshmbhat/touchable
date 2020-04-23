@@ -4,6 +4,7 @@ import 'package:touchable/touchable.dart';
 class MyExampleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).nextFocus() ;
     return Flexible(
       child: FractionallySizedBox(
           widthFactor: 1,

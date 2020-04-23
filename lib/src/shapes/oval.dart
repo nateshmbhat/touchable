@@ -14,8 +14,8 @@ class Oval extends Shape {
   double a, b;
 
 //  x^2/a^2 + y^2/b^2 = 1
-  Oval(this.rect, {Map<GestureType, Function> gestureMap, Paint paint})
-      : super(paint: paint, gestureCallbackMap: gestureMap) {
+  Oval(this.rect, {Map<GestureType, Function> gestureMap, Paint paint, HitTestBehavior hitTestBehavior, PaintingStyle paintStyleForTouch})
+      : super(hitTestBehavior : hitTestBehavior , paint: paint, gestureCallbackMap: gestureMap) {
     a = rect.right - rect.center.dx;
     b = rect.center.dy - rect.top;
   }

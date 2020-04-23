@@ -9,8 +9,8 @@ class RoundedRectangle extends Shape {
   final RRect rRect;
 
   RoundedRectangle(this.rRect,
-      {Paint paint, Map<GestureType, Function> gestureMap})
-      : super(paint: paint, gestureCallbackMap: gestureMap);
+      {Paint paint, Map<GestureType, Function> gestureMap, HitTestBehavior hitTestBehavior, PaintingStyle paintStyleForTouch})
+      : super(hitTestBehavior : hitTestBehavior , paint: paint, gestureCallbackMap: gestureMap);
 
   @override
   bool isInside(Offset p) {

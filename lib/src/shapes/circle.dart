@@ -15,9 +15,10 @@ class Circle extends Shape {
   Circle(
       {@required this.center,
       @required this.radius,
+        HitTestBehavior hitTestBehavior,
       Map<GestureType, Function> gestureMap,
       Paint paint})
-      : super(paint: paint, gestureCallbackMap: gestureMap);
+      : super(paint: paint, gestureCallbackMap: gestureMap , hitTestBehavior : hitTestBehavior);
 
 //   (x-a)^2 + (y-b)^2 = r^2
   @override

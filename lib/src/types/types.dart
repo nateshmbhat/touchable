@@ -13,10 +13,6 @@ class Gesture {
   Gesture(this.gestureType, this.gestureDetail);
 }
 
-enum TouchHitTestBehavior {
-
-}
-
 class ClipShapeItem {
   final ClipShape clipShape;
   final int position;
