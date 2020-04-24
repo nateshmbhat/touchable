@@ -1,8 +1,7 @@
-// Created by nateshmbhat on 12,April,2020
-
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flutter/src/rendering/proxy_box.dart';
 import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
@@ -29,8 +28,14 @@ class Arc extends Shape {
   Offset _arcEndPoint;
 
   Arc(this.rect, this.startAngle, this.sweepAngle, this.useCenter,
-      {Paint paint, Map<GestureType, Function> gestureMap})
-      : super(paint: paint, gestureCallbackMap: gestureMap) {
+      {Paint paint,
+      Map<GestureType, Function> gestureMap,
+      HitTestBehavior hitTestBehavior,
+      PaintingStyle paintStyleForTouch})
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint,
+            gestureCallbackMap: gestureMap) {
     _oval = Oval(rect, paint: paint);
 
     if (sweepAngle < 0) {

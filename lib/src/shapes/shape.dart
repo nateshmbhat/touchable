@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 04,April,2020
-
 import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
@@ -10,6 +8,7 @@ import 'package:touchable/touchable.dart';
 abstract class Shape {
   Paint paint;
   Map<GestureType, Function> gestureCallbackMap;
+  HitTestBehavior hitTestBehavior;
 
   Set<GestureType> get registeredGestures =>
       gestureCallbackMap?.keys?.toSet() ?? Set();
@@ -17,6 +16,7 @@ abstract class Shape {
   Shape({
     @required this.paint,
     @required this.gestureCallbackMap,
+    this.hitTestBehavior,
   }) {
     paint ??= Paint()
       ..strokeWidth = ShapeConstant.floatPrecision
@@ -24,6 +24,7 @@ abstract class Shape {
     if (paint.strokeWidth == 0) {
       paint.strokeWidth = ShapeConstant.floatPrecision;
     }
+    hitTestBehavior ??= HitTestBehavior.opaque;
     gestureCallbackMap ??= Map();
   }
 

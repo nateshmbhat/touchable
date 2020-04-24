@@ -1,7 +1,6 @@
-// Created by nateshmbhat on 04,April,2020
-
 import 'dart:math';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
 

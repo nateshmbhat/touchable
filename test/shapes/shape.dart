@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 04,April,2020
-
 import 'arc.dart';
 import 'circle.dart';
 import 'line.dart';

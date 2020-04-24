@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 12,April,2020
-
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -47,15 +45,28 @@ class ShapeHandler {
     return true;
   }
 
-  Shape _getTopShapeBelowTouchPoint(Offset point) {
+  List<Shape> _getTouchedShapes(Offset point) {
+    var selectedShapes = <Shape>[];
     for (int i = _shapeStack.length - 1; i >= 0; i--) {
-      if (_shapeStack[i].isInside(point)) {
+      var shape = _shapeStack[i];
+      if (shape.hitTestBehavior == HitTestBehavior.deferToChild) {
+        continue;
+      }
+      if (shape.isInside(point)) {
         if (_isPointInsideClipShapes(_getClipShapesBelowPosition(i), point) ==
-            false) return null;
-        return _shapeStack[i];
+            false) {
+          if (shape.hitTestBehavior == HitTestBehavior.opaque) {
+            return selectedShapes;
+          }
+          continue;
+        }
+        selectedShapes.add(shape);
+        if (shape.hitTestBehavior == HitTestBehavior.opaque) {
+          return selectedShapes;
+        }
       }
     }
-    return null;
+    return selectedShapes;
   }
 
   Future<void> handleGestureEvent(Gesture gesture) async {
@@ -63,11 +74,13 @@ class ShapeHandler {
         TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail);
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
-    var touchedShape = _getTopShapeBelowTouchPoint(touchPoint);
-    if (touchedShape == null) return;
-    if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
-      var callback = touchedShape.getCallbackFromGesture(gesture);
-      callback();
+    var touchedShapes = _getTouchedShapes(touchPoint);
+    if (touchedShapes.isEmpty) return;
+    for (var touchedShape in touchedShapes) {
+      if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
+        var callback = touchedShape.getCallbackFromGesture(gesture);
+        callback();
+      }
     }
   }
 }

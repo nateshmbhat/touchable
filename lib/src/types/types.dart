@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 09,April,2020
-
 import 'package:flutter/material.dart';
 import 'package:touchable/src/shapes/clip.dart';
 
@@ -11,10 +9,6 @@ class Gesture {
   final GestureType gestureType;
 
   Gesture(this.gestureType, this.gestureDetail);
-}
-
-enum TouchHitTestBehavior {
-
 }
 
 class ClipShapeItem {

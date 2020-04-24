@@ -30,6 +30,15 @@
 </p>
 
 
+## Index : 
+- [Why Use Touchable ?](#why-use-touchable)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How it works](#how-touchable-works)
+- [Road Map 🗺](#road-map)
+- [Links](#links)
+
+
 
 ## Why Use **Touchable** ? 
 - The CustomPainter lets you **only draw** shapes on the canvas. But most would want to let user interact with the drawings.
@@ -37,10 +46,10 @@
 - With touchable , you get what the normal canvas always missed : **touchability** 😉
 - With this , its possible to add all kinds of **gesture callbacks to each drawing** and thus interaction capability to each Shape you draw on the canvas.
 - Animating individual shapes becomes so much easier  than ever before.
-- Handles the painting style of your drawing. So , when your paint is `filled ▮` it registers touch on the entire shape else when its `stroke ▯` , it looks for gesture only on the borders.
+- Handles the painting style (`filled ▮` , `stroke ▯`) and detects touch accordingly.
 - Takes the painting **stroke width** also into account. So if your shapes are painted thick , we still got it covered ✓
-
-- Handles **clipping** and different **clipping modes**. So, You can have any kind of complex clipping and drawing combinations while getting full interactive capability.
+- Supports **clipping** and different **clipping modes**. So, You can have any kind of complex clipping and drawing combinations while getting full interactive capability.
+- Supports HitTestBehavior for each shape.
 - Simple and Easy API. Just wrap your `CustomPaint` with `CanvasTouchDetector` and use the `TouchyCanvas` in your painter.
 
 
@@ -130,30 +139,30 @@ When user performs any gesture on the screen , based on the location of the gest
     - [x] sector 
   - [x] Rounded Rectangle (RRect)
   - [x] Custom Path [only supports opaque hittest]
-  - [x] Points
-    - [x] PointMode.point
-    - [x] PointMode.lines
-    - [x] PointMode.polygon
-  - [] Vertices
-    - [] Traingle
-    - [] Traingle Strip
-    - [] Traingle Fan
+  - [x] Points (PointMode.points , PointMode.lines , PointMode.polygon)
+  - [ ] Vertices
+    - [ ] Traingle
+    - [ ] Traingle Strip
+    - [ ] Traingle Fan
 - [x] Support for proper edge detection based on the Paint object properties :
   - [x] Paint style
   - [x] Stroke Width
-  - [] Stroke Cap
+  - [ ] Stroke Cap
     - [x] StrokeCap to draw Points
-    - [ ] StrokeCap for lines with large width
+    - [ ] `StrokeCap.round` for lines with large width
 - [x] Support Clipping and clipping modes
   - [x] ClipRect
     - [x] intersect mode [Touch detection enabled only inside the clipped region]
     - [x] difference mode [Touch detection enabled only outside the clipped region]
   - [x] ClipRRect
   - [x] ClipPath
-- [ ] Allow customizing touch detection behaviour regardless of the Paint applied (give a HitTestBehavior functionality)
-- [ ] Support for translation , rotation , scaling and skewing transformations that needs some work  vector math
+- [x] Support for HitTestBehavior
+- [ ] Make the touch detection handling to run in a seperate isolate.
+- [ ] Support for translation , rotation , scaling and skewing transformations that needs some vector math
 
 
 ## Links : 
-+ Pub Dev : https://pub.dev/packages/touchable
-+ HomePage : https://github.com/nateshmbhat/touchable
++ [Touchable Docs](https://pub.dev/documentation/touchable/latest/)
++ [Pub Dev](https://pub.dev/packages/touchable)
++ [HomePage](https://github.com/nateshmbhat/touchable)
++ [My Github Page](https://github.com/nateshmbhat)

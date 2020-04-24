@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 04,April,2020
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:touchable/src/shapes/circle.dart';
