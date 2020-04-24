@@ -7,15 +7,22 @@ import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
 
 class ShapeHandler {
-  final List<Shape> _shapeStack = [];
-  final List<ClipShapeItem> clipItems = [];
-  final Set<GestureType> _registeredGestures = Set();
+  List<Shape> _shapeStack = [];
+  List<ClipShapeItem> _clipItems = [];
+  Set<GestureType> _registeredGestures = Set();
 
   Set<GestureType> get registeredGestures => _registeredGestures;
+  ShapeHandler._initializer(this._shapeStack, this._clipItems, this._registeredGestures);
+  ShapeHandler() ;
+
+  ShapeHandler clone(){
+    var newHandler = ShapeHandler._initializer(_shapeStack, _clipItems, _registeredGestures) ;
+    return newHandler ;
+  }
 
   void addShape(Shape shape) {
     if (shape is ClipShape) {
-      clipItems.add(ClipShapeItem(shape, _shapeStack.length));
+      _clipItems.add(ClipShapeItem(shape, _shapeStack.length));
     } else {
       _shapeStack.add(shape);
       _registeredGestures.addAll(shape.registeredGestures);
@@ -31,7 +38,7 @@ class ShapeHandler {
   ///
   /// Looking at above diagram , given the stack position 3 , this function returns all ClipShapes that are pushed before 3 into the clip stack.
   List<ClipShape> _getClipShapesBelowPosition(int position) {
-    return clipItems
+    return _clipItems
         .where((element) => element.position <= position)
         .map((e) => e.clipShape)
         .toList();
