@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 13,April,2020
-
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';

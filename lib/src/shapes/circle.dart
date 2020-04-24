@@ -6,8 +6,6 @@ import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
 
-/// Created by nateshmbhat on 04,April,2020
-
 class Circle extends Shape {
   final Offset center;
   final double radius;
@@ -15,10 +13,13 @@ class Circle extends Shape {
   Circle(
       {@required this.center,
       @required this.radius,
-        HitTestBehavior hitTestBehavior,
+      HitTestBehavior hitTestBehavior,
       Map<GestureType, Function> gestureMap,
       Paint paint})
-      : super(paint: paint, gestureCallbackMap: gestureMap , hitTestBehavior : hitTestBehavior);
+      : super(
+            paint: paint,
+            gestureCallbackMap: gestureMap,
+            hitTestBehavior: hitTestBehavior);
 
 //   (x-a)^2 + (y-b)^2 = r^2
   @override

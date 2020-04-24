@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
 
-/// Created by nateshmbhat on 04,April,2020
-
+///[CanvasTouchDetector] widget detects the gestures on your [CustomPaint] widget.
+///
+/// Wrap your [CustomPaint] widget with [CanvasTouchDetector]
+/// The [builder] function passes the [BuildContext] and expects a [CustomPaint] object as its return value.
 class CanvasTouchDetector extends StatefulWidget {
   final CustomTouchPaintBuilder builder;
 

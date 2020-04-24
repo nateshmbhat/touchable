@@ -6,15 +6,20 @@ import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
 
-/// Created by nateshmbhat on 04,April,2020
-
 class Line extends Shape {
   final Offset p1;
   final Offset p2;
   double a, b, c; // Equation ax+by = c
 
-  Line(this.p1, this.p2, {Map<GestureType, Function> gestureMap, Paint paint , HitTestBehavior hitTestBehavior, PaintingStyle paintStyleForTouch})
-      : super(hitTestBehavior : hitTestBehavior , paint: paint, gestureCallbackMap: gestureMap) {
+  Line(this.p1, this.p2,
+      {Map<GestureType, Function> gestureMap,
+      Paint paint,
+      HitTestBehavior hitTestBehavior,
+      PaintingStyle paintStyleForTouch})
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint,
+            gestureCallbackMap: gestureMap) {
     a = p2.dy - p1.dy;
     b = p1.dx - p2.dx;
     c = a * p1.dx + b * p1.dy;

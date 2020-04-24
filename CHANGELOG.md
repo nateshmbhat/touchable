@@ -1,3 +1,9 @@
+## [0.1.5] - April 24 2020 
+Added support for HitTestBehavior
+Minor bug fixes
+Added Documentation
+Updated docs in code
+
 #### [0.1.2] - April 21 2020 
 updated readme and example
 

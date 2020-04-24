@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 12,April,2020
-
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -14,8 +12,14 @@ class Point extends Shape {
   final List<Offset> points;
 
   Point(this.pointMode, this.points,
-      {Map<GestureType, Function> gestureMap, Paint paint, HitTestBehavior hitTestBehavior, PaintingStyle paintStyleForTouch})
-      : super(hitTestBehavior : hitTestBehavior , paint: paint, gestureCallbackMap: gestureMap);
+      {Map<GestureType, Function> gestureMap,
+      Paint paint,
+      HitTestBehavior hitTestBehavior,
+      PaintingStyle paintStyleForTouch})
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint,
+            gestureCallbackMap: gestureMap);
 
   @override
   bool isInside(Offset p) {

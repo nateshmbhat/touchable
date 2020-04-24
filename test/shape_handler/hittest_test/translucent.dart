@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 24,April,2020
-
 import 'dart:math';
 import 'dart:ui';
 
@@ -16,8 +14,7 @@ import 'package:touchable/src/shapes/rounded_rectangle.dart';
 import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/touchable.dart';
 
-void testTranslucent(){
-
+void testTranslucent() {
   group('SHape Handler : Translucent hittest', () {
     var shapeHandler = ShapeHandler();
     var resultList = [];
@@ -55,9 +52,9 @@ void testTranslucent(){
               ..color = Colors.black
               ..strokeWidth = 200
               ..style = PaintingStyle.stroke, gestureMap: getMap((detail) {
-              print('line touched');
-              resultList.add('black');
-            })),
+          print('line touched');
+          resultList.add('black');
+        })),
       );
 
       shapeHandler.addShape(Oval(Rect.fromLTWH(100, 100, 300, 400),
@@ -65,18 +62,18 @@ void testTranslucent(){
             ..color = Colors.deepPurple
             ..style = PaintingStyle.stroke
             ..strokeWidth = 70, gestureMap: getMap((_) {
-            print('purple oval');
-            resultList.add('purple');
-          })));
+        print('purple oval');
+        resultList.add('purple');
+      })));
 
       shapeHandler.addShape(Rectangle(Rect.fromLTWH(20, 300, 100, 300),
           paint: Paint()
             ..color = Colors.deepOrange
             ..style = PaintingStyle.stroke
             ..strokeWidth = 50, gestureMap: getMap((_) {
-            print('orange circle');
-            resultList.add('orange');
-          })));
+        print('orange circle');
+        resultList.add('orange');
+      })));
 
       var paint = Paint()
         ..color = Colors.greenAccent
@@ -110,16 +107,17 @@ void testTranslucent(){
               ..strokeWidth = 40
               ..style = PaintingStyle.stroke
               ..color = Colors.pink, gestureMap: getMap((_) {
-              print('pink arc');
-              resultList.add('pink');
-            })),
+          print('pink arc');
+          resultList.add('pink');
+        })),
       );
 
       shapeHandler.addShape(RoundedRectangle(
           RRect.fromLTRBR(100, 340, 300, 650, Radius.elliptical(100, 150)),
           paint: Paint()
             ..strokeWidth = 40
-            ..color = Colors.grey, hitTestBehavior: HitTestBehavior.translucent,  gestureMap: getMap((_) {
+            ..color = Colors.grey,
+          hitTestBehavior: HitTestBehavior.translucent, gestureMap: getMap((_) {
         print('rounded grey rect');
         resultList.add('grey');
       })));
@@ -131,26 +129,26 @@ void testTranslucent(){
     }
 
     addAllShapes();
-    void handleGesture(Offset position , List<String> expected){
+    void handleGesture(Offset position, List<String> expected) {
       resultList = [];
-      shapeHandler.handleGestureEvent(Gesture(GestureType.onTapDown,
-          TapDownDetails(localPosition: position)));
+      shapeHandler.handleGestureEvent(Gesture(
+          GestureType.onTapDown, TapDownDetails(localPosition: position)));
       expect(resultList, expected);
     }
 
-    test('Clicking a certain TRANSLUCENT shape calls the callback functions of this shape and others below it' ,(){
-      handleGesture(Offset(212.2, 171.4) , ['pink']);
-      handleGesture(Offset(88.0, 356.2) , ['purple']);
-      handleGesture(Offset(166.1, 242.7) , ['blue','black']);
-      handleGesture(Offset(249.9, 332.2) , ['black']);
-      handleGesture(Offset(134.1, 59.8) , ['black']);
-      handleGesture(Offset(87.2, 349.7) , ['purple']);
-      handleGesture(Offset(236.6, 426.7) , ['grey','black']);
-      handleGesture(Offset(214.9, 483.4) , ['grey','purple']);
-      handleGesture(Offset(213.0, 58.7) , ['green']);
-      handleGesture(Offset(270,10) , []);
+    test(
+        'Clicking a certain TRANSLUCENT shape calls the callback functions of this shape and others below it',
+        () {
+      handleGesture(Offset(212.2, 171.4), ['pink']);
+      handleGesture(Offset(88.0, 356.2), ['purple']);
+      handleGesture(Offset(166.1, 242.7), ['blue', 'black']);
+      handleGesture(Offset(249.9, 332.2), ['black']);
+      handleGesture(Offset(134.1, 59.8), ['black']);
+      handleGesture(Offset(87.2, 349.7), ['purple']);
+      handleGesture(Offset(236.6, 426.7), ['grey', 'black']);
+      handleGesture(Offset(214.9, 483.4), ['grey', 'purple']);
+      handleGesture(Offset(213.0, 58.7), ['green']);
+      handleGesture(Offset(270, 10), []);
     });
   });
 }
-
- 

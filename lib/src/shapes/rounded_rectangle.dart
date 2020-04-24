@@ -1,4 +1,3 @@
-// Created by nateshmbhat on 12,April,2020
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -9,8 +8,14 @@ class RoundedRectangle extends Shape {
   final RRect rRect;
 
   RoundedRectangle(this.rRect,
-      {Paint paint, Map<GestureType, Function> gestureMap, HitTestBehavior hitTestBehavior, PaintingStyle paintStyleForTouch})
-      : super(hitTestBehavior : hitTestBehavior , paint: paint, gestureCallbackMap: gestureMap);
+      {Paint paint,
+      Map<GestureType, Function> gestureMap,
+      HitTestBehavior hitTestBehavior,
+      PaintingStyle paintStyleForTouch})
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint,
+            gestureCallbackMap: gestureMap);
 
   @override
   bool isInside(Offset p) {

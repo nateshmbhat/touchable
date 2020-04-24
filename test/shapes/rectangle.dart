@@ -1,5 +1,3 @@
-// Created by nateshmbhat on 06,April,2020
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -53,7 +51,9 @@ void testRectangle() {
     expect(rect1.isInside(Offset(26.7, 572.2)), true);
   });
 
-  test('PaintStyleForTouch override test for Paint :  Stroked Rectangle with filled touch : Point lies inside ', () {
+  test(
+      'PaintStyleForTouch override test for Paint :  Stroked Rectangle with filled touch : Point lies inside ',
+      () {
     var rect = Rectangle(
         Rect.fromLTWH(
           0,
