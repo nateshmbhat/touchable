@@ -12,7 +12,7 @@ import 'package:touchable/src/shapes/point.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/rounded_rectangle.dart';
 import 'package:touchable/src/shapes/util.dart';
-import 'package:touchable/touchable.dart';
+import 'package:touchable/src/types/types.dart';
 
 void testDeferToChild() {
   group('SHape Handler : Defer to child hittest', () {
