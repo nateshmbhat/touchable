@@ -123,7 +123,7 @@ void testDeferToChild() {
         resultList.add('grey');
       })));
 
-      shapeHandler.addShape(Point(PointMode.points, [Offset(129.1, 241.9)],
+      shapeHandler.addShape(TPoint(PointMode.points, [Offset(129.1, 241.9)],
           paint: Paint()
             ..color = Colors.black
             ..strokeWidth = 10));

@@ -247,7 +247,7 @@ class TouchyCanvas {
     GestureTapUpCallback onSecondaryTapUp,
   }) {
     _canvas.drawPoints(pointMode, points, paint);
-    _shapeHandler.addShape(Point(pointMode, points,
+    _shapeHandler.addShape(TPoint(pointMode, points,
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
@@ -336,7 +336,7 @@ class TouchyCanvas {
     for (int i = 0; i < points.length; i += 2) {
       offsetPoints.add(Offset(points[i], points[i + 1]));
     }
-    _shapeHandler.addShape(Point(pointMode, offsetPoints,
+    _shapeHandler.addShape(TPoint(pointMode, offsetPoints,
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(

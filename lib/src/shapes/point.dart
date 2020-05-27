@@ -6,12 +6,12 @@ import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
 
-class Point extends Shape {
+class TPoint extends Shape {
   final PointMode pointMode;
 
   final List<Offset> points;
 
-  Point(this.pointMode, this.points,
+  TPoint(this.pointMode, this.points,
       {Map<GestureType, Function> gestureMap,
       Paint paint,
       HitTestBehavior hitTestBehavior,

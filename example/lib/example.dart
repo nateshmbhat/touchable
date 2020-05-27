@@ -5,7 +5,9 @@ class MyExampleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FocusScope.of(context).nextFocus();
-    return Flexible(
+    return SizedBox(
+      width: 300,
+      height: 300,
       child: FractionallySizedBox(
           widthFactor: 1,
           heightFactor: 1,

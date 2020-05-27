@@ -6,7 +6,7 @@ import 'package:touchable/src/shapes/point.dart';
 
 void testPoint() {
   test('PointMode.points : Point lie on or off the points test', () {
-    var p = Point(
+    var p = TPoint(
         PointMode.points, [Offset(0, 0), Offset(100, 100), Offset(210, 234)]);
     expect(p.isInside(Offset(0, 0)), true);
     expect(p.isInside(Offset(10, 0)), false);
@@ -14,7 +14,7 @@ void testPoint() {
     expect(p.isInside(Offset(100, 100)), true);
     expect(p.isInside(Offset(100, 101)), false);
 
-    var p1 = Point(PointMode.points, [Offset(131.0, 419.00)],
+    var p1 = TPoint(PointMode.points, [Offset(131.0, 419.00)],
         paint: Paint()..strokeWidth = 100);
     expect(p1.isInside(Offset(109.3, 341.3)), false);
     expect(p1.isInside(Offset(171.8, 347.4)), false);
@@ -31,7 +31,7 @@ void testPoint() {
     expect(p1.isInside(Offset(147.8, 436.6)), true);
     expect(p1.isInside(Offset(165.0, 430.9)), true);
 
-    var p2 = Point(PointMode.points, [Offset(131.0, 419.00)],
+    var p2 = TPoint(PointMode.points, [Offset(131.0, 419.00)],
         paint: Paint()
           ..strokeWidth = 100
           ..strokeCap = StrokeCap.round);
@@ -47,7 +47,7 @@ void testPoint() {
   });
 
   test('PointMode.lines : Point lie on or off the lines test', () {
-    var p = Point(PointMode.lines, [
+    var p = TPoint(PointMode.lines, [
       Offset(0, 0),
       Offset(100, 100),
       Offset(200, 200),
@@ -59,7 +59,7 @@ void testPoint() {
     expect(p.isInside(Offset(200, 10)), false);
     expect(p.isInside(Offset(200, 250)), true);
 
-    var p1 = Point(
+    var p1 = TPoint(
         PointMode.lines,
         [
           Offset(131.0, 419.00),
@@ -89,7 +89,7 @@ void testPoint() {
   });
 
   test('PointMode.polygon : Point lie on or off the lines test', () {
-    var p = Point(
+    var p = TPoint(
         PointMode.polygon,
         [
           Offset(131.0, 419.00),
