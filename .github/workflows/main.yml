@@ -32,7 +32,7 @@ jobs:
         # (Optional) Skip test (default: false)
 #         skip_test: # optional
 #         (Optional) Package directory (default: ".")
-        package_directory: "../"# optional, default is .
+#         package_directory: "../"# optional, default is .
         # (Optional) Dry run, no publish (default: false)
 #         dry_run:
 
