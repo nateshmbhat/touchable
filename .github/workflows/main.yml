@@ -31,8 +31,8 @@ jobs:
 #         flutter_package: # optional, default is true
         # (Optional) Skip test (default: false)
 #         skip_test: # optional
-        # (Optional) Package directory (default: ".")
-#         package_directory: # optional, default is .
+#         (Optional) Package directory (default: ".")
+        package_directory: "../../"# optional, default is .
         # (Optional) Dry run, no publish (default: false)
 #         dry_run:
 
