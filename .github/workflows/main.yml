@@ -26,7 +26,7 @@ jobs:
       uses: sakebook/actions-flutter-pub-publisher@v1.3.0
       with:
         # Google Account credential
-        credential: ${{ secrets.CREDENTIAL_JSON }}
+        credential: ${{ secrets.CREDENTIALS_JSON }}
         # (Optional) Publish packages type. (default: true)
 #         flutter_package: # optional, default is true
         # (Optional) Skip test (default: false)
