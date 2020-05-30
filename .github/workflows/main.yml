@@ -28,10 +28,10 @@ jobs:
         ls
 
     - name: Publish Dart/Flutter package
-      uses: sakebook/actions-flutter-pub-publisher@v1.3.0
+      uses: k-paxian/dart-package-publisher@v1.2
       with:
         # Google Account credential
-        credential: ${{ secrets.CREDENTIALS_JSON }}
+        credentialJson: ${{ secrets.CREDENTIALS_JSON }}
         # (Optional) Publish packages type. (default: true)
 #         flutter_package: # optional, default is true
         # (Optional) Skip test (default: false)
