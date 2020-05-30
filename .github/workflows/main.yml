@@ -22,9 +22,10 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 #   Runs a single command using the runners shell
-    - name: show tree
-      run: ls -R
-
+    - name: show files
+      run: |
+        pwd
+        ls
 
     - name: Publish Dart/Flutter package
       uses: sakebook/actions-flutter-pub-publisher@v1.3.0
@@ -36,7 +37,7 @@ jobs:
         # (Optional) Skip test (default: false)
 #         skip_test: # optional
 #         (Optional) Package directory (default: ".")
-#         package_directory: "../"# optional, default is .
+        package_directory: "../" # optional, default is .
         # (Optional) Dry run, no publish (default: false)
 #         dry_run:
 
