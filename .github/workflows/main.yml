@@ -7,7 +7,7 @@ name: Publish package on pushing to master
 
 on:
   push:
-    branches: [ master ]
+    release:
 #   pull_request:
 #     branches: [ master ]
 
