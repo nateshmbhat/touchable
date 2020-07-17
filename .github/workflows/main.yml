@@ -36,7 +36,7 @@ jobs:
         # (Optional) Publish packages type. (default: true)
 #         flutter_package: # optional, default is true
         # (Optional) Skip test (default: false)
-        skipTests: true
+#        skipTests: true
 #         (Optional) Package directory (default: ".")
 #         package_directory: "../" # optional, default is .
         # (Optional) Dry run, no publish (default: false)
