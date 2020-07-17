@@ -8,6 +8,12 @@ class ShapeUtil {
   static double distance(Offset p1, Offset p2) {
     return sqrt(pow(p2.dy - p1.dy, 2) + pow(p2.dx - p1.dx, 2));
   }
+  static Offset getTransformedPoint( Offset offset, Matrix4 matrix){
+    var res = matrix.multiplied(
+        Matrix4.identity()..setTranslationRaw(offset.dx, offset.dy, 0)
+    ).getTranslation();
+    return Offset(res.x , res.y) ;
+  }
 }
 
 typedef gestureCallback = void Function();

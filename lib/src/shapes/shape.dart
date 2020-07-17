@@ -29,6 +29,7 @@ abstract class Shape {
   }
 
   bool isInside(Offset p);
+  void transform(Matrix4 matrix);
 
   Function getCallbackFromGesture(Gesture gesture) {
     if (gestureCallbackMap.containsKey(gesture.gestureType)) {

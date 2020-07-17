@@ -19,6 +19,11 @@ class ClipRectShape extends ClipShape {
     }
     return true;
   }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
+  }
 }
 
 class ClipRRectShape extends ClipShape {
@@ -27,6 +32,10 @@ class ClipRRectShape extends ClipShape {
   @override
   bool isInside(Offset p) {
     return rrect.contains(p);
+  }
+
+  @override
+  void transform(Matrix4 matrix) {
   }
 }
 
@@ -37,5 +46,10 @@ class ClipPathShape extends ClipShape {
   @override
   bool isInside(Offset p) {
     return path.contains(p);
+  }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
   }
 }

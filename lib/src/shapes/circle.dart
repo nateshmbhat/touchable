@@ -40,4 +40,9 @@ class Circle extends Shape {
             pow(radius, 2) <=
         ShapeConstant.floatPrecision;
   }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
+  }
 }

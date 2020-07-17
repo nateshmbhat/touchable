@@ -10,6 +10,7 @@ class ShapeHandler {
   List<Shape> _shapeStack = [];
   List<ClipShapeItem> _clipItems = [];
   Set<GestureType> _registeredGestures = Set();
+  final Matrix4 matrix = Matrix4.identity();
 
   Set<GestureType> get registeredGestures => _registeredGestures;
   ShapeHandler._initializer(this._shapeStack, this._clipItems, this._registeredGestures);
@@ -21,6 +22,8 @@ class ShapeHandler {
   }
 
   void addShape(Shape shape) {
+    print('Matrix is :\n $matrix');
+    shape.transform(matrix) ;
     if (shape is ClipShape) {
       _clipItems.add(ClipShapeItem(shape, _shapeStack.length));
     } else {
@@ -89,5 +92,17 @@ class ShapeHandler {
         callback();
       }
     }
+  }
+
+  void translate(double dx, double dy) {
+    matrix.translate(dx,dy) ;
+  }
+
+  void rotate(double radians) {
+    matrix.rotateZ(radians) ;
+  }
+
+  void scale(double sx, [double sy]) {
+   matrix.scale(sx,sy) ;
   }
 }

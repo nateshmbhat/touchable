@@ -21,4 +21,9 @@ class PathShape extends Shape {
   bool isInside(Offset p) {
     return path.contains(p);
   }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
+  }
 }

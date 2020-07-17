@@ -2,10 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/shape.dart';
+import 'package:touchable/src/shapes/util.dart';
 import 'package:touchable/src/types/types.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 class Rectangle extends Shape {
-  final Rect rect;
+  Rect rect;
   Rectangle(this.rect,
       {Map<GestureType, Function> gestureMap,
       Paint paint,
@@ -38,5 +40,12 @@ class Rectangle extends Shape {
           .contains(p);
       return insideOuterRect && outsideInnerRect;
     }
+  }
+
+  @override
+  void transform(Matrix4 matrix) {
+    var topLeft = ShapeUtil.getTransformedPoint( rect.topLeft , matrix);
+    var bottomRight = ShapeUtil.getTransformedPoint( rect.bottomRight, matrix);
+    rect = Rect.fromLTRB(topLeft.dx, topLeft.dy,bottomRight.dx, bottomRight.dy);
   }
 }

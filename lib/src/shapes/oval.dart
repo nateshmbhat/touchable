@@ -56,4 +56,9 @@ class Oval extends Shape {
     bool outsideInnerOval = !_isInsideOval(p, -extraWidth);
     return insideOuterOval && outsideInnerOval;
   }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
+  }
 }

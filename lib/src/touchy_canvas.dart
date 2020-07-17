@@ -524,16 +524,6 @@ class TouchyCanvas {
 //  }
 
 //
-//  void rotate(double radians) {
-//    // TODO: implement rotate
-//  }
-
-//
-//  void scale(double sx, [double sy]) {
-//    // TODO: implement scale
-//  }
-
-//
 //  void skew(double sx, double sy) {
 //    // TODO: implement skew
 //  }
@@ -543,11 +533,22 @@ class TouchyCanvas {
 //    // TODO: implement transform
 //  }
 
-//
-//  void translate(double dx, double dy) {
-//   _canvas.translate(dx, dy);
-//    // TODO: implement translate
-//  }
+
+  void translate(double dx, double dy) {
+   _canvas.translate(dx, dy);
+   _shapeHandler.translate(dx , dy) ;
+  }
+
+  void rotate(double radians) {
+    _canvas.rotate(radians);
+    _shapeHandler.rotate(radians) ;
+  }
+
+
+  void scale(double sx, [double sy]) {
+    _canvas.scale(sx,sy) ;
+    _shapeHandler.scale(sx,sy) ;
+  }
 
 //
 //  void drawAtlas(Image atlas, List<RSTransform> transforms, List<Rect> rects,

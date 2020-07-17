@@ -60,6 +60,11 @@ class Point extends Shape {
           .contains(queryPoint);
     }
   }
+
+  @override
+  void transform(Matrix4 matrix) {
+    // TODO: implement transform
+  }
 }
 
 class PolygonUtil {
