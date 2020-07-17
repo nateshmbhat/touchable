@@ -30,6 +30,7 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
   Widget build(BuildContext context) {
     return TouchDetectionController(touchController, addStreamListener,
         child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           child: Builder(
             builder: (context) {
               return widget.builder(context);
