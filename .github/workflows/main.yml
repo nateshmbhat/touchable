@@ -6,8 +6,7 @@ name: Publish package on pushing to master
 # events but only for the master branch
 
 on:
-  push:
-    release:
+  release:
 #   pull_request:
 #     branches: [ master ]
 
