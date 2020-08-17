@@ -1,8 +1,7 @@
 <p align="center">
-<img width="200" src="https://svgshare.com/i/KCn.svg"/>
+<img width="200" src=".github/logo.svg"/>
 </p>
 
-# touchable 👆🏻 
 
 
 [![](https://img.shields.io/pub/v/touchable)](https://pub.dev/packages/touchable)
