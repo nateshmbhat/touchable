@@ -1,5 +1,5 @@
 <p align="center">
-<img width="200" src=".github/logo.svg"/>
+<img width="200" src="https://raw.githubusercontent.com/nateshmbhat/touchable/master/.github/logo.svg"/>
 </p>
 <h2 align="center"> Flutter library to bring your CustomPainter 🎨 to Life ✨⚡️ </h2>
 
