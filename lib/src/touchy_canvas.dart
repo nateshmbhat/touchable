@@ -74,6 +74,7 @@ class TouchyCanvas {
         center: c,
         radius: radius,
         paint: paint,
+        hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
           onTapDown: onTapDown,
           onTapUp: onTapUp,

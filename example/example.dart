@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:touchable/touchable.dart';
 
+void main() {
+ runApp(Scaffold(
+   body: MyExampleWidget(),
+ ));
+}
+
 class MyExampleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
