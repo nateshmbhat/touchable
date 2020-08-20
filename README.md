@@ -1,7 +1,7 @@
 <p align="center">
 <img width="200" src=".github/logo.svg"/>
 </p>
-
+<h2 align="center"> Flutter library to bring your CustomPainter 🎨 to Life ✨⚡️ </h2>
 
 
 [![](https://img.shields.io/pub/v/touchable)](https://pub.dev/packages/touchable)
@@ -16,8 +16,7 @@
 
 
 
-
-#### Flutter library to add various **gesture callbacks** to each **Shape** you draw on your canvas in your CustomPainter
+#### `touchable` library gives you the ability to add various **gestures** to each **Shape** you draw on your canvas in the CustomPainter
 <br />
 
 <p align="center">
