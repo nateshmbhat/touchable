@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/src/rendering/proxy_box.dart';
+import 'package:flutter/material.dart';
 import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/src/shapes/line.dart';
 import 'package:touchable/src/shapes/oval.dart';
