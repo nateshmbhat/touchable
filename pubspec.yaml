@@ -1,6 +1,6 @@
 name: touchable
 description: Flutter library to add various gesture callbacks to each Shape you draw on your canvas in your CustomPainter
-version: 0.1.8
+version: 0.2.0
 repository: https://github.com/nateshmbhat/touchable
 homepage: https://github.com/nateshmbhat/touchable
 

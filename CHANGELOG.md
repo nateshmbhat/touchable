@@ -1,3 +1,6 @@
+#### [0.2.0] - Aug 26 2020 
+Fixed minor bugs. Updated readme.
+
 #### [0.1.7] - July 17 2020 
 Fixed a minor bug : #6
 

@@ -16,7 +16,7 @@
 
 
 
-#### `touchable` library gives you the ability to add various **gestures** to each **Shape** you draw on your canvas in the CustomPainter
+#### `touchable` library gives you the ability to add various **gestures** and animations to each **Shape** you draw on your canvas in the CustomPainter
 <br />
 
 <p align="center">
@@ -41,14 +41,16 @@
 ## Why Use **Touchable** ? 
 - The CustomPainter lets you **only draw** shapes on the canvas. But most would want to let user interact with the drawings.
 
-- With touchable , you get what the normal canvas always missed : **touchability** 😉
-- With this , its possible to add all kinds of **gesture callbacks to each drawing** and thus interaction capability to each Shape you draw on the canvas.
-- Animating individual shapes becomes so much easier  than ever before.
-- Handles the painting style (`filled ▮` , `stroke ▯`) and detects touch accordingly.
-- Takes the painting **stroke width** also into account. So if your shapes are painted thick , we still got it covered ✓
-- Supports **clipping** and different **clipping modes**. So, You can have any kind of complex clipping and drawing combinations while getting full interactive capability.
+- Add all kinds of **gesture callbacks to each drawing** to give interaction capability to the shapes you draw on the canvas.
+- Animating individual shapes has never been this easy.
+- Auto Handles the painting style (`filled ▮` , `stroke ▯`) and detects touch accordingly.
+- Handles Painting **stroke width**. So if your shapes are painted thick , we still got it covered ✓
+- Supports **clipping** and different **clipping modes** for the drawings. 
 - Supports HitTestBehavior for each shape.
 - Simple and Easy API. Just wrap your `CustomPaint` with `CanvasTouchDetector` and use the `TouchyCanvas` in your painter.
+
+
+> With touchable , you get what the normal canvas always missed : **touchability** 😉
 
 
 ## Installation
@@ -83,7 +85,7 @@ myCanvas.drawRect( rect , Paint() , onTapDown: (tapDetail){
 });
 ```
 
-### MyPainter example :
+### **MyPainter example :**
 
 ```dart
 class MyPainter extends CustomPainter {
@@ -121,7 +123,7 @@ class MyPainter extends CustomPainter {
 <br />
 
 ## How Touchable Works : 
-When you draw shapes on the canvas (`TouchyCanvas`) , it keeps track of the dimensions of each shape you draw and their painting style , stroke etc. 
+When you draw shapes on the canvas (`TouchyCanvas`) , it keeps track of the dimensions of each shape you draw and their painting style , stroke , order , clippings etc. 
 
 When user performs any gesture on the screen , based on the location of the gesture , the appropriate shape is selected from the lot taking clipping regions , paint , hitTest behaviour etc into account in an optimized way. Callbacks of the corresponding shapes (one or more depending on the hitTest behavior) are executed.
 
@@ -147,7 +149,7 @@ When user performs any gesture on the screen , based on the location of the gest
   - [x] Stroke Width
   - [ ] Stroke Cap
     - [x] StrokeCap to draw Points
-    - [ ] `StrokeCap.round` for lines with large width
+    - [ ] `StrokeCap.round` for lines with huge width.
 - [x] Support Clipping and clipping modes
   - [x] ClipRect
     - [x] intersect mode [Touch detection enabled only inside the clipped region]
