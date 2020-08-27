@@ -119,6 +119,8 @@ class MyPainter extends CustomPainter {
 }
 ```
 
+#### Read the article on Medium : [Bring Your CustomPainter to Life using Touchable](https://medium.com/flutter-community/bring-your-custompainter-paintings-to-life-in-flutter-using-touchable-c2413cd1897)
+
 ---
 <br />
 
