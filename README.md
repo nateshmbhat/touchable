@@ -64,7 +64,7 @@ dependencies:
 
 ---
 
-## Usage :
+## Usage
 
 - Just Wrap your `CustomPaint` widget with `CanvasTouchDetector`. It takes a `builder` function as argument that expects your `CustomPaint` widget as shown below.
 
@@ -85,7 +85,7 @@ myCanvas.drawRect( rect , Paint() , onTapDown: (tapDetail){
 });
 ```
 
-### **MyPainter example :**
+### MyPainter example :
 
 ```dart
 class MyPainter extends CustomPainter {
@@ -124,7 +124,7 @@ class MyPainter extends CustomPainter {
 ---
 <br />
 
-## How Touchable Works : 
+## How Touchable Works 
 When you draw shapes on the canvas (`TouchyCanvas`) , it keeps track of the dimensions of each shape you draw and their painting style , stroke , order , clippings etc. 
 
 When user performs any gesture on the screen , based on the location of the gesture , the appropriate shape is selected from the lot taking clipping regions , paint , hitTest behaviour etc into account in an optimized way. Callbacks of the corresponding shapes (one or more depending on the hitTest behavior) are executed.
@@ -163,7 +163,7 @@ When user performs any gesture on the screen , based on the location of the gest
 - [ ] Support for translation , rotation , scaling and skewing transformations that needs some vector math
 
 
-## Links : 
+## Links
 + [Touchable Docs](https://pub.dev/documentation/touchable/latest/)
 + [Pub Dev](https://pub.dev/packages/touchable)
 + [Other Dart/Flutter Packages](https://pub.dev/packages?q=email%3Anateshmbhat1%40gmail.com)
