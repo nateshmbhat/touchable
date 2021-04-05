@@ -44,6 +44,24 @@ class ShapeHandler {
     }
     return true;
   }
+  
+  Offset _getActualOffsetFromScrollController(
+      Offset touchPoint, ScrollController controller, AxisDirection direction) {
+    if (controller == null)
+      return touchPoint;
+
+    final scrollPosition = controller.position;
+    final actualScrollPixels = direction == AxisDirection.left
+        || direction == AxisDirection.up
+        ? scrollPosition.maxScrollExtent - scrollPosition.pixels
+        : scrollPosition.pixels;
+
+    if (direction == AxisDirection.left || direction == AxisDirection.right) {
+      return Offset(touchPoint.dx + actualScrollPixels, touchPoint.dy);
+    } else {
+      return Offset(touchPoint.dx, touchPoint.dy + actualScrollPixels);
+    }
+  }
 
   List<Shape> _getTouchedShapes(Offset point) {
     var selectedShapes = <Shape>[];
@@ -69,9 +87,14 @@ class ShapeHandler {
     return selectedShapes;
   }
 
-  Future<void> handleGestureEvent(Gesture gesture) async {
-    var touchPoint =
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail);
+  Future<void> handleGestureEvent(Gesture gesture, {
+    ScrollController scrollController,
+    AxisDirection direction,
+  }) async {
+    var touchPoint = _getActualOffsetFromScrollController(
+        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail),
+        scrollController,
+        direction);
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
     var touchedShapes = _getTouchedShapes(touchPoint);

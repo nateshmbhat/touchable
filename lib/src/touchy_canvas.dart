@@ -26,10 +26,16 @@ class TouchyCanvas {
   ///
   /// [context] is the BuildContext that is obtained from the [CanvasTouchDetector] widget's builder function.
   /// The parameter [canvas] is the [Canvas] object that you get in your [paint] method inside [CustomPainter]
-  TouchyCanvas(BuildContext context, this._canvas) {
+  TouchyCanvas(BuildContext context, this._canvas, {
+    ScrollController scrollController,
+    AxisDirection scrollDirection = AxisDirection.down,
+  }) {
     var touchController = TouchDetectionController.of(context);
     touchController.addListener((event) {
-      _shapeHandler.handleGestureEvent(event);
+      _shapeHandler.handleGestureEvent(event,
+        scrollController: scrollController,
+        direction: scrollDirection,
+      );
     });
   }
 
