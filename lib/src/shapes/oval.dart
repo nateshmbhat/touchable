@@ -13,25 +13,19 @@ class Oval extends Shape {
 
 //  x^2/a^2 + y^2/b^2 = 1
   Oval(this.rect,
-      {Map<GestureType, Function> gestureMap,
-      Paint paint,
-      HitTestBehavior hitTestBehavior,
-      PaintingStyle paintStyleForTouch})
-      : super(
-            hitTestBehavior: hitTestBehavior,
-            paint: paint,
-            gestureCallbackMap: gestureMap) {
-    a = rect.right - rect.center.dx;
-    b = rect.center.dy - rect.top;
-  }
+      {Map<GestureType, Function>? gestureMap,
+      Paint? paint,
+      HitTestBehavior? hitTestBehavior,
+      PaintingStyle? paintStyleForTouch})
+      : a = rect.right - rect.center.dx,
+        b = rect.center.dy - rect.top,
+        super(hitTestBehavior: hitTestBehavior, paint: paint ?? Paint(), gestureCallbackMap: gestureMap ?? {});
 
   @override
   bool isInside(Offset p) {
     if (a == 0 || b == 0) return false;
 
-    var extraWidth = paint.style == PaintingStyle.stroke
-        ? paint.strokeWidth / 2
-        : ShapeConstant.floatPrecision;
+    var extraWidth = paint.style == PaintingStyle.stroke ? paint.strokeWidth / 2 : ShapeConstant.floatPrecision;
 
     bool insideOuterOval = _isInsideOval(p, extraWidth);
     if (paint.style == PaintingStyle.stroke) {
@@ -49,9 +43,7 @@ class Oval extends Shape {
   }
 
   bool isOnTheOval(Offset p) {
-    var extraWidth = paint.style == PaintingStyle.stroke
-        ? paint.strokeWidth / 2
-        : ShapeConstant.floatPrecision;
+    var extraWidth = paint.style == PaintingStyle.stroke ? paint.strokeWidth / 2 : ShapeConstant.floatPrecision;
     bool insideOuterOval = _isInsideOval(p, extraWidth);
     bool outsideInnerOval = !_isInsideOval(p, -extraWidth);
     return insideOuterOval && outsideInnerOval;

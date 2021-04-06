@@ -6,34 +6,32 @@ import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/touchable.dart';
 
 abstract class Shape {
-  Paint paint;
-  Map<GestureType, Function> gestureCallbackMap;
-  HitTestBehavior hitTestBehavior;
+  final Paint paint;
+  final Map<GestureType, Function> gestureCallbackMap;
+  final HitTestBehavior hitTestBehavior;
 
-  Set<GestureType> get registeredGestures =>
-      gestureCallbackMap?.keys?.toSet() ?? Set();
+  Set<GestureType> get registeredGestures => gestureCallbackMap.keys.toSet();
 
   Shape({
-    @required this.paint,
-    @required this.gestureCallbackMap,
-    this.hitTestBehavior,
-  }) {
-    paint ??= Paint()
-      ..strokeWidth = ShapeConstant.floatPrecision
-      ..style = PaintingStyle.fill;
-    if (paint.strokeWidth == 0) {
-      paint.strokeWidth = ShapeConstant.floatPrecision;
+    Paint? paint,
+    Map<GestureType, Function>? gestureCallbackMap,
+    HitTestBehavior? hitTestBehavior,
+  })  : paint = paint ??
+            (Paint()
+              ..strokeWidth = ShapeConstant.floatPrecision
+              ..style = PaintingStyle.fill),
+        gestureCallbackMap = gestureCallbackMap ?? {},
+        hitTestBehavior = hitTestBehavior ?? HitTestBehavior.opaque {
+    if (this.paint.strokeWidth == 0) {
+      this.paint.strokeWidth = ShapeConstant.floatPrecision;
     }
-    hitTestBehavior ??= HitTestBehavior.opaque;
-    gestureCallbackMap ??= Map();
   }
 
   bool isInside(Offset p);
 
   Function getCallbackFromGesture(Gesture gesture) {
     if (gestureCallbackMap.containsKey(gesture.gestureType)) {
-      return () =>
-          gestureCallbackMap[gesture.gestureType](gesture.gestureDetail);
+      return () => gestureCallbackMap[gesture.gestureType]?.call(gesture.gestureDetail);
     } else {
       return () {};
     }

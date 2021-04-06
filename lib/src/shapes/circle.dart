@@ -11,15 +11,12 @@ class Circle extends Shape {
   final double radius;
 
   Circle(
-      {@required this.center,
-      @required this.radius,
-      HitTestBehavior hitTestBehavior,
-      Map<GestureType, Function> gestureMap,
-      Paint paint})
-      : super(
-            paint: paint,
-            gestureCallbackMap: gestureMap,
-            hitTestBehavior: hitTestBehavior);
+      {required this.center,
+      required this.radius,
+      HitTestBehavior? hitTestBehavior,
+      Map<GestureType, Function>? gestureMap,
+      Paint? paint})
+      : super(paint: paint, gestureCallbackMap: gestureMap, hitTestBehavior: hitTestBehavior);
 
 //   (x-a)^2 + (y-b)^2 = r^2
   @override
@@ -35,9 +32,6 @@ class Circle extends Shape {
   }
 
   bool _isInsideRadius(Offset p, double radius) {
-    return pow(p.dx - center.dx, 2) +
-            pow(p.dy - center.dy, 2) -
-            pow(radius, 2) <=
-        ShapeConstant.floatPrecision;
+    return pow(p.dx - center.dx, 2) + pow(p.dy - center.dy, 2) - pow(radius, 2) <= ShapeConstant.floatPrecision;
   }
 }

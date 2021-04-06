@@ -9,7 +9,7 @@ import 'package:touchable/src/types/types.dart';
 class ShapeHandler {
   final List<Shape> _shapeStack = [];
   final List<ClipShapeItem> clipItems = [];
-  final Set<GestureType> _registeredGestures = Set();
+  final Set<GestureType> _registeredGestures = {};
 
   Set<GestureType> get registeredGestures => _registeredGestures;
 
