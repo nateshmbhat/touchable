@@ -1,4 +1,4 @@
-# [1.0.0] - April 8 2021
+# [1.0.0-prerelease] - April 8 2021
 Migrated to Null Safety
 
 #### [0.2.1] - Apr 7 2021
