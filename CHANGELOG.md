@@ -1,3 +1,6 @@
+# [1.0.0] - April 8 2021
+Migrated to Null Safety
+
 #### [0.2.1] - Apr 7 2021
 Updated the Example app and fixed minor bug
 

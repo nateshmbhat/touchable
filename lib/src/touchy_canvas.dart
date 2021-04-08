@@ -26,13 +26,16 @@ class TouchyCanvas {
   ///
   /// [context] is the BuildContext that is obtained from the [CanvasTouchDetector] widget's builder function.
   /// The parameter [canvas] is the [Canvas] object that you get in your [paint] method inside [CustomPainter]
-  TouchyCanvas(BuildContext context, this._canvas, {
-    ScrollController scrollController,
+  TouchyCanvas(
+    BuildContext context,
+    this._canvas, {
+    ScrollController? scrollController,
     AxisDirection scrollDirection = AxisDirection.down,
   }) {
     var touchController = TouchDetectionController.of(context);
-    touchController.addListener((event) {
-      _shapeHandler.handleGestureEvent(event,
+    touchController?.addListener((event) {
+      _shapeHandler.handleGestureEvent(
+        event,
         scrollController: scrollController,
         direction: scrollDirection,
       );
@@ -49,8 +52,7 @@ class TouchyCanvas {
     _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
-  void clipRect(Rect rect,
-      {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
+  void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRectShape(rect, clipOp: clipOp));
   }
@@ -59,21 +61,21 @@ class TouchyCanvas {
     Offset c,
     double radius,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawCircle(c, radius, paint);
     _shapeHandler.addShape(Circle(
@@ -103,22 +105,22 @@ class TouchyCanvas {
     Offset p1,
     Offset p2,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawLine(p1, p2, paint);
     _shapeHandler.addShape(Line(p1, p2,
@@ -145,22 +147,22 @@ class TouchyCanvas {
   void drawOval(
     Rect rect,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawOval(rect, paint);
     _shapeHandler.addShape(Oval(rect,
@@ -186,29 +188,29 @@ class TouchyCanvas {
 
   void drawParagraph(Paragraph paragraph, Offset offset) {
     _canvas.drawParagraph(paragraph, offset);
-    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(
-        offset.dx, offset.dy, paragraph.width, paragraph.height)));
+    // _shapeHandler.addShape(Rectangle(Rect.fromLTWH(offset.dx, offset.dy, paragraph.width, paragraph.height),
+    //     paint: Paint(), gestureMap: {}));
   }
 
   void drawPath(
     Path path,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawPath(path, paint);
     _shapeHandler.addShape(PathShape(path,
@@ -236,22 +238,22 @@ class TouchyCanvas {
     PointMode pointMode,
     List<Offset> points,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawPoints(pointMode, points, paint);
     _shapeHandler.addShape(Point(pointMode, points,
@@ -278,22 +280,22 @@ class TouchyCanvas {
   void drawRRect(
     RRect rrect,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawRRect(rrect, paint);
     _shapeHandler.addShape(RoundedRectangle(rrect,
@@ -321,22 +323,22 @@ class TouchyCanvas {
     PointMode pointMode,
     Float32List points,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawRawPoints(pointMode, points, paint);
     List<Offset> offsetPoints = [];
@@ -367,22 +369,22 @@ class TouchyCanvas {
   void drawRect(
     Rect rect,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawRect(rect, paint);
     _shapeHandler.addShape(Rectangle(rect,
@@ -406,37 +408,34 @@ class TouchyCanvas {
         )));
   }
 
-  void drawShadow(
-      Path path, Color color, double elevation, bool transparentOccluder) {
+  void drawShadow(Path path, Color color, double elevation, bool transparentOccluder) {
     _canvas.drawShadow(path, color, elevation, transparentOccluder);
-    _shapeHandler.addShape(PathShape(path));
+    // _shapeHandler.addShape(PathShape(path));
   }
 
   void drawImage(
     Image image,
     Offset p,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawImage(image, p, paint);
-    _shapeHandler.addShape(Rectangle(
-        Rect.fromLTWH(
-            p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
+    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
@@ -463,22 +462,22 @@ class TouchyCanvas {
     double sweepAngle,
     bool useCenter,
     Paint paint, {
-    HitTestBehavior hitTestBehavior,
-    GestureTapDownCallback onTapDown,
-    PaintingStyle paintStyleForTouch,
-    GestureTapUpCallback onTapUp,
-    GestureLongPressStartCallback onLongPressStart,
-    GestureLongPressEndCallback onLongPressEnd,
-    GestureLongPressMoveUpdateCallback onLongPressMoveUpdate,
-    GestureForcePressStartCallback onForcePressStart,
-    GestureForcePressEndCallback onForcePressEnd,
-    GestureForcePressPeakCallback onForcePressPeak,
-    GestureForcePressUpdateCallback onForcePressUpdate,
-    GestureDragStartCallback onPanStart,
-    GestureDragUpdateCallback onPanUpdate,
-    GestureDragDownCallback onPanDown,
-    GestureTapDownCallback onSecondaryTapDown,
-    GestureTapUpCallback onSecondaryTapUp,
+    HitTestBehavior? hitTestBehavior,
+    GestureTapDownCallback? onTapDown,
+    PaintingStyle? paintStyleForTouch,
+    GestureTapUpCallback? onTapUp,
+    GestureLongPressStartCallback? onLongPressStart,
+    GestureLongPressEndCallback? onLongPressEnd,
+    GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate,
+    GestureForcePressStartCallback? onForcePressStart,
+    GestureForcePressEndCallback? onForcePressEnd,
+    GestureForcePressPeakCallback? onForcePressPeak,
+    GestureForcePressUpdateCallback? onForcePressUpdate,
+    GestureDragStartCallback? onPanStart,
+    GestureDragUpdateCallback? onPanUpdate,
+    GestureDragDownCallback? onPanDown,
+    GestureTapDownCallback? onSecondaryTapDown,
+    GestureTapUpCallback? onSecondaryTapUp,
   }) {
     _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
     var arc = Arc(rect, startAngle, sweepAngle, useCenter,

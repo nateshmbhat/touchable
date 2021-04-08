@@ -9,7 +9,7 @@ import 'package:touchable/src/types/types.dart';
 class ShapeHandler {
   final List<Shape> _shapeStack = [];
   final List<ClipShapeItem> clipItems = [];
-  final Set<GestureType> _registeredGestures = Set();
+  final Set<GestureType> _registeredGestures = {};
 
   Set<GestureType> get registeredGestures => _registeredGestures;
 
@@ -31,10 +31,7 @@ class ShapeHandler {
   ///
   /// Looking at above diagram , given the stack position 3 , this function returns all ClipShapes that are pushed before 3 into the clip stack.
   List<ClipShape> _getClipShapesBelowPosition(int position) {
-    return clipItems
-        .where((element) => element.position <= position)
-        .map((e) => e.clipShape)
-        .toList();
+    return clipItems.where((element) => element.position <= position).map((e) => e.clipShape).toList();
   }
 
   ///returns [true] if point lies inside all the clipShapes
@@ -44,15 +41,15 @@ class ShapeHandler {
     }
     return true;
   }
-  
+
   Offset _getActualOffsetFromScrollController(
-      Offset touchPoint, ScrollController controller, AxisDirection direction) {
-    if (controller == null)
+      Offset touchPoint, ScrollController? controller, AxisDirection direction) {
+    if (controller == null) {
       return touchPoint;
+    }
 
     final scrollPosition = controller.position;
-    final actualScrollPixels = direction == AxisDirection.left
-        || direction == AxisDirection.up
+    final actualScrollPixels = direction == AxisDirection.left || direction == AxisDirection.up
         ? scrollPosition.maxScrollExtent - scrollPosition.pixels
         : scrollPosition.pixels;
 
@@ -71,8 +68,7 @@ class ShapeHandler {
         continue;
       }
       if (shape.isInside(point)) {
-        if (_isPointInsideClipShapes(_getClipShapesBelowPosition(i), point) ==
-            false) {
+        if (_isPointInsideClipShapes(_getClipShapesBelowPosition(i), point) == false) {
           if (shape.hitTestBehavior == HitTestBehavior.opaque) {
             return selectedShapes;
           }
@@ -87,14 +83,13 @@ class ShapeHandler {
     return selectedShapes;
   }
 
-  Future<void> handleGestureEvent(Gesture gesture, {
-    ScrollController scrollController,
-    AxisDirection direction,
+  Future<void> handleGestureEvent(
+    Gesture gesture, {
+    ScrollController? scrollController,
+    AxisDirection direction = AxisDirection.down,
   }) async {
     var touchPoint = _getActualOffsetFromScrollController(
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail),
-        scrollController,
-        direction);
+        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
     if (!_registeredGestures.contains(gesture.gestureType)) return;
 
     var touchedShapes = _getTouchedShapes(touchPoint);

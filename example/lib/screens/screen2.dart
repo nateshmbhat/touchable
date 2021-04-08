@@ -10,15 +10,17 @@ class Screen2 extends StatefulWidget {
 }
 
 class _Screen2State extends State<Screen2> with TickerProviderStateMixin {
-  AnimationController smile;
-  AnimationController eye;
-  AnimationController nose;
+  late AnimationController smile;
+  late AnimationController eye;
+  late AnimationController nose;
 
   @override
   void initState() {
-    smile = AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+    smile =
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
     eye = AnimationController(duration: Duration(seconds: 1), vsync: this);
-    nose = AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    nose =
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
     nose.addListener(() {
       setState(() {});
     });
@@ -66,14 +68,17 @@ class MyPainter extends CustomPainter {
   AnimationController eyeAnimationController;
   AnimationController noseAnimationController;
 
-  MyPainter(this.context, this.smileAnimationController, this.eyeAnimationController, this.noseAnimationController);
+  MyPainter(this.context, this.smileAnimationController,
+      this.eyeAnimationController, this.noseAnimationController);
 
   @override
   void paint(Canvas _canvas, Size size) {
     print(size);
     TouchyCanvas canvas = TouchyCanvas(context, _canvas);
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 150, Paint()..color = Colors.yellow);
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 150, Paint()..style = PaintingStyle.stroke);
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 150,
+        Paint()..color = Colors.yellow);
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 150,
+        Paint()..style = PaintingStyle.stroke);
     drawSmile(canvas, size);
     drawEyes(canvas, size);
     drawNose(canvas, size);
@@ -82,8 +87,9 @@ class MyPainter extends CustomPainter {
   void drawSmile(TouchyCanvas canvas, Size size) {
     var center = Offset(size.width / 2, size.height / 2);
     var smileCenter = Offset(center.dx, center.dy + 75);
-    var smileAnimation = Tween<double>(begin: 0, end: 90)
-        .animate(CurvedAnimation(parent: smileAnimationController, curve: Curves.fastOutSlowIn));
+    var smileAnimation = Tween<double>(begin: 0, end: 90).animate(
+        CurvedAnimation(
+            parent: smileAnimationController, curve: Curves.fastOutSlowIn));
     canvas.drawLine(
         Offset(center.dx - 80, smileCenter.dy),
         Offset(center.dx + 80, smileCenter.dy),
@@ -93,7 +99,12 @@ class MyPainter extends CustomPainter {
       smileAnimationController.reverse();
     });
 
-    canvas.drawArc(Rect.fromCenter(center: smileCenter, width: 160, height: smileAnimation.value), 0, pi, false,
+    canvas.drawArc(
+        Rect.fromCenter(
+            center: smileCenter, width: 160, height: smileAnimation.value),
+        0,
+        pi,
+        false,
         Paint()..color = Colors.black, onTapDown: (detail) {
       print("clicked");
       if (smileAnimation.value == 90) {
@@ -104,9 +115,12 @@ class MyPainter extends CustomPainter {
 
   void drawNose(TouchyCanvas canvas, Size size) {
     var center = Offset(size.width / 2, size.height / 2);
-    var noseColor = ColorTween(begin: Colors.blueGrey, end: Colors.lightBlueAccent)
-        .animate(CurvedAnimation(parent: noseAnimationController, curve: Curves.bounceOut));
-    var noseLength = Tween<double>(begin: 0, end: 100).animate(noseAnimationController);
+    var noseColor =
+    ColorTween(begin: Colors.blueGrey, end: Colors.lightBlueAccent).animate(
+        CurvedAnimation(
+            parent: noseAnimationController, curve: Curves.bounceOut));
+    var noseLength =
+    Tween<double>(begin: 0, end: 100).animate(noseAnimationController);
     var upperbound = noseAnimationController.upperBound;
 
     void drawNose(Color color, double extraLength) {
@@ -119,21 +133,22 @@ class MyPainter extends CustomPainter {
             ], true),
           Paint()..color = color, onTapDown: (_) {
         print("On Pan Down");
-        if (noseAnimationController.value == upperbound || noseAnimationController.status == AnimationStatus.forward) {
+        if (noseAnimationController.value == upperbound ||
+            noseAnimationController.status == AnimationStatus.forward) {
           noseAnimationController.reverse();
         } else
           noseAnimationController.forward();
       });
     }
 
-    drawNose(noseColor.value, noseLength.value);
+    drawNose(noseColor.value!, noseLength.value);
     drawNose(Colors.black, 0);
   }
 
   void drawEyes(TouchyCanvas canvas, Size size) {
     var center = Offset(size.width / 2, size.height / 2);
-    var eyeAnimation = Tween<double>(begin: 0, end: 50)
-        .animate(CurvedAnimation(parent: eyeAnimationController, curve: Curves.easeOut));
+    var eyeAnimation = Tween<double>(begin: 0, end: 50).animate(
+        CurvedAnimation(parent: eyeAnimationController, curve: Curves.easeOut));
 
     void drawEye(double xOffset) {
       canvas.drawCircle(
@@ -142,11 +157,12 @@ class MyPainter extends CustomPainter {
           Paint()
             ..style = PaintingStyle.stroke
             ..strokeWidth = 2);
-      canvas.drawCircle(Offset(center.dx - xOffset, center.dy - 40), 10, Paint());
-      canvas.drawCircle(Offset(center.dx + xOffset, center.dy - 50), 20, Paint()..color = Colors.transparent,
-          onTapDown: (_) {
-        eyeAnimationController.reverse();
-      });
+      canvas.drawCircle(
+          Offset(center.dx - xOffset, center.dy - 40), 10, Paint());
+      canvas.drawCircle(Offset(center.dx + xOffset, center.dy - 50), 20,
+          Paint()..color = Colors.transparent, onTapDown: (_) {
+            eyeAnimationController.reverse();
+          });
     }
 
     void drawEyeLid(double xOffset) {
