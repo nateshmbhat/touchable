@@ -10,7 +10,7 @@ import 'package:touchable/src/types/types.dart';
 class CanvasTouchDetector extends StatefulWidget {
   final CustomTouchPaintBuilder builder;
 
-  const CanvasTouchDetector({Key key, this.builder}) : super(key: key);
+  const CanvasTouchDetector({Key? key, required this.builder}) : super(key: key);
 
   @override
   _CanvasTouchDetectorState createState() => _CanvasTouchDetectorState();
@@ -18,7 +18,7 @@ class CanvasTouchDetector extends StatefulWidget {
 
 class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
   final StreamController<Gesture> touchController = StreamController.broadcast();
-  StreamSubscription streamSubscription;
+  StreamSubscription? streamSubscription;
 
   Future<void> addStreamListener(Function(Gesture) callBack) async {
     await streamSubscription?.cancel();
@@ -125,9 +125,9 @@ class TouchDetectionController extends InheritedWidget {
 
   StreamController<Gesture> get controller => _controller;
 
-  const TouchDetectionController(this._controller, this.addListener, {@required Widget child}) : super(child: child);
+  const TouchDetectionController(this._controller, this.addListener, {required Widget child}) : super(child: child);
 
-  static TouchDetectionController of(BuildContext context) =>
+  static TouchDetectionController? of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<TouchDetectionController>();
 
   @override

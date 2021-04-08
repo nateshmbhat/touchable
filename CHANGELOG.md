@@ -1,4 +1,10 @@
-#### [0.2.0] - Aug 26 2020 
+# [1.0.0-prerelease] - April 8 2021
+Migrated to Null Safety
+
+#### [0.2.1] - Apr 7 2021
+Updated the Example app and fixed minor bug
+
+#### [0.2.0] - Aug 26 2020
 Fixed minor bugs. Updated readme.
 
 #### [0.1.7] - July 17 2020 
