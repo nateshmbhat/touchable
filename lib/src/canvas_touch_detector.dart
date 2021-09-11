@@ -35,12 +35,10 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
               return widget.builder(context);
             },
           ),
-          onTapDown: (tapDetail) {
-            print('onTapDown');            
+          onTapDown: (tapDetail) {           
             touchController.add(Gesture(GestureType.onTapDown, tapDetail));
           },
           onTapUp: (tapDetail) {
-            print('onTapUp');           
             touchController.add(Gesture(GestureType.onTapUp, tapDetail));
           },
 //        onHorizontalDragDown: (tapDetail) {
@@ -61,16 +59,13 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
 //        onVerticalDragUpdate: (tapDetail) {
 //          touchController.add(Gesture( GestureType.onVerticalDragUpdate, tapDetail));
 //        },
-          onLongPressStart: (tapDetail) {
-            print('onLongPressStart');            
+          onLongPressStart: (tapDetail) {        
             touchController.add(Gesture(GestureType.onLongPressStart, tapDetail));
           },
-          onLongPressEnd: (tapDetail) {
-            print('onLongPressEnd');            
+          onLongPressEnd: (tapDetail) {       
             touchController.add(Gesture(GestureType.onLongPressEnd, tapDetail));
           },
           onLongPressMoveUpdate: (tapDetail) {
-            print('onLongPressMoveUpdate');            
             touchController.add(Gesture(GestureType.onLongPressMoveUpdate, tapDetail));
           },
 //        onScaleStart: (tapDetail) {
@@ -80,18 +75,15 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
 //          touchController.add(Gesture( GestureType.onScaleUpdate, tapDetail));
 //        },
           onForcePressStart: (tapDetail) {
-            print('onForcePressStart');
             touchController.add(Gesture(GestureType.onForcePressStart, tapDetail));
           },
           onForcePressEnd: (tapDetail) {
-            print('onForcePressEnd');
             touchController.add(Gesture(GestureType.onForcePressEnd, tapDetail));
           },
           onForcePressPeak: (tapDetail) {
             touchController.add(Gesture(GestureType.onForcePressPeak, tapDetail));
           },
           onForcePressUpdate: (tapDetail) {
-            print('onForcePressUpdate');
             touchController.add(Gesture(GestureType.onForcePressUpdate, tapDetail));
           },
 //           onPanStart: (tapDetail) {
@@ -104,11 +96,9 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
 //             touchController.add(Gesture(GestureType.onPanDown, tapDetail));
 //           },
           onSecondaryTapDown: (tapDetail) {
-            print('onSecondaryTapDown');
             touchController.add(Gesture(GestureType.onSecondaryTapDown, tapDetail));
           },
           onSecondaryTapUp: (tapDetail) {
-            print('onSecondaryTapUp');
             touchController.add(Gesture(GestureType.onSecondaryTapUp, tapDetail));
           },
         ));
