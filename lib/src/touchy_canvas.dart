@@ -19,7 +19,8 @@ import 'package:touchable/src/shapes/util.dart';
 
 class TouchyCanvas {
   final Canvas _canvas;
-
+  ///Canvas accessor
+  Canvas get getCanvas =>_canvas;
   final ShapeHandler _shapeHandler = ShapeHandler();
 
   ///[TouchyCanvas] helps you add gesture callbacks to the shapes you draw.
