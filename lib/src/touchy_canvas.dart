@@ -501,6 +501,11 @@ class TouchyCanvas {
     _shapeHandler.addShape(arc);
   }
 
+  void scale(double sx, [double? sy]) {
+    _canvas.scale(sx, sy);
+    _shapeHandler.scale(sx, sy);
+  }
+
 //
 //  void drawDRRect(RRect outer, RRect inner, Paint paint) {
 //    _canvas.drawDRRect(outer, inner, paint);
@@ -532,11 +537,6 @@ class TouchyCanvas {
 //
 //  void rotate(double radians) {
 //    // TODO: implement rotate
-//  }
-
-//
-//  void scale(double sx, [double sy]) {
-//    // TODO: implement scale
 //  }
 
 //
