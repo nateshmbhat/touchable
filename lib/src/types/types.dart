@@ -37,6 +37,7 @@ enum GestureType {
   onForcePressPeak,
   onForcePressUpdate,
   onPanStart,
+  onPanEnd,
   onPanUpdate,
   onPanDown,
   onSecondaryTapDown,

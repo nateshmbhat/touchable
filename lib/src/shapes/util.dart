@@ -53,6 +53,7 @@ class TouchCanvasUtil {
     required GestureForcePressPeakCallback? onForcePressPeak,
     required GestureForcePressUpdateCallback? onForcePressUpdate,
     required GestureDragStartCallback? onPanStart,
+    required GestureDragEndCallback? onPanEnd,
     required GestureDragUpdateCallback? onPanUpdate,
     required GestureDragDownCallback? onPanDown,
     required GestureTapDownCallback? onSecondaryTapDown,
@@ -89,6 +90,9 @@ class TouchCanvasUtil {
 
     if (onPanStart != null) {
       map.putIfAbsent(GestureType.onPanStart, () => onPanStart);
+    }
+    if (onPanEnd != null) {
+      map.putIfAbsent(GestureType.onPanEnd, () => onPanEnd);
     }
     if (onPanUpdate != null) {
       map.putIfAbsent(GestureType.onPanUpdate, () => onPanUpdate);

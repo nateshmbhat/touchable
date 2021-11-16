@@ -89,6 +89,9 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
           onPanStart: (tapDetail) {
             touchController.add(Gesture(GestureType.onPanStart, tapDetail));
           },
+          onPanEnd: (tapDetail) {
+            touchController.add(Gesture(GestureType.onPanEnd, tapDetail));
+          },
           onPanUpdate: (tapDetail) {
             touchController.add(Gesture(GestureType.onPanUpdate, tapDetail));
           },
