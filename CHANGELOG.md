@@ -1,4 +1,7 @@
-#Changelog
+# Changelog
+
+#### [1.0.1] - November 30 2021
+Changed the license to MPL-2.0
 
 ## [1.0.0] - April 23 2021
 Migrated to Null Safety
