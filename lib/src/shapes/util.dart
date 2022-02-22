@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
@@ -38,7 +37,8 @@ class TouchCanvasUtil {
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
       default:
-        throw Exception("gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
+        throw Exception(
+            'gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ');
     }
   }
 
@@ -55,6 +55,7 @@ class TouchCanvasUtil {
     required GestureDragStartCallback? onPanStart,
     required GestureDragUpdateCallback? onPanUpdate,
     required GestureDragDownCallback? onPanDown,
+    required GestureDragEndCallback? onPanEnd,
     required GestureTapDownCallback? onSecondaryTapDown,
     required GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -68,7 +69,8 @@ class TouchCanvasUtil {
       map.putIfAbsent(GestureType.onLongPressStart, () => onLongPressStart);
     }
     if (onLongPressMoveUpdate != null) {
-      map.putIfAbsent(GestureType.onLongPressMoveUpdate, () => onLongPressMoveUpdate);
+      map.putIfAbsent(
+          GestureType.onLongPressMoveUpdate, () => onLongPressMoveUpdate);
     }
     if (onLongPressEnd != null) {
       map.putIfAbsent(GestureType.onLongPressEnd, () => onLongPressEnd);
@@ -95,6 +97,9 @@ class TouchCanvasUtil {
     }
     if (onPanDown != null) {
       map.putIfAbsent(GestureType.onPanDown, () => onPanDown);
+    }
+    if (onPanEnd != null) {
+      map.putIfAbsent(GestureType.onPanEnd, () => onPanEnd);
     }
 
     if (onSecondaryTapDown != null) {

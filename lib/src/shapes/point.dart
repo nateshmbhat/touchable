@@ -16,7 +16,10 @@ class Point extends Shape {
       Paint? paint,
       HitTestBehavior? hitTestBehavior,
       PaintingStyle? paintStyleForTouch})
-      : super(hitTestBehavior: hitTestBehavior, paint: paint ?? Paint(), gestureCallbackMap: gestureMap ?? {});
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint ?? Paint(),
+            gestureCallbackMap: gestureMap ?? {});
 
   @override
   bool isInside(Offset p) {
@@ -52,7 +55,9 @@ class Point extends Shape {
     if (paint.strokeCap == StrokeCap.round) {
       return Circle(center: point, radius: extraWidth).isInside(queryPoint);
     } else {
-      return Rect.fromCenter(center: point, width: extraWidth * 2, height: extraWidth * 2).contains(queryPoint);
+      return Rect.fromCenter(
+              center: point, width: extraWidth * 2, height: extraWidth * 2)
+          .contains(queryPoint);
     }
   }
 }
@@ -76,14 +81,18 @@ class PolygonUtil {
     int dir4 = _direction(l2.p1, l2.p2, l1.p2);
 
     if (dir1 != dir2 && dir3 != dir4) return true; //they are intersecting
-    if (dir1 == 0 && l1.isInside(l2.p1)) //when p2 of line2 are on the line1
+    if (dir1 == 0 && l1.isInside(l2.p1)) {
       return true;
-    if (dir2 == 0 && l1.isInside(l2.p2)) //when p1 of line2 are on the line1
+    }
+    if (dir2 == 0 && l1.isInside(l2.p2)) {
       return true;
-    if (dir3 == 0 && l2.isInside(l1.p1)) //when p2 of line1 are on the line2
+    }
+    if (dir3 == 0 && l2.isInside(l1.p1)) {
       return true;
-    if (dir4 == 0 && l2.isInside(l1.p2)) //when p1 of line1 are on the line2
+    }
+    if (dir4 == 0 && l2.isInside(l1.p2)) {
       return true;
+    }
     return false;
   }
 
@@ -92,7 +101,8 @@ class PolygonUtil {
     if (n < 3) {
       return false;
     } //when polygon has less than 3 edge, it is not polygon
-    Line exline = Line(p, Offset(9999, p.dy)); //create a point at infinity, y is same as point p
+    Line exline = Line(p,
+        Offset(9999, p.dy)); //create a point at infinity, y is same as point p
     int count = 0;
     int i = 0;
     do {

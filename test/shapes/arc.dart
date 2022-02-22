@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:touchable/src/shapes/arc.dart';
@@ -45,7 +44,7 @@ void testArc() {
     expect(arc2.isInside(Offset(227.0, 113.1)), true);
   });
 
-  test("Arc with sweep greather than 360 degree test", () {
+  test('Arc with sweep greather than 360 degree test', () {
     var arc3 =
         Arc(Rect.fromLTWH(100, 100, 200, 200), 3 * pi / 2, -10 * pi / 3, false,
             paint: Paint()

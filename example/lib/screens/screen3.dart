@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:touchable/touchable.dart';
 
@@ -73,7 +71,8 @@ class MyPainter extends CustomPainter {
   void paint(Canvas _canvas, Size size) {
     TouchyCanvas canvas = TouchyCanvas(context, _canvas);
 
-    canvas.drawRect(Rect.fromLTWH(0, 0, 100, 300), Paint()..color = Colors.blue, onTapDown: (_) {
+    canvas.drawRect(Rect.fromLTWH(0, 0, 100, 300), Paint()..color = Colors.blue,
+        onTapDown: (_) {
       setState('blue');
     });
   }

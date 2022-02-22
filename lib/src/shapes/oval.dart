@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/constant.dart';
@@ -19,13 +18,18 @@ class Oval extends Shape {
       PaintingStyle? paintStyleForTouch})
       : a = rect.right - rect.center.dx,
         b = rect.center.dy - rect.top,
-        super(hitTestBehavior: hitTestBehavior, paint: paint ?? Paint(), gestureCallbackMap: gestureMap ?? {});
+        super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint ?? Paint(),
+            gestureCallbackMap: gestureMap ?? {});
 
   @override
   bool isInside(Offset p) {
     if (a == 0 || b == 0) return false;
 
-    var extraWidth = paint.style == PaintingStyle.stroke ? paint.strokeWidth / 2 : ShapeConstant.floatPrecision;
+    var extraWidth = paint.style == PaintingStyle.stroke
+        ? paint.strokeWidth / 2
+        : ShapeConstant.floatPrecision;
 
     bool insideOuterOval = _isInsideOval(p, extraWidth);
     if (paint.style == PaintingStyle.stroke) {
@@ -43,7 +47,9 @@ class Oval extends Shape {
   }
 
   bool isOnTheOval(Offset p) {
-    var extraWidth = paint.style == PaintingStyle.stroke ? paint.strokeWidth / 2 : ShapeConstant.floatPrecision;
+    var extraWidth = paint.style == PaintingStyle.stroke
+        ? paint.strokeWidth / 2
+        : ShapeConstant.floatPrecision;
     bool insideOuterOval = _isInsideOval(p, extraWidth);
     bool outsideInnerOval = !_isInsideOval(p, -extraWidth);
     return insideOuterOval && outsideInnerOval;

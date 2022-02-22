@@ -35,6 +35,7 @@ void testOpaque() {
           onPanStart: null,
           onPanUpdate: null,
           onPanDown: null,
+          onPanEnd: null,
           onSecondaryTapDown: null,
           onSecondaryTapUp: null);
     }
