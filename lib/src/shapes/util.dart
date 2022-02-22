@@ -24,6 +24,8 @@ class TouchCanvasUtil {
         return (gestureDetail as DragStartDetails).localPosition;
       case DragUpdateDetails:
         return (gestureDetail as DragUpdateDetails).localPosition;
+      case DragEndDetails:
+        return (gestureDetail as DragEndDetails).velocity.pixelsPerSecond;
       case LongPressStartDetails:
         return (gestureDetail as LongPressStartDetails).localPosition;
       case LongPressEndDetails:
