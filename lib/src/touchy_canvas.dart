@@ -484,20 +484,21 @@ class TouchyCanvas {
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
-            onTapDown: onTapDown,
-            onTapUp: null,
-            onLongPressStart: null,
-            onLongPressEnd: null,
-            onLongPressMoveUpdate: null,
-            onForcePressStart: null,
-            onForcePressEnd: null,
-            onForcePressPeak: null,
-            onForcePressUpdate: null,
-            onPanStart: null,
-            onPanUpdate: null,
-            onPanDown: null,
-            onSecondaryTapDown: null,
-            onSecondaryTapUp: null));
+          onTapDown: onTapDown,
+          onTapUp: onTapUp,
+          onLongPressStart: onLongPressStart,
+          onLongPressEnd: onLongPressEnd,
+          onLongPressMoveUpdate: onLongPressMoveUpdate,
+          onForcePressStart: onForcePressStart,
+          onForcePressEnd: onForcePressEnd,
+          onForcePressPeak: onForcePressPeak,
+          onForcePressUpdate: onForcePressUpdate,
+          onPanStart: onPanStart,
+          onPanUpdate: onPanUpdate,
+          onPanDown: onPanDown,
+          onSecondaryTapDown: onSecondaryTapDown,
+          onSecondaryTapUp: onSecondaryTapUp,
+        ));
     _shapeHandler.addShape(arc);
   }
 
