@@ -31,3 +31,4 @@ library touchable;
 export 'src/canvas_touch_detector.dart';
 export 'src/touchy_canvas.dart';
 export 'src/types/types.dart';
+export 'src/hover.dart';

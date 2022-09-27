@@ -21,22 +21,25 @@ void testTranslucent() {
 
     Map<GestureType, Function> getMap(Function function) {
       return TouchCanvasUtil.getGestureCallbackMap(
-          onTapDown: (detail) {
-            function(detail);
-          },
-          onTapUp: null,
-          onLongPressStart: null,
-          onLongPressEnd: null,
-          onLongPressMoveUpdate: null,
-          onForcePressStart: null,
-          onForcePressEnd: null,
-          onForcePressPeak: null,
-          onForcePressUpdate: null,
-          onPanStart: null,
-          onPanUpdate: null,
-          onPanDown: null,
-          onSecondaryTapDown: null,
-          onSecondaryTapUp: null);
+        onTapDown: (detail) {
+          function(detail);
+        },
+        onTapUp: null,
+        onLongPressStart: null,
+        onLongPressEnd: null,
+        onLongPressMoveUpdate: null,
+        onForcePressStart: null,
+        onForcePressEnd: null,
+        onForcePressPeak: null,
+        onForcePressUpdate: null,
+        onPanStart: null,
+        onPanUpdate: null,
+        onPanDown: null,
+        onSecondaryTapDown: null,
+        onSecondaryTapUp: null,
+        onHover: null,
+        onTapCancel: null,
+      );
     }
 
     void addAllShapes() {
@@ -131,8 +134,10 @@ void testTranslucent() {
     addAllShapes();
     void handleGesture(Offset position, List<String> expected) {
       resultList = [];
-      shapeHandler.handleGestureEvent(Gesture(
-          GestureType.onTapDown, TapDownDetails(localPosition: position)));
+      shapeHandler.handleGestureEvent(
+        Gesture(GestureType.onTapDown, TapDownDetails(localPosition: position)),
+        PreviousTouchState(),
+      );
       expect(resultList, expected);
     }
 

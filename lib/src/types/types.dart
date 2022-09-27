@@ -41,4 +41,6 @@ enum GestureType {
   onPanDown,
   onSecondaryTapDown,
   onSecondaryTapUp,
+  onHover,
+  onTapCancel,
 }

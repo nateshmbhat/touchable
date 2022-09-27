@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:touchable/src/canvas_touch_detector.dart';
+import 'package:touchable/src/hover.dart';
 import 'package:touchable/src/shapes/clip.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/shapes/util.dart';
@@ -31,7 +33,10 @@ class ShapeHandler {
   ///
   /// Looking at above diagram , given the stack position 3 , this function returns all ClipShapes that are pushed before 3 into the clip stack.
   List<ClipShape> _getClipShapesBelowPosition(int position) {
-    return clipItems.where((element) => element.position <= position).map((e) => e.clipShape).toList();
+    return clipItems
+        .where((element) => element.position <= position)
+        .map((e) => e.clipShape)
+        .toList();
   }
 
   ///returns [true] if point lies inside all the clipShapes
@@ -42,16 +47,17 @@ class ShapeHandler {
     return true;
   }
 
-  Offset _getActualOffsetFromScrollController(
-      Offset touchPoint, ScrollController? controller, AxisDirection direction) {
+  Offset _getActualOffsetFromScrollController(Offset touchPoint,
+      ScrollController? controller, AxisDirection direction) {
     if (controller == null) {
       return touchPoint;
     }
 
     final scrollPosition = controller.position;
-    final actualScrollPixels = direction == AxisDirection.left || direction == AxisDirection.up
-        ? scrollPosition.maxScrollExtent - scrollPosition.pixels
-        : scrollPosition.pixels;
+    final actualScrollPixels =
+        direction == AxisDirection.left || direction == AxisDirection.up
+            ? scrollPosition.maxScrollExtent - scrollPosition.pixels
+            : scrollPosition.pixels;
 
     if (direction == AxisDirection.left || direction == AxisDirection.right) {
       return Offset(touchPoint.dx + actualScrollPixels, touchPoint.dy);
@@ -68,7 +74,8 @@ class ShapeHandler {
         continue;
       }
       if (shape.isInside(point)) {
-        if (_isPointInsideClipShapes(_getClipShapesBelowPosition(i), point) == false) {
+        if (_isPointInsideClipShapes(_getClipShapesBelowPosition(i), point) ==
+            false) {
           if (shape.hitTestBehavior == HitTestBehavior.opaque) {
             return selectedShapes;
           }
@@ -84,20 +91,67 @@ class ShapeHandler {
   }
 
   Future<void> handleGestureEvent(
-    Gesture gesture, {
+    Gesture gesture,
+    PreviousTouchState previousTouchState, {
     ScrollController? scrollController,
     AxisDirection direction = AxisDirection.down,
   }) async {
-    var touchPoint = _getActualOffsetFromScrollController(
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
-    if (!_registeredGestures.contains(gesture.gestureType)) return;
-
-    var touchedShapes = _getTouchedShapes(touchPoint);
-    if (touchedShapes.isEmpty) return;
-    for (var touchedShape in touchedShapes) {
-      if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
+    if (_registeredGestures.contains(gesture.gestureType) &&
+        gesture.gestureType == GestureType.onTapCancel) {
+      for (var touchedShape in previousTouchState.lastTappedDownShapes) {
         var callback = touchedShape.getCallbackFromGesture(gesture);
         callback();
+      }
+      previousTouchState.lastTappedDownShapes.clear();
+    } else {
+      var touchPoint = _getActualOffsetFromScrollController(
+          TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail),
+          scrollController,
+          direction);
+      if (!_registeredGestures.contains(gesture.gestureType)) return;
+
+      var touchedShapes = _getTouchedShapes(touchPoint);
+      if (touchedShapes.isEmpty && gesture.gestureType != GestureType.onHover) {
+        return;
+      }
+      if (gesture.gestureType == GestureType.onHover) {
+        for (var touchedShape in previousTouchState.lastHoveredShapes) {
+          if (!touchedShapes.contains(touchedShape)) {
+            Gesture newGesture = Gesture(
+                gesture.gestureType,
+                OnHoverDetail(
+                    TouchCanvasUtil.getPointFromGestureDetail(
+                        gesture.gestureDetail),
+                    false));
+            var callback = touchedShape.getCallbackFromGesture(newGesture);
+            callback();
+          }
+        }
+        previousTouchState.lastHoveredShapes.clear();
+      }
+      for (var touchedShape in touchedShapes) {
+        if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
+          if (gesture.gestureType == GestureType.onTapDown) {
+            previousTouchState.lastTappedDownShapes.add(touchedShape);
+          } else if (gesture.gestureType == GestureType.onTapUp) {
+            previousTouchState.lastTappedDownShapes.clear();
+          }
+          previousTouchState.lastHoveredShapes.add(touchedShape);
+
+          if (gesture.gestureType == GestureType.onHover) {
+            Gesture newGesture = Gesture(
+                gesture.gestureType,
+                OnHoverDetail(
+                    TouchCanvasUtil.getPointFromGestureDetail(
+                        gesture.gestureDetail),
+                    true));
+            var callback = touchedShape.getCallbackFromGesture(newGesture);
+            callback();
+          } else {
+            var callback = touchedShape.getCallbackFromGesture(gesture);
+            callback();
+          }
+        }
       }
     }
   }
