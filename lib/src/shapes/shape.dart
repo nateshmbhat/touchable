@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/touchable.dart';
@@ -31,7 +28,8 @@ abstract class Shape {
 
   Function getCallbackFromGesture(Gesture gesture) {
     if (gestureCallbackMap.containsKey(gesture.gestureType)) {
-      return () => gestureCallbackMap[gesture.gestureType]?.call(gesture.gestureDetail);
+      return () =>
+          gestureCallbackMap[gesture.gestureType]?.call(gesture.gestureDetail);
     } else {
       return () {};
     }

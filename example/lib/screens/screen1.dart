@@ -74,8 +74,9 @@ class MyPainter extends CustomPainter {
   void paint(Canvas _canvas, Size size) {
     TouchyCanvas canvas = TouchyCanvas(context, _canvas);
 
-    canvas.drawCircle(Offset(0, 0), 60, Paint()..color = Colors.deepOrange, onTapDown: (_) {
-      print("orange Circle touched");
+    canvas.drawCircle(Offset(0, 0), 60, Paint()..color = Colors.deepOrange,
+        onTapDown: (_) {
+      print('orange Circle touched');
       setState('orange');
     });
 
@@ -87,7 +88,7 @@ class MyPainter extends CustomPainter {
           ..strokeWidth = 200
           ..style = PaintingStyle.stroke, onTapDown: (detail) {
       setState('black');
-      print("black line touched");
+      print('black line touched');
     });
 
     canvas.drawOval(
@@ -96,7 +97,7 @@ class MyPainter extends CustomPainter {
           ..color = Colors.deepPurple
           ..style = PaintingStyle.stroke
           ..strokeWidth = 70, onTapDown: (_) {
-      print("purple oval touched");
+      print('purple oval touched');
       setState('purple');
     });
 
@@ -106,7 +107,7 @@ class MyPainter extends CustomPainter {
           ..color = Colors.deepOrange
           ..style = PaintingStyle.stroke
           ..strokeWidth = 50, onTapDown: (_) {
-      print("orange rect touched");
+      print('orange rect touched');
       setState('orange');
     });
 
@@ -115,11 +116,13 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10;
     canvas.drawCircle(Offset(150, 50), 60, paint, onTapDown: (_) {
-      print("green Circle touched");
+      print('green Circle touched');
       setState('green');
     });
 
-    canvas.drawCircle(Offset(150, 250), 70, Paint()..color = Colors.lightBlueAccent, onTapDown: (_) {
+    canvas.drawCircle(
+        Offset(150, 250), 70, Paint()..color = Colors.lightBlueAccent,
+        onTapDown: (_) {
       print('light blue Circle tap down');
       setState('white');
     }, onTapUp: (detail) {
@@ -145,11 +148,12 @@ class MyPainter extends CustomPainter {
           ..strokeWidth = 40
           ..color = Colors.grey, onTapDown: (_) {
       setState('grey');
-      print("grey RRect touched");
+      print('grey RRect touched');
     });
 
     canvas.drawRRect(
-        RRect.fromLTRBR(100 - 20.0, 340 - 20.0, 300 + 20.0, 650 + 20.0, Radius.elliptical(100 + 20.0, 150 + 20.0)),
+        RRect.fromLTRBR(100 - 20.0, 340 - 20.0, 300 + 20.0, 650 + 20.0,
+            Radius.elliptical(100 + 20.0, 150 + 20.0)),
         Paint()
           ..strokeWidth = 1
           ..style = PaintingStyle.stroke

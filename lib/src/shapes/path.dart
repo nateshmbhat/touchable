@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
@@ -12,7 +10,10 @@ class PathShape extends Shape {
       required Paint paint,
       HitTestBehavior? hitTestBehavior,
       PaintingStyle? paintStyleForTouch})
-      : super(hitTestBehavior: hitTestBehavior, paint: paint, gestureCallbackMap: gestureMap);
+      : super(
+            hitTestBehavior: hitTestBehavior,
+            paint: paint,
+            gestureCallbackMap: gestureMap);
 
   @override
   bool isInside(Offset p) {

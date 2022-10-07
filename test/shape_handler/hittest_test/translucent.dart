@@ -21,22 +21,26 @@ void testTranslucent() {
 
     Map<GestureType, Function> getMap(Function function) {
       return TouchCanvasUtil.getGestureCallbackMap(
-          onTapDown: (detail) {
-            function(detail);
-          },
-          onTapUp: null,
-          onLongPressStart: null,
-          onLongPressEnd: null,
-          onLongPressMoveUpdate: null,
-          onForcePressStart: null,
-          onForcePressEnd: null,
-          onForcePressPeak: null,
-          onForcePressUpdate: null,
-          onPanStart: null,
-          onPanUpdate: null,
-          onPanDown: null,
-          onSecondaryTapDown: null,
-          onSecondaryTapUp: null);
+        onTapDown: (detail) {
+          function(detail);
+        },
+        onTapUp: null,
+        onLongPressStart: null,
+        onLongPressEnd: null,
+        onLongPressMoveUpdate: null,
+        onForcePressStart: null,
+        onForcePressEnd: null,
+        onForcePressPeak: null,
+        onForcePressUpdate: null,
+        onPanStart: null,
+        onPanUpdate: null,
+        onPanDown: null,
+        onSecondaryTapDown: null,
+        onSecondaryTapUp: null,
+        onEnter: null,
+        onExit: null,
+        onHover: null,
+      );
     }
 
     void addAllShapes() {
