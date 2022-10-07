@@ -1,9 +1,8 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image;
+import 'package:flutter/services.dart';
 import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/arc.dart';
@@ -52,7 +51,8 @@ class TouchyCanvas {
     _shapeHandler.addShape(ClipRRectShape(rrect));
   }
 
-  void clipRect(Rect rect, {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
+  void clipRect(Rect rect,
+      {ClipOp clipOp = ClipOp.intersect, bool doAntiAlias = true}) {
     _canvas.clipRect(rect, clipOp: clipOp, doAntiAlias: doAntiAlias);
     _shapeHandler.addShape(ClipRectShape(rect, clipOp: clipOp));
   }
@@ -76,6 +76,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawCircle(c, radius, paint);
     _shapeHandler.addShape(Circle(
@@ -98,6 +101,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -121,6 +127,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawLine(p1, p2, paint);
     _shapeHandler.addShape(Line(p1, p2,
@@ -141,6 +150,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -163,6 +175,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawOval(rect, paint);
     _shapeHandler.addShape(Oval(rect,
@@ -183,6 +198,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -211,6 +229,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawPath(path, paint);
     _shapeHandler.addShape(PathShape(path,
@@ -231,6 +252,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -254,6 +278,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawPoints(pointMode, points, paint);
     _shapeHandler.addShape(Point(pointMode, points,
@@ -274,6 +301,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -296,6 +326,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawRRect(rrect, paint);
     _shapeHandler.addShape(RoundedRectangle(rrect,
@@ -316,6 +349,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -339,6 +375,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawRawPoints(pointMode, points, paint);
     List<Offset> offsetPoints = [];
@@ -363,6 +402,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -385,6 +427,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawRect(rect, paint);
     _shapeHandler.addShape(Rectangle(rect,
@@ -405,10 +450,14 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
-  void drawShadow(Path path, Color color, double elevation, bool transparentOccluder) {
+  void drawShadow(
+      Path path, Color color, double elevation, bool transparentOccluder) {
     _canvas.drawShadow(path, color, elevation, transparentOccluder);
     // _shapeHandler.addShape(PathShape(path));
   }
@@ -433,9 +482,14 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawImage(image, p, paint);
-    _shapeHandler.addShape(Rectangle(Rect.fromLTWH(p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
+    _shapeHandler.addShape(Rectangle(
+        Rect.fromLTWH(
+            p.dx, p.dy, image.width.toDouble(), image.height.toDouble()),
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
@@ -453,6 +507,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         )));
   }
 
@@ -478,6 +535,9 @@ class TouchyCanvas {
     GestureDragDownCallback? onPanDown,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
+    PointerEnterEventListener? onEnter,
+    PointerExitEventListener? onExit,
+    PointerHoverEventListener? onHover,
   }) {
     _canvas.drawArc(rect, startAngle, sweepAngle, useCenter, paint);
     var arc = Arc(rect, startAngle, sweepAngle, useCenter,
@@ -498,6 +558,9 @@ class TouchyCanvas {
           onPanDown: onPanDown,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
+          onEnter: onEnter,
+          onExit: onExit,
+          onHover: onHover,
         ));
     _shapeHandler.addShape(arc);
   }

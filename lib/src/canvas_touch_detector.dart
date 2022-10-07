@@ -39,7 +39,30 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
           behavior: HitTestBehavior.translucent,
           child: Builder(
             builder: (context) {
-              return widget.builder(context);
+              return MouseRegion(
+                hitTestBehavior: HitTestBehavior.translucent,
+                onEnter: !widget.gesturesToOverride
+                        .contains(GestureType.onEnter)
+                    ? null
+                    : (mouseEnterDetail) {
+                        touchController.add(Gesture(
+                            GestureType.onEnter, mouseEnterDetail.original));
+                      },
+                onExit: !widget.gesturesToOverride.contains(GestureType.onExit)
+                    ? null
+                    : (mouseExitDetail) {
+                        touchController.add(Gesture(
+                            GestureType.onExit, mouseExitDetail.original));
+                      },
+                onHover: !widget.gesturesToOverride
+                        .contains(GestureType.onHover)
+                    ? null
+                    : (mouseHoverDetail) {
+                        touchController.add(Gesture(
+                            GestureType.onHover, mouseHoverDetail.original));
+                      },
+                child: widget.builder(context),
+              );
             },
           ),
           onTapDown: !widget.gesturesToOverride.contains(GestureType.onTapDown)
