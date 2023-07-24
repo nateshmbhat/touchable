@@ -42,3 +42,13 @@ enum GestureType {
   onSecondaryTapDown,
   onSecondaryTapUp,
 }
+
+/// Changes how [PaintingStyle.stroke] affects hit behavior
+enum StrokeHitBehavior {
+  /// A hit is recorded only when the point actually touches the painted area
+  onlyOnPaint,
+
+  /// A hit is recorded when the point is within the bounds of the painted
+  /// shape, even if that area is actually transparent
+  withinBounds
+}

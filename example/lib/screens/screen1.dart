@@ -97,7 +97,8 @@ class MyPainter extends CustomPainter {
         Paint()
           ..color = Colors.deepPurple
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 70, onTapDown: (_) {
+          ..strokeWidth = 70,
+        strokeHitBehavior: StrokeHitBehavior.withinBounds, onTapDown: (_) {
       print('purple oval touched');
       setState('purple');
     });
@@ -107,7 +108,8 @@ class MyPainter extends CustomPainter {
         Paint()
           ..color = Colors.deepOrange
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 50, onTapDown: (_) {
+          ..strokeWidth = 50,
+        strokeHitBehavior: StrokeHitBehavior.withinBounds, onTapDown: (_) {
       print('orange rect touched');
       setState('orange');
     });
@@ -116,7 +118,8 @@ class MyPainter extends CustomPainter {
       ..color = Colors.greenAccent
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10;
-    canvas.drawCircle(Offset(150, 50), 60, paint, onTapDown: (_) {
+    canvas.drawCircle(Offset(150, 50), 60, paint,
+        strokeHitBehavior: StrokeHitBehavior.withinBounds, onTapDown: (_) {
       print('green Circle touched');
       setState('green');
     });
@@ -144,9 +147,10 @@ class MyPainter extends CustomPainter {
     });
 
     canvas.drawRRect(
-        RRect.fromLTRBR(100, 340, 300, 650, Radius.elliptical(100, 150)),
+        RRect.fromLTRBR(100, 340, 300, 650, Radius.elliptical(20, 30)),
         Paint()
           ..strokeWidth = 40
+          ..style = PaintingStyle.stroke
           ..color = Colors.grey, onTapDown: (_) {
       setState('grey');
       print('grey RRect touched');
@@ -167,7 +171,28 @@ class MyPainter extends CustomPainter {
         [Offset(129.1, 241.9)],
         Paint()
           ..color = Colors.black
-          ..strokeWidth = 10);
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 10, onTapDown: (_) {
+      print("black point touched");
+      setState('black');
+    });
+
+    canvas.drawPoints(
+        PointMode.polygon,
+        [
+          Offset(200, 200),
+          Offset(100, 200),
+          Offset(200, 100),
+          Offset(200, 200)
+        ],
+        Paint()
+          ..color = Colors.black
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 20,
+        strokeHitBehavior: StrokeHitBehavior.withinBounds, onTapDown: (_) {
+      print("black poly touched");
+      setState('black');
+    });
 
 //    _canvas.drawVertices(vertices, blendMode, paint);
 //    canvas.drawCircle(Offset(131.0, 419.00), 50 , Paint()..strokeWidth=40..color=Colors.pink,onTapDown: (_){
