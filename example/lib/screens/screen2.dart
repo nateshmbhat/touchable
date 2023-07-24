@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:touchable/touchable.dart';
 
@@ -106,7 +104,7 @@ class MyPainter extends CustomPainter {
         pi,
         false,
         Paint()..color = Colors.black, onTapDown: (detail) {
-      print("clicked");
+      print('clicked');
       if (smileAnimation.value == 90) {
         smileAnimationController.reverse();
       }
@@ -132,12 +130,13 @@ class MyPainter extends CustomPainter {
               Offset(center.dx + 15, center.dy + 25 + extraLength)
             ], true),
           Paint()..color = color, onTapDown: (_) {
-        print("On Pan Down");
+        print('On Pan Down');
         if (noseAnimationController.value == upperbound ||
             noseAnimationController.status == AnimationStatus.forward) {
           noseAnimationController.reverse();
-        } else
+        } else {
           noseAnimationController.forward();
+        }
       });
     }
 
