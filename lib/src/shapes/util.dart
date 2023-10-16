@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
 
@@ -13,7 +11,7 @@ class ShapeUtil {
 typedef gestureCallback = void Function();
 
 class TouchCanvasUtil {
-  static Offset getPointFromGestureDetail(dynamic gestureDetail) {
+  static Offset? getPointFromGestureDetail(dynamic gestureDetail) {
     switch (gestureDetail.runtimeType) {
       case TapDownDetails:
         return (gestureDetail as TapDownDetails).localPosition;
@@ -25,6 +23,8 @@ class TouchCanvasUtil {
         return (gestureDetail as DragStartDetails).localPosition;
       case DragUpdateDetails:
         return (gestureDetail as DragUpdateDetails).localPosition;
+      case DragEndDetails:
+        return null;
       case LongPressStartDetails:
         return (gestureDetail as LongPressStartDetails).localPosition;
       case LongPressEndDetails:
@@ -37,8 +37,10 @@ class TouchCanvasUtil {
         return (gestureDetail as ScaleUpdateDetails).localFocalPoint;
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
+      case Null:
+        return null;
       default:
-        throw Exception("gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
+        throw Exception('gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized !');
     }
   }
 
@@ -55,6 +57,15 @@ class TouchCanvasUtil {
     required GestureDragStartCallback? onPanStart,
     required GestureDragUpdateCallback? onPanUpdate,
     required GestureDragDownCallback? onPanDown,
+/*  !!! uncomment
+    required GestureDragEndCallback? onPanEnd,
+    required GestureDragCancelCallback? onPanCancel,
+*/
+  // !!! remove next two lines
+     GestureDragEndCallback? onPanEnd,
+     GestureDragCancelCallback? onPanCancel,
+
+
     required GestureTapDownCallback? onSecondaryTapDown,
     required GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -95,6 +106,12 @@ class TouchCanvasUtil {
     }
     if (onPanDown != null) {
       map.putIfAbsent(GestureType.onPanDown, () => onPanDown);
+    }
+    if (onPanEnd != null) {
+      map.putIfAbsent(GestureType.onPanEnd, () => onPanEnd);
+    }
+    if (onPanCancel != null) {
+      map.putIfAbsent(GestureType.onPanCancel, () => onPanCancel);
     }
 
     if (onSecondaryTapDown != null) {

@@ -1,8 +1,6 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
@@ -16,6 +14,7 @@ import 'package:touchable/src/shapes/point.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/rounded_rectangle.dart';
 import 'package:touchable/src/shapes/util.dart';
+import 'package:touchable/touchable.dart';
 
 class TouchyCanvas {
   final Canvas _canvas;
@@ -33,7 +32,7 @@ class TouchyCanvas {
     AxisDirection scrollDirection = AxisDirection.down,
   }) {
     var touchController = TouchDetectionController.of(context);
-    touchController?.addListener((event) {
+    touchController?.addListener((Gesture event) {
       _shapeHandler.handleGestureEvent(
         event,
         scrollController: scrollController,
@@ -294,6 +293,8 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
+    GestureDragEndCallback? onPanEnd,
+    GestureDragCancelCallback? onPanCancel,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -314,6 +315,8 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
+          onPanEnd: onPanEnd,
+          onPanCancel: onPanCancel,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));
