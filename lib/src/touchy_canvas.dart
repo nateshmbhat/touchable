@@ -2,7 +2,6 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/material.dart' hide Image;
-import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
@@ -27,17 +26,23 @@ class TouchyCanvas {
   /// The parameter [canvas] is the [Canvas] object that you get in your [paint] method inside [CustomPainter]
   TouchyCanvas(
     BuildContext context,
-    this._canvas, {
-    ScrollController? scrollController,
-    AxisDirection scrollDirection = AxisDirection.down,
-  }) {
+    this._canvas, {ScrollController? scrollController,
+      AxisDirection scrollDirection = AxisDirection.down,
+      GestureDragEndCallback? onPanEnd,
+      GestureDragCancelCallback? onPanCancel}) {
     var touchController = TouchDetectionController.of(context);
-    touchController?.addListener((Gesture event) {
-      _shapeHandler.handleGestureEvent(
-        event,
-        scrollController: scrollController,
-        direction: scrollDirection,
-      );
+    touchController?.addListener((Gesture gesture) {
+      if (gesture.gestureType == GestureType.onPanEnd) {
+        onPanEnd?.call(gesture.gestureDetail as DragEndDetails);
+      } else if (gesture.gestureType == GestureType.onPanCancel) {
+        onPanCancel?.call();
+      } else {
+        _shapeHandler.handleGestureEvent(
+          gesture,
+          scrollController: scrollController,
+          direction: scrollDirection,
+        );
+      }
     });
   }
 
@@ -293,8 +298,6 @@ class TouchyCanvas {
     GestureDragStartCallback? onPanStart,
     GestureDragUpdateCallback? onPanUpdate,
     GestureDragDownCallback? onPanDown,
-    GestureDragEndCallback? onPanEnd,
-    GestureDragCancelCallback? onPanCancel,
     GestureTapDownCallback? onSecondaryTapDown,
     GestureTapUpCallback? onSecondaryTapUp,
   }) {
@@ -315,8 +318,6 @@ class TouchyCanvas {
           onPanStart: onPanStart,
           onPanUpdate: onPanUpdate,
           onPanDown: onPanDown,
-          onPanEnd: onPanEnd,
-          onPanCancel: onPanCancel,
           onSecondaryTapDown: onSecondaryTapDown,
           onSecondaryTapUp: onSecondaryTapUp,
         )));

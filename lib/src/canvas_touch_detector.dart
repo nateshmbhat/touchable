@@ -196,8 +196,7 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
               : (tapDetail) {
                   touchController
                       .add(Gesture(GestureType.onSecondaryTapUp, tapDetail));
-                },
-        ));
+                }));
   }
 
   @override
