@@ -8,6 +8,9 @@ class ShapeHandler {
   final List<Shape> _shapeStack = [];
   final List<ClipShapeItem> clipItems = [];
   final Set<GestureType> _registeredGestures = {};
+  final Object? panningShapeId;
+
+  ShapeHandler(this.panningShapeId);
 
   Set<GestureType> get registeredGestures => _registeredGestures;
 
@@ -57,6 +60,9 @@ class ShapeHandler {
     }
   }
 
+  Shape? _getShapeById(Object? shapeId) =>
+      shapeId == null ? null : _shapeStack.firstWhereOrNull((shape) => shape.id == shapeId);
+
   List<Shape> _getTouchedShapes(Offset point) {
     var selectedShapes = <Shape>[];
     for (int i = _shapeStack.length - 1; i >= 0; i--) {
@@ -86,6 +92,14 @@ class ShapeHandler {
         AxisDirection direction = AxisDirection.down,
       }) async {
     if (!_registeredGestures.contains(gesture.gestureType)) return;
+
+    final panningShapeIdLocal = panningShapeId;
+    if (gesture.gestureType == GestureType.onPanUpdate && panningShapeIdLocal != null) {
+      final panningShape = _getShapeById(panningShapeIdLocal);
+      if (panningShape != null && panningShape.registeredGestures.contains(gesture.gestureType)) {
+        panningShape.getCallbackFromGesture(gesture)();
+      }
+    }
     var touchPoint = _getActualOffsetFromScrollController(
         TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
 
@@ -93,8 +107,7 @@ class ShapeHandler {
     if (touchedShapes.isEmpty) return;
     for (var touchedShape in touchedShapes) {
       if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
-        var callback = touchedShape.getCallbackFromGesture(gesture);
-        callback();
+        touchedShape.getCallbackFromGesture(gesture)();
       }
     }
   }

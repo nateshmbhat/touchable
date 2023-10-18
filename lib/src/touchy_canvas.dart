@@ -17,8 +17,9 @@ import 'package:touchable/touchable.dart';
 
 class TouchyCanvas {
   final Canvas _canvas;
+  final Object? panningShapeId;
 
-  final ShapeHandler _shapeHandler = ShapeHandler();
+  late final ShapeHandler _shapeHandler ;
 
   ///[TouchyCanvas] helps you add gesture callbacks to the shapes you draw.
   ///
@@ -29,7 +30,9 @@ class TouchyCanvas {
     this._canvas, {ScrollController? scrollController,
       AxisDirection scrollDirection = AxisDirection.down,
       GestureDragEndCallback? onPanEnd,
-      GestureDragCancelCallback? onPanCancel}) {
+      GestureDragCancelCallback? onPanCancel,
+  this.panningShapeId}) {
+    _shapeHandler = ShapeHandler(panningShapeId);
     var touchController = TouchDetectionController.of(context);
     touchController?.addListener((Gesture gesture) {
       if (gesture.gestureType == GestureType.onPanEnd) {
@@ -284,6 +287,7 @@ class TouchyCanvas {
   void drawRRect(
     RRect rrect,
     Paint paint, {
+      Object? shapeId,
     HitTestBehavior? hitTestBehavior,
     GestureTapDownCallback? onTapDown,
     PaintingStyle? paintStyleForTouch,
@@ -303,6 +307,7 @@ class TouchyCanvas {
   }) {
     _canvas.drawRRect(rrect, paint);
     _shapeHandler.addShape(RoundedRectangle(rrect,
+        id: shapeId,
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(

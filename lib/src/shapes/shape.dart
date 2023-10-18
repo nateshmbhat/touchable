@@ -3,6 +3,7 @@ import 'package:touchable/src/shapes/constant.dart';
 import 'package:touchable/touchable.dart';
 
 abstract class Shape {
+  final Object? id;
   final Paint paint;
   final Map<GestureType, Function> gestureCallbackMap;
   final HitTestBehavior hitTestBehavior;
@@ -10,6 +11,7 @@ abstract class Shape {
   Set<GestureType> get registeredGestures => gestureCallbackMap.keys.toSet();
 
   Shape({
+    this.id,
     Paint? paint,
     Map<GestureType, Function>? gestureCallbackMap,
     HitTestBehavior? hitTestBehavior,
