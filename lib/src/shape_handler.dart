@@ -8,7 +8,7 @@ class ShapeHandler {
   final List<Shape> _shapeStack = [];
   final List<ClipShapeItem> clipItems = [];
   final Set<GestureType> _registeredGestures = {};
-  final Object? panningShapeId;
+  Object? panningShapeId;
 
   ShapeHandler(this.panningShapeId);
 
@@ -64,7 +64,7 @@ class ShapeHandler {
       shapeId == null ? null : _shapeStack.firstWhereOrNull((shape) => shape.id == shapeId);
 
   List<Shape> _getTouchedShapes(Offset point) {
-    var selectedShapes = <Shape>[];
+    final selectedShapes = <Shape>[];
     for (int i = _shapeStack.length - 1; i >= 0; i--) {
       var shape = _shapeStack[i];
       if (shape.hitTestBehavior == HitTestBehavior.deferToChild) {
@@ -92,22 +92,28 @@ class ShapeHandler {
         AxisDirection direction = AxisDirection.down,
       }) async {
     if (!_registeredGestures.contains(gesture.gestureType)) return;
-
     final panningShapeIdLocal = panningShapeId;
-    if (gesture.gestureType == GestureType.onPanUpdate && panningShapeIdLocal != null) {
-      final panningShape = _getShapeById(panningShapeIdLocal);
-      if (panningShape != null && panningShape.registeredGestures.contains(gesture.gestureType)) {
-        panningShape.getCallbackFromGesture(gesture)();
+    if (gesture.gestureType == GestureType.onPanUpdate) {
+      if (panningShapeIdLocal != null) {
+        final panningShape = _getShapeById(panningShapeIdLocal);
+        if (panningShape != null && panningShape.registeredGestures.contains(gesture.gestureType)) {
+          panningShape.getCallbackFromGesture(gesture)();
+        }
       }
-    }
-    var touchPoint = _getActualOffsetFromScrollController(
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
+    } else {
+      final pointFromGestureDetail = TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail);
+      final touchPoint = _getActualOffsetFromScrollController(
+          pointFromGestureDetail, scrollController, direction);
 
-    var touchedShapes = _getTouchedShapes(touchPoint);
-    if (touchedShapes.isEmpty) return;
-    for (var touchedShape in touchedShapes) {
-      if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
-        touchedShape.getCallbackFromGesture(gesture)();
+      final touchedShapes = _getTouchedShapes(touchPoint);
+      if (touchedShapes.isEmpty) return;
+      for (var touchedShape in touchedShapes) {
+        if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
+          if (gesture.gestureType == GestureType.onPanStart || gesture.gestureType == GestureType.onPanDown)  {
+            panningShapeId = touchedShape.id;
+          }
+          touchedShape.getCallbackFromGesture(gesture)();
+        }
       }
     }
   }
