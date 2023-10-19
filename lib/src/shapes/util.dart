@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:touchable/src/types/types.dart';
 
@@ -38,7 +36,7 @@ class TouchCanvasUtil {
       case ForcePressDetails:
         return (gestureDetail as ForcePressDetails).localPosition;
       default:
-        throw Exception("gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized ! ");
+        throw Exception('gestureDetail.runTimeType = ${gestureDetail.runtimeType} is not recognized !');
     }
   }
 
@@ -96,7 +94,6 @@ class TouchCanvasUtil {
     if (onPanDown != null) {
       map.putIfAbsent(GestureType.onPanDown, () => onPanDown);
     }
-
     if (onSecondaryTapDown != null) {
       map.putIfAbsent(GestureType.onSecondaryTapDown, () => onSecondaryTapDown);
     }
@@ -105,5 +102,15 @@ class TouchCanvasUtil {
     }
 
     return map;
+  }
+}
+
+extension IterableExtension<T> on Iterable<T> {
+  /// The first element satisfying [test], or `null` if there are none.
+  T? firstWhereOrNull(bool Function(T element) test) {
+    for (var element in this) {
+      if (test(element)) return element;
+    }
+    return null;
   }
 }

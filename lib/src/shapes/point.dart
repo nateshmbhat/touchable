@@ -76,14 +76,22 @@ class PolygonUtil {
     int dir4 = _direction(l2.p1, l2.p2, l1.p2);
 
     if (dir1 != dir2 && dir3 != dir4) return true; //they are intersecting
-    if (dir1 == 0 && l1.isInside(l2.p1)) //when p2 of line2 are on the line1
+    if (dir1 == 0 && l1.isInside(l2.p1)) {
+      //when p2 of line2 are on the line1
       return true;
-    if (dir2 == 0 && l1.isInside(l2.p2)) //when p1 of line2 are on the line1
+    }
+    if (dir2 == 0 && l1.isInside(l2.p2)) {
+      //when p1 of line2 are on the line1
       return true;
-    if (dir3 == 0 && l2.isInside(l1.p1)) //when p2 of line1 are on the line2
+    }
+    if (dir3 == 0 && l2.isInside(l1.p1)) {
+      //when p2 of line1 are on the line2
       return true;
-    if (dir4 == 0 && l2.isInside(l1.p2)) //when p1 of line1 are on the line2
+    }
+    if (dir4 == 0 && l2.isInside(l1.p2)) {
+      //when p1 of line1 are on the line2
       return true;
+    }
     return false;
   }
 

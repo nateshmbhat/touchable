@@ -25,7 +25,7 @@ class CanvasTouchDetector extends StatefulWidget {
 class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
   final StreamController<Gesture> touchController =
       StreamController.broadcast();
-  StreamSubscription? streamSubscription;
+  StreamSubscription<Gesture>? streamSubscription;
 
   Future<void> addStreamListener(Function(Gesture) callBack) async {
     await streamSubscription?.cancel();
@@ -168,31 +168,35 @@ class _CanvasTouchDetectorState extends State<CanvasTouchDetector> {
           onPanUpdate:
               !widget.gesturesToOverride.contains(GestureType.onPanUpdate)
                   ? null
-                  : (tapDetail) {
-                      touchController
-                          .add(Gesture(GestureType.onPanUpdate, tapDetail));
-                    },
+              : (tapDetail) {
+                  touchController.add(Gesture(GestureType.onPanUpdate, tapDetail));
+                },
           onPanDown: !widget.gesturesToOverride.contains(GestureType.onPanDown)
               ? null
               : (tapDetail) {
-                  touchController
-                      .add(Gesture(GestureType.onPanDown, tapDetail));
+                  touchController.add(Gesture(GestureType.onPanDown, tapDetail));
                 },
-          onSecondaryTapDown: !widget.gesturesToOverride
-                  .contains(GestureType.onSecondaryTapDown)
+          onPanEnd: !widget.gesturesToOverride.contains(GestureType.onPanEnd)
               ? null
               : (tapDetail) {
-                  touchController
-                      .add(Gesture(GestureType.onSecondaryTapDown, tapDetail));
+                  touchController.add(Gesture(GestureType.onPanEnd, tapDetail));
                 },
-          onSecondaryTapUp: !widget.gesturesToOverride
-                  .contains(GestureType.onSecondaryTapUp)
+          onPanCancel: !widget.gesturesToOverride.contains(GestureType.onPanCancel)
+              ? null
+              : () {
+                  touchController.add(Gesture(GestureType.onPanCancel, null));
+                },
+          onSecondaryTapDown: !widget.gesturesToOverride.contains(GestureType.onSecondaryTapDown)
+              ? null
+              : (tapDetail) {
+                  touchController.add(Gesture(GestureType.onSecondaryTapDown, tapDetail));
+                },
+          onSecondaryTapUp: !widget.gesturesToOverride.contains(GestureType.onSecondaryTapUp)
               ? null
               : (tapDetail) {
                   touchController
                       .add(Gesture(GestureType.onSecondaryTapUp, tapDetail));
-                },
-        ));
+                }));
   }
 
   @override

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/clip.dart';
 import 'package:touchable/src/shapes/shape.dart';
@@ -10,6 +8,9 @@ class ShapeHandler {
   final List<Shape> _shapeStack = [];
   final List<ClipShapeItem> clipItems = [];
   final Set<GestureType> _registeredGestures = {};
+  Object? panningShapeId;
+
+  ShapeHandler(this.panningShapeId);
 
   Set<GestureType> get registeredGestures => _registeredGestures;
 
@@ -42,8 +43,7 @@ class ShapeHandler {
     return true;
   }
 
-  Offset _getActualOffsetFromScrollController(
-      Offset touchPoint, ScrollController? controller, AxisDirection direction) {
+  Offset _getActualOffsetFromScrollController(Offset touchPoint, ScrollController? controller, AxisDirection direction) {
     if (controller == null) {
       return touchPoint;
     }
@@ -60,8 +60,11 @@ class ShapeHandler {
     }
   }
 
+  Shape? _getShapeById(Object? shapeId) =>
+      shapeId == null ? null : _shapeStack.firstWhereOrNull((shape) => shape.id == shapeId);
+
   List<Shape> _getTouchedShapes(Offset point) {
-    var selectedShapes = <Shape>[];
+    final selectedShapes = <Shape>[];
     for (int i = _shapeStack.length - 1; i >= 0; i--) {
       var shape = _shapeStack[i];
       if (shape.hitTestBehavior == HitTestBehavior.deferToChild) {
@@ -84,20 +87,33 @@ class ShapeHandler {
   }
 
   Future<void> handleGestureEvent(
-    Gesture gesture, {
-    ScrollController? scrollController,
-    AxisDirection direction = AxisDirection.down,
-  }) async {
-    var touchPoint = _getActualOffsetFromScrollController(
-        TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail), scrollController, direction);
+      Gesture gesture, {
+        ScrollController? scrollController,
+        AxisDirection direction = AxisDirection.down,
+      }) async {
     if (!_registeredGestures.contains(gesture.gestureType)) return;
+    final panningShapeIdLocal = panningShapeId;
+    if (gesture.gestureType == GestureType.onPanUpdate) {
+      if (panningShapeIdLocal != null) {
+        final panningShape = _getShapeById(panningShapeIdLocal);
+        if (panningShape != null && panningShape.registeredGestures.contains(gesture.gestureType)) {
+          panningShape.getCallbackFromGesture(gesture)();
+        }
+      }
+    } else {
+      final pointFromGestureDetail = TouchCanvasUtil.getPointFromGestureDetail(gesture.gestureDetail);
+      final touchPoint = _getActualOffsetFromScrollController(
+          pointFromGestureDetail, scrollController, direction);
 
-    var touchedShapes = _getTouchedShapes(touchPoint);
-    if (touchedShapes.isEmpty) return;
-    for (var touchedShape in touchedShapes) {
-      if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
-        var callback = touchedShape.getCallbackFromGesture(gesture);
-        callback();
+      final touchedShapes = _getTouchedShapes(touchPoint);
+      if (touchedShapes.isEmpty) return;
+      for (var touchedShape in touchedShapes) {
+        if (touchedShape.registeredGestures.contains(gesture.gestureType)) {
+          if (gesture.gestureType == GestureType.onPanStart || gesture.gestureType == GestureType.onPanDown)  {
+            panningShapeId = touchedShape.id;
+          }
+          touchedShape.getCallbackFromGesture(gesture)();
+        }
       }
     }
   }

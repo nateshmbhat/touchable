@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:touchable/src/shapes/shape.dart';
 import 'package:touchable/src/types/types.dart';
@@ -8,11 +6,16 @@ class RoundedRectangle extends Shape {
   final RRect rRect;
 
   RoundedRectangle(this.rRect,
-      {Paint? paint,
+      {Object? id,
+      Paint? paint,
       Map<GestureType, Function>? gestureMap,
       HitTestBehavior? hitTestBehavior,
       PaintingStyle? paintStyleForTouch})
-      : super(hitTestBehavior: hitTestBehavior, paint: paint ?? Paint(), gestureCallbackMap: gestureMap ?? {});
+      : super(
+            id: id,
+            hitTestBehavior: hitTestBehavior,
+            paint: paint ?? Paint(),
+            gestureCallbackMap: gestureMap ?? {});
 
   @override
   bool isInside(Offset p) {

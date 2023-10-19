@@ -1,10 +1,7 @@
-import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image;
-import 'package:touchable/src/canvas_touch_detector.dart';
 import 'package:touchable/src/shape_handler.dart';
 import 'package:touchable/src/shapes/arc.dart';
 import 'package:touchable/src/shapes/circle.dart';
@@ -16,11 +13,13 @@ import 'package:touchable/src/shapes/point.dart';
 import 'package:touchable/src/shapes/rectangle.dart';
 import 'package:touchable/src/shapes/rounded_rectangle.dart';
 import 'package:touchable/src/shapes/util.dart';
+import 'package:touchable/touchable.dart';
 
 class TouchyCanvas {
   final Canvas _canvas;
+  final Object? panningShapeId;
 
-  final ShapeHandler _shapeHandler = ShapeHandler();
+  late final ShapeHandler _shapeHandler ;
 
   ///[TouchyCanvas] helps you add gesture callbacks to the shapes you draw.
   ///
@@ -28,17 +27,25 @@ class TouchyCanvas {
   /// The parameter [canvas] is the [Canvas] object that you get in your [paint] method inside [CustomPainter]
   TouchyCanvas(
     BuildContext context,
-    this._canvas, {
-    ScrollController? scrollController,
-    AxisDirection scrollDirection = AxisDirection.down,
-  }) {
+    this._canvas, {ScrollController? scrollController,
+      AxisDirection scrollDirection = AxisDirection.down,
+      GestureDragEndCallback? onPanEnd,
+      GestureDragCancelCallback? onPanCancel,
+  this.panningShapeId}) {
+    _shapeHandler = ShapeHandler(panningShapeId);
     var touchController = TouchDetectionController.of(context);
-    touchController?.addListener((event) {
-      _shapeHandler.handleGestureEvent(
-        event,
-        scrollController: scrollController,
-        direction: scrollDirection,
-      );
+    touchController?.addListener((Gesture gesture) {
+      if (gesture.gestureType == GestureType.onPanEnd) {
+        onPanEnd?.call(gesture.gestureDetail as DragEndDetails);
+      } else if (gesture.gestureType == GestureType.onPanCancel) {
+        onPanCancel?.call();
+      } else {
+        _shapeHandler.handleGestureEvent(
+          gesture,
+          scrollController: scrollController,
+          direction: scrollDirection,
+        );
+      }
     });
   }
 
@@ -280,6 +287,7 @@ class TouchyCanvas {
   void drawRRect(
     RRect rrect,
     Paint paint, {
+      Object? shapeId,
     HitTestBehavior? hitTestBehavior,
     GestureTapDownCallback? onTapDown,
     PaintingStyle? paintStyleForTouch,
@@ -299,6 +307,7 @@ class TouchyCanvas {
   }) {
     _canvas.drawRRect(rrect, paint);
     _shapeHandler.addShape(RoundedRectangle(rrect,
+        id: shapeId,
         paint: paint,
         hitTestBehavior: hitTestBehavior,
         gestureMap: TouchCanvasUtil.getGestureCallbackMap(
